@@ -1,0 +1,256 @@
+% arara: pdflatex: { synctex: yes }
+% arara: makeindex: { style: ctuthesis }
+% arara: bibtex
+
+% The class takes all the key=value arguments that \ctusetup does,
+% and a couple more: draft and oneside
+\documentclass[twoside]{ctuthesis}
+
+\usepackage[sortlocale=cs_CZ, sorting=debug, style=iso-numeric, maxnames=2]{biblatex}
+\renewcommand*{\finalnamedelim}{ a }
+
+\ctusetup{
+	mainlanguage = czech,
+	otherlanguages = {slovak, english},
+	title-czech = {Mobilní aplikace pro plánování lidských zdrojů},
+	title-english = {TODO},
+	doctype = S,
+	faculty = F3,
+	department-czech = {Katedra počítačů},
+	department-english = {Department of Computer Science},
+	author = {Martina Kopecká},
+	supervisor = {Prof. Krutoš Spravedlivý},
+	supervisor-address = {TODO},
+	fieldofstudy-english = {Software Engineering -- TODO, co je ENG nazev},
+	fieldofstudy-czech = {Softwarové inženýrství a technologie},
+	keywords-czech = {slovo, klíč},
+	keywords-english = {word, key},
+	day = 1,
+	month = 1,
+	year = 2021,
+}
+
+\ctuprocess
+
+\addto\ctucaptionsczech{%
+	\def\supervisorname{Vedoucí}%
+	\def\subfieldofstudyname{Studijní program}%
+}
+
+\ctutemplateset{maketitle twocolumn default}{
+	\begin{twocolumnfrontmatterpage}
+		\ctutemplate{twocolumn.thanks}
+		\ctutemplate{twocolumn.declaration}
+		\ctutemplate{twocolumn.abstract.in.titlelanguage}
+		\ctutemplate{twocolumn.abstract.in.secondlanguage}
+		\ctutemplate{twocolumn.tableofcontents}
+		\ctutemplate{twocolumn.listoffigures}
+	\end{twocolumnfrontmatterpage}
+}
+
+\setlength{\parskip}{5ex plus 0.2ex minus 0.2ex}
+
+% Abstract in Czech
+\begin{abstract-czech}
+Český abstrakt
+\end{abstract-czech}
+
+% Abstract in English
+\begin{abstract-english}
+English abstract
+\end{abstract-english}
+
+% Acknowledgements / Podekovani
+\begin{thanks}
+Děkuji ČVUT, že mi je tak dobrou \emph{alma mater}.
+\end{thanks}
+
+% Declaration / Prohlaseni
+\begin{declaration}
+Prohlašuji, že jsem předloženou práci vypracovala samostatně s~použitím uvedené literatury.
+
+V Praze, \ctufield{day}.~\monthinlanguage{title}~\ctufield{year}
+\end{declaration}
+
+\DeclareLabeldate[article]{
+  \field{date}
+  \field{year}
+  \field{eventdate}
+  \field{origdate}
+  \field{urldate}
+}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Úvod}
+TODO
+
+
+\chapter{Analýza problematiky}
+Následující kapitola bude věnována analýze problematiky plánování zdrojů, a to jednak z~hlediska terminologie, jednak z~hlediska manažerského a právního (důraz je zde kladen především na pracovní dobu a typy pracovněprávních vztahů v~české legislativě a rozdíly mezi nimi).
+
+\section{Definice a terminologie}
+
+Řízení lidských zdrojů (angl. human resource management\footnote{Také se užívá pojem people management, neboť pojem human resources může mít negativní konotace a~značit, že lidé jsou zdrojem ve výrobě jako cokoli jiného. \cite[s.~1]{armstrong2014} Samotné spojení human resources se používá ve spojitosti s~personálním oddělením v~rámci organizace. }) je definováno jako komplexní přístup k~zaměstnávání a rozvoji osob. Pojem zahrnuje všechny aspekty toho, jak jsou osoby zaměstnány a řízeny v~rámci organizace. \cite[s.~1]{armstrong2014}
+
+Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce nebo manpower), to jest všichni lidé, kteří pracují pro danou společnost nebo organizaci [TODO: zdroj nebo upravit]. Vyskytuje se též slovní spojení plánování pracovních sil (angl. workforce planning), jedná se o základní proces řízení lidských zdrojů, který je utvářen strategií organizace a jeho cílem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal organizaci dosáhnout jejích cílů \cite{cipd2020_workforce}.
+
+
+\section{Rozhodující faktory při plánování}
+
+\subsection{Zaměstnanci}
+V rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~oddílu \ref{section:legislativa}. Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi.
+
+\subsection{Směny}
+\label{sub:smeny}
+Jednotlivé organizace se od sebe mohou lišit způsobem, jakým vypisují směny. Existují tak podniky, kde je rozvrh práce pravidelný a stejný pro všechny zaměstnance, ale i ty, kde je provoz dvou- nebo i třísměnný, rozvrh směn je sestavován cyklicky a začátek směn daného zaměstnance se v~jednotlivých dnech liší (nejčastěji směny začínají ráno, odpoledne nebo v~noci). Mezi organizace s~cyklicky sestavovaným rozvhem se řadí nejčastěji provozy, které operují 7~dní v~týdnu, například nemocnice, vězení, policie nebo také restaurace a pobočky řetězců rychlého občerstvení \cite{bechtold1981work}.
+
+Nepravidelný rozvrh směn přitom může mít pro zaměstnance nežádoucí zdravotní účinky, \cite{flo2013shift} uvádí, že zaměstnanci ve vícesměnném provozu trpí nespavostí více než zbytek populace, a to především v~případě, že je mezi směnami kratší než 11hodinová přestávka, [TODO další zdravotní rizika].
+
+\subsection{Úkoly}
+TODO -- může to být sekvence činností při směně nebo fakt, že teď pracuje organizace na něčem?
+
+% Provozní úkoly (angl. operational tasks) jsou běžné činnosti, které musí během dne zaměstnanci vykonat \cite{lin2015}. Při jejich plnění se přitom nevytváří nový produkt, ale udržuje se chod organizace (např. se jedná o~administrativní úkoly). Lze je rozdělit na prioritní, plánované a neplánované \cite{miwa2010}.
+
+\subsection{Předpověď poptávky po personálu}
+Obecně řečeno musí zaměstnanci plnit úkoly podle toho, jaké události nastanou. Modelováním poptávky se rozumí proces, jehož výstupem je předpověď přibližného počtu zaměstnanců a jejich očekávaných kompetencí \cite[s.~219]{armstrong2014}, a to na základě očekávaných událostí \cite{ernst2004staff}. 
+Například prodejce hraček tedy na základě historických dat ví, že nejvíce zákazníků přichází před Vánoci a předpokládá, že tomu tak bude i v~následujícím roce. Na tuto událost bude reagovat tím, že se rozhodne rozšířit otevírací dobu. To celkově zvýší poptávku po personálu.
+
+
+
+\subsection{Cena}
+Dalším důležitým faktorem při plánování pracovních sil je celková cena lidské práce a otázka její optimalizace při naplnění poptávky.
+
+
+\section{Legislativní podmínky}
+\label{section:legislativa}
+Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákoník práce \cite{zakon06_262}, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy.
+
+Zaměstnavatel je dle §~38 zákoníku práce povinen přidělovat zaměstnanci práci podle pracovní smlouvy. Zaměstnanec je pak povinen podle pokynů zaměstnavatele konat osobně práci v~rozvržené týdenní pracovní době.
+
+\subsection{Pracovní doba}
+Pracovní dobou se rozumí doba, v~níž je zaměstnanec povinen vykonávat práci pro zaměstnavatele nebo je k tomu na pracovišti připraven. Doba odpočinku není součástí pracovní doby. (§ 78 zákoníku práce)
+
+Stanovená týdenní pracovní doba činí dle §~79 zákoníku práce 40~hodin (mimo výjimky). Pracovní dobu rozvrhuje zaměstnavatel, který určuje začátek a konec směn, a to zpravidla do pětidenního pracovního týdne (§ 81). Délka směny nesmí přesáhnout 12~hodin. U nezletilých zaměstnanců pak nesmí délka směny v~jednotlivém dni překročit 8~hodin a v~jednom týdnu 40~hodin.
+
+\subsection{Rozvrh pracovní doby}
+Zaměstnavatel je dle §~84 zákoníku práce povinen vypracovat rozvrh týdenní pracovní doby a seznámit s~ním nebo jeho změnou zaměstnance nejpozději 2~týdny předem (mimo výjimky stanovené zákonem nebo v~případě existence jiné dohody mezi zaměstnancem a zaměstnavatelem). Tento rozvrh musí být v~písemné formě. Pracovní dobu je podle §~90 třeba rozvrhovat s ohledem na nepřetržitý odpočinek mezi koncem jedné směny a začátkem následující (pro zletilé zaměstnance alespoň 11 hodin, pro nezletilé zaměstnance alespoň 12 hodin, v~zákonem stanovených výjimkách lze za určitých podmínek odpočinek zkrátit).
+
+\subsection{Směna, směnný provoz}
+TODO
+
+\subsection{Pracovní poměr}
+Pracovní poměr mezi zaměstnancem a zaměstnavatelem se podle §~33, odst.~1 zákoníku práce zakládá pracovní smlouvou. Zaměstnavatel má zajišťovat plnění svých úkolů především zaměstnanci v pracovním poměru (§ TODO).
+
+\subsection{Přesčasy}
+TODO
+
+\subsection{Zkrácený úvazek}
+Podle §~80 zákoníku práce může být mezi zaměstnancem a~zaměstnavatelem sjednána kratší pracovní doba.
+
+\subsection{Dohody o pracích konaných mimo pracovní poměr}
+§~77 zákoníku práce stanovuje, že na práci konanou na základě dohod o pracích konaných mimo pracovní poměr se vztahuje úprava pro výkon práce v~pracovním poměru, a to mimo výjimky uvedené v odst.~2 tohoto paragrafu (např. pracovní dobu a~dobu odpočinku nebo dovolenou). Podle §~74 přitom zaměstavatel není zaměstnancům na dohody povinen rozvrhnout pracovní dobu.
+
+\subsubsection{Dohoda o provedení práce}
+Podle §~75 zákoníku práce se dohoda o provedení práce uzavírá nejvýše na 300~hodin v~kalendářním roce (doba se u jednoho zaměstnavatele sčítá v~případě, že je dohod uzavřeno více).
+
+\subsubsection{Dohoda o pracovní činnosti}
+Podle §~76 zákoníku práce není na základě dohody o pracovní činnosti možné vykonávat práci v~rozsahu překračujícím v~průměru polovinu stanovené týdenní pracovní doby. Toto se posuzuje za celou dobu, po niž je uzavřena, nejdéle však za 52 týdnů. Musí být sjednán rozsah pracovní doby a doba, na niž se sjednává.
+
+
+
+\chapter{Analýza systému}
+
+
+\section{Motivace pro softwarové řešení}
+TODO
+% Jak zlepšilo produktivitu adoptování systémů? Jsou zaměstnanci víc spoko? Kolik nám to ušetři peněz?
+% People centric system
+
+
+\section{Uživatelské role}
+Jedním z~hlavních cílů celého systému na plánování směn je informovat individuálně zaměstnance o jejich vlastních směnách, proto se jeví vhodnou jeho personalizace, a to na základě uživatelských účtů. Vstupní operací bude přihlášení -- z~toho vyplývá nezbytnost existence role přihlášeného a nepřihlášeného uživatele.
+
+Pro roli přihlášeného uživatele byla identifikována nutnost dalšího rozšíření, a to na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti) a věku, resp. toho, zda je zletilý či nikoli. Důvodem pro toto rozšíření je, že každý uživatel bude moci provádět jiné operace dle odlišných pravidel. Uživatelská role ovšem není závislá na tom, zda má zaměstnanec plný nebo zkrácený úvazek, neboť v obou případech platí stejné podmínky, liší se jen týdenní pracovní doba. Stranou zůstává role, kterou má v~rámci tohoto systému zaměstnavatel či jím pověřená osoba (dále jen vedoucí), jež má zodpovědnost za rozvrhování pracovní doby. Ta by měla mít komplexní přehled o rozpisu a v~případě nutnosti i možnost do něj zasáhnout.
+
+
+\section{Funkční požadavky}
+Cílem tohoto oddílu je formulovat funkční požadavky, tzn. jaké možnosti by měl systém poskytnout koncovým uživatelům, aniž by bylo specifikováno, jak to bude dělat\cite{lauesen2002}.
+
+\subsubsection{Základní požadavky na systém}
+\begin{enumerate}
+	\item Jako nepřihlášený uživatel se chci do systému přihlásit uživatelským jménem a heslem.
+	\item Jako přihlášený uživatel chci mít možnost se ze systému odhlásit.
+	\item Jako uživatel chci mít možnost zobrazit si relevantní nápovědu.
+\end{enumerate}
+
+\subsubsection{Požadavky na správu směn}
+\begin{enumerate}
+	% \item Jako vedoucí chci vypsat časové sloty pro směny mně podřízených zaměstnanců.
+	\item Jako vedoucí chci vidět komplexní rozpis směn svých podřízených.
+	\item Jako vedoucí chci mít možnost změnit automaticky generovaný rozpis směn.
+\end{enumerate}
+
+\subsubsection{Požadavky na splnění legislativy}
+Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~oddílu \ref{section:legislativa} stanoveny následující požadavky:
+
+\begin{enumerate}
+	\item Systém rozvrhne zaměstnancům v~pracovním poměru pracovní dobu úměrně jejich úvazku, a to vždy s~nejméně dvoutýdenním předstihem.
+	\item Systém bude automaticky plánovat ideálně 8hodinové, nejdéle však 12hodinové směny.
+	\item Systém při plánování směn nezletilým zaměstnancům rozvrhne v~jednom dni maximálně 8hodinové směny, jejich týdenní pracovní doba nepřekročí 40~hodin.
+	\item Systém umožní zaměstnancům na dohodu o provedení práce odpracovat nejvýše 300 hodin v~kalendářním roce.
+
+\end{enumerate}
+
+
+\section{Uživatelská práva}
+TODO.
+Vzhledem k~tomu, že se jedná o interní systém organizace, budou práva nepřihlášeného uživatele omezena jen na velmi malou množinu operací.
+
+
+\section{Existující systémy}
+TODO.
+V~následující kapitole bude provedena analýza vybraných systémů, které lze pro plánování lidských zdrojů použít.
+
+% Konkrétně se jedná o systémy Tamigo\footnote{https://tamigo.com}, Workforce\footnote{https://workforce.com} a When I work\footnote{https://wheniwork.com}, zmínka bude věnována i ERP systémům.
+
+
+\section{UX analýza}
+
+
+
+\chapter{Algoritmy pro rozvrhování směn}
+Problém plánování směn je obecně velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní).  \cite{cai2000genetic}
+
+
+\section{Proces rozvrhování směn}
+Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů, které mohou, ale nemusí být postupnými kroky tohoto procesu. Konkrétně se jedná o:
+\begin{enumerate}
+	\item předpovídání poptávky po personálu;
+	\item rozvrhování volných dnů;
+	\item rozvrhování směn;
+	\item rozvrhování prací;
+	\item rozdělení úkolů;
+	\item přidělení osob.
+\end{enumerate}
+
+\subsection{Rozvrhování směn}
+
+
+
+
+\chapter{Mobilní aplikace}
+
+
+\section{Design}
+
+
+\chapter{Závěr}
+
+\printbibliography[title={Seznam použité literatury}]
+
+\end{document}
