@@ -5,10 +5,12 @@
 % The class takes all the key=value arguments that \ctusetup does,
 % and a couple more: draft and oneside
 \documentclass[twoside]{ctuthesis}
-
+\usepackage{graphicx}
 \usepackage[sortlocale=cs_CZ, sorting=debug, style=iso-numeric, maxnames=2]{biblatex}
-\renewcommand*{\finalnamedelim}{ a }
 
+\usepackage{indentfirst}
+\graphicspath{{img/}}
+\renewcommand*{\finalnamedelim}{ a }
 \ctusetup{
 	mainlanguage = czech,
 	otherlanguages = {slovak, english},
@@ -48,7 +50,8 @@
 	\end{twocolumnfrontmatterpage}
 }
 
-\setlength{\parskip}{5ex plus 0.2ex minus 0.2ex}
+\setlength{\parskip}{0.5em}
+% \setlength{\parskip}{5ex plus 0.2ex minus 0.2ex}
 
 % Abstract in Czech
 \begin{abstract-czech}
@@ -97,13 +100,26 @@ Následující kapitola bude věnována analýze problematiky plánování zdroj
 
 Řízení lidských zdrojů (angl. human resource management\footnote{Také se užívá pojem people management, neboť pojem human resources může mít negativní konotace a~značit, že lidé jsou zdrojem ve výrobě jako cokoli jiného. \cite[s.~1]{armstrong2014} Samotné spojení human resources se používá ve spojitosti s~personálním oddělením v~rámci organizace. }) je definováno jako komplexní přístup k~zaměstnávání a rozvoji osob. Pojem zahrnuje všechny aspekty toho, jak jsou osoby zaměstnány a řízeny v~rámci organizace. \cite[s.~1]{armstrong2014}
 
-Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce nebo manpower), to jest všichni lidé, kteří pracují pro danou společnost nebo organizaci [TODO: zdroj nebo upravit]. Vyskytuje se též slovní spojení plánování pracovních sil (angl. workforce planning), jedná se o základní proces řízení lidských zdrojů, který je utvářen strategií organizace a jeho cílem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal organizaci dosáhnout jejích cílů \cite{cipd2020_workforce}.
+Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce nebo manpower), resp. její plánování, jedná se o základní proces řízení lidských zdrojů, který je utvářen strategií organizace a jeho cílem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal organizaci dosáhnout jejích cílů. \cite{cipd2020_workforce} Mezi kroky tohoto procesu dle \cite{cipd2020_workforce} patří:
+\begin{itemize}
+	\item analýza aktuální personální situace;
+	\item stanovení budoucích potřeb;
+	\item identifikace současných nedostatků vzhledem k~plánu do budoucna;
+	\item podnikání akcí k~odstranění nedostatků;
+	\item monitorování a evaluace akcí.
+\end{itemize}
+
+Kde si v~tom systému stojí rozvrhování?
+
 
 
 \section{Rozhodující faktory při plánování}
+% PESTLE analyza
 
-\subsection{Zaměstnanci}
-V rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~oddílu \ref{section:legislativa}. Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi.
+\subsection{Pracovní síly}
+V rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~podkapitole \ref{section:legislativa}.
+% Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi.
+% Dalším hlediskem, které je vhodné brát v~úvahu, je i spokojenost zaměstnanců, jejich časové možnosti a preference.
 
 \subsection{Směny}
 \label{sub:smeny}
@@ -112,15 +128,15 @@ Jednotlivé organizace se od sebe mohou lišit způsobem, jakým vypisují směn
 Nepravidelný rozvrh směn přitom může mít pro zaměstnance nežádoucí zdravotní účinky, \cite{flo2013shift} uvádí, že zaměstnanci ve vícesměnném provozu trpí nespavostí více než zbytek populace, a to především v~případě, že je mezi směnami kratší než 11hodinová přestávka, [TODO další zdravotní rizika].
 
 \subsection{Úkoly}
-TODO -- může to být sekvence činností při směně nebo fakt, že teď pracuje organizace na něčem?
+% TODO -- může to být sekvence činností při směně nebo fakt, že teď pracuje organizace na něčem?
+
+V~případě, že zaměstnanci jsou při práci vystaveni zdravotním rizikům, je vhodné během směny rozdělit úkoly tak, aby riziko bylo minimalizováno. \cite{wongwien2013ergonomic}
 
 % Provozní úkoly (angl. operational tasks) jsou běžné činnosti, které musí během dne zaměstnanci vykonat \cite{lin2015}. Při jejich plnění se přitom nevytváří nový produkt, ale udržuje se chod organizace (např. se jedná o~administrativní úkoly). Lze je rozdělit na prioritní, plánované a neplánované \cite{miwa2010}.
 
 \subsection{Předpověď poptávky po personálu}
-Obecně řečeno musí zaměstnanci plnit úkoly podle toho, jaké události nastanou. Modelováním poptávky se rozumí proces, jehož výstupem je předpověď přibližného počtu zaměstnanců a jejich očekávaných kompetencí \cite[s.~219]{armstrong2014}, a to na základě očekávaných událostí \cite{ernst2004staff}. 
+Obecně řečeno musí zaměstnanci plnit úkoly podle toho, jaké události nastanou. Modelováním poptávky se rozumí proces, jehož výstupem je předpověď přibližného počtu zaměstnanců a jejich očekávaných kompetencí \cite[s.~219]{armstrong2014}, a to na základě očekávaných událostí \cite{ernst2004staff}.
 Například prodejce hraček tedy na základě historických dat ví, že nejvíce zákazníků přichází před Vánoci a předpokládá, že tomu tak bude i v~následujícím roce. Na tuto událost bude reagovat tím, že se rozhodne rozšířit otevírací dobu. To celkově zvýší poptávku po personálu.
-
-
 
 \subsection{Cena}
 Dalším důležitým faktorem při plánování pracovních sil je celková cena lidské práce a otázka její optimalizace při naplnění poptávky.
@@ -167,7 +183,8 @@ Podle §~76 zákoníku práce není na základě dohody o pracovní činnosti mo
 
 
 \section{Motivace pro softwarové řešení}
-TODO
+
+TODO.
 % Jak zlepšilo produktivitu adoptování systémů? Jsou zaměstnanci víc spoko? Kolik nám to ušetři peněz?
 % People centric system
 
@@ -179,7 +196,7 @@ Pro roli přihlášeného uživatele byla identifikována nutnost dalšího roz�
 
 
 \section{Funkční požadavky}
-Cílem tohoto oddílu je formulovat funkční požadavky, tzn. jaké možnosti by měl systém poskytnout koncovým uživatelům, aniž by bylo specifikováno, jak to bude dělat\cite{lauesen2002}.
+Cílem této podkapitoly je formulovat funkční požadavky, tzn. jaké možnosti by měl systém poskytnout koncovým uživatelům, aniž by bylo specifikováno, jak to bude dělat \cite{lauesen2002}.
 
 \subsubsection{Základní požadavky na systém}
 \begin{enumerate}
@@ -196,7 +213,7 @@ Cílem tohoto oddílu je formulovat funkční požadavky, tzn. jaké možnosti b
 \end{enumerate}
 
 \subsubsection{Požadavky na splnění legislativy}
-Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~oddílu \ref{section:legislativa} stanoveny následující požadavky:
+Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~podkapitoly~\ref{section:legislativa} stanoveny následující požadavky:
 
 \begin{enumerate}
 	\item Systém rozvrhne zaměstnancům v~pracovním poměru pracovní dobu úměrně jejich úvazku, a to vždy s~nejméně dvoutýdenním předstihem.
@@ -209,12 +226,12 @@ Při implementaci systému na plánování směn je žádoucí, aby byl dohled n
 
 \section{Uživatelská práva}
 TODO.
-Vzhledem k~tomu, že se jedná o interní systém organizace, budou práva nepřihlášeného uživatele omezena jen na velmi malou množinu operací.
+% Vzhledem k~tomu, že se jedná o interní systém organizace, budou práva nepřihlášeného uživatele omezena jen na velmi malou množinu operací.
 
 
 \section{Existující systémy}
 TODO.
-V~následující kapitole bude provedena analýza vybraných systémů, které lze pro plánování lidských zdrojů použít.
+% V~následující kapitole bude provedena analýza vybraných systémů, které lze pro plánování lidských zdrojů použít.
 
 % Konkrétně se jedná o systémy Tamigo\footnote{https://tamigo.com}, Workforce\footnote{https://workforce.com} a When I work\footnote{https://wheniwork.com}, zmínka bude věnována i ERP systémům.
 
@@ -224,7 +241,10 @@ V~následující kapitole bude provedena analýza vybraných systémů, které l
 
 
 \chapter{Algoritmy pro rozvrhování směn}
-Problém plánování směn je obecně velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní).  \cite{cai2000genetic}
+Problém plánování směn je obecně velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). \cite{cai2000genetic} Proto se také na jeho řešení nejčastěji používají heuristické metody.
+
+\section{Definice problému}
+Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $D$~pracovních dní. V~každém pracovním dni je vypsáno několik směn (ráno, odpoledne, v~noci). Pro každou směnu je stanoven přesný počet potřebných pracovníků.
 
 
 \section{Proces rozvrhování směn}
@@ -238,8 +258,42 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů
 	\item přidělení osob.
 \end{enumerate}
 
-\subsection{Rozvrhování směn}
+Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí rozdělit na nezbytné (které musí být splněny vždy) a~zbytné (jejichž splnění je žádoucí). \cite{todorovic2012bee}
 
+% PEAST algorithm = http://www.lnse.org/papers/51-CA009.pdf
+% Employee scheduling in service industries with flexible employee availability and demand https://www.sciencedirect.com/science/article/pii/S0305048316000475#bib1
+
+% \newpage
+% \subsection{Rozvrhování prací}
+% % TODO
+% [TODO: Nechat to tu?]
+%
+% Mezi jednotlivými pracemi (úkoly) může být vztah precedence, tzn., že nezbytnou podmínkou pro začátek některé z~prací je ukončení jiné práce (jedná se tedy o~uspořádané dvojice). Posloupnost prací lze zobrazit do orientovaného grafu \cite{mohring2004scheduling}, který lze zobrazit dvěma způsoby, buďto jsou práce vrcholy (obr.~\ref{fig:node}), nebo jsou práce hrany (obr.~\ref{fig:arc}), v~tom případě jsou vrcholy milníky. \cite[s.~51--57]{pinedo2005planning}
+%
+% % % TODO obrázky
+% \begin{figure}[h]
+% \def\svgwidth{\columnwidth}
+% \input{img/job_on_node.pdf_tex}
+% \caption{Práce jako vrchol}
+% \label{fig:node}
+% \end{figure}
+%
+% \begin{figure}[h]
+% \def\svgwidth{\columnwidth}
+% \input{img/job_on_arc.pdf_tex}
+% \caption{Práce jako hrana}
+% \label{fig:arc}
+% \end{figure}
+
+
+
+\chapter{Backend}
+
+
+\section{Autentizace}
+Autentizace je realizována pomocí knihovny Devise Token Auth\footnote{\url{https://github.com/lynndylanhurley/devise_token_auth}}, server v~případě úspěšné autentizace odešle klientovi v~hlavičce token typu bearer (tzn. nositel, \uv{umožni nositeli tohoto tokenu přístup} \cite{swagger2020bearer}) s~platností na dva týdny. Akce bude uživateli umožněna v~případě, že~na server odešle v~HTTP~hlavičce spolu se svým požadavkem i~údaje o~tokenu.
+
+Hesla uživatelů se v~databázi uchovávají v~hashované podobě.
 
 
 
@@ -247,6 +301,7 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů
 
 
 \section{Design}
+
 
 
 \chapter{Závěr}
