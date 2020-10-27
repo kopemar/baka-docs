@@ -7,6 +7,10 @@
 \documentclass[twoside]{ctuthesis}
 \usepackage{graphicx}
 \usepackage[sortlocale=cs_CZ, sorting=debug, style=iso-numeric, maxnames=2]{biblatex}
+\usepackage{array,etoolbox}
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
 
 \usepackage{indentfirst}
 \graphicspath{{img/}}
@@ -30,6 +34,7 @@
 	day = 1,
 	month = 1,
 	year = 2021,
+	pkg-listings = true,
 }
 
 \ctuprocess
@@ -49,6 +54,51 @@
 		\ctutemplate{twocolumn.listoffigures}
 	\end{twocolumnfrontmatterpage}
 }
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.88,0.96,0.98}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+		extendedchars=false,
+    inputencoding=utf8,
+		texcl=true,
+		literate={é}{{\'e}}1
+           {č}{{\v{c}}}1
+           {ľ}{{\v{l}}}1
+           {ť}{{\v{t}}}1
+           {ý}{{\'y}}1
+           {ě}{{\v{e}}}1
+           {ř}{{\v{r}}}1
+           {š}{{\v{s}}}1
+           {ž}{{\v{z}}}1
+           {á}{{\'a}}1
+           {í}{{\'i}}1
+           {ó}{{\'o}}1
+           {ň}{{\v{n}}}1
+           {ď}{{\v{d}}}1
+           {ú}{{\'u}}1
+           {ů}{{\r{u}}}1
+           {ĺ}{{\v{l}}}1
+}
+
 
 \setlength{\parskip}{0.5em}
 % \setlength{\parskip}{5ex plus 0.2ex minus 0.2ex}
@@ -84,6 +134,7 @@ V Praze, \ctufield{day}.~\monthinlanguage{title}~\ctufield{year}
 }
 
 \addbibresource{bibliography.bib}
+\lstset{style=mystyle}
 
 \begin{document}
 
@@ -109,7 +160,7 @@ Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce
 	\item monitorování a evaluace akcí.
 \end{itemize}
 
-Kde si v~tom systému stojí rozvrhování?
+[Kde si v~tom systému stojí rozvrhování???]
 
 
 
@@ -135,6 +186,7 @@ V~případě, že zaměstnanci jsou při práci vystaveni zdravotním rizikům, 
 % Provozní úkoly (angl. operational tasks) jsou běžné činnosti, které musí během dne zaměstnanci vykonat \cite{lin2015}. Při jejich plnění se přitom nevytváří nový produkt, ale udržuje se chod organizace (např. se jedná o~administrativní úkoly). Lze je rozdělit na prioritní, plánované a neplánované \cite{miwa2010}.
 
 \subsection{Předpověď poptávky po personálu}
+\label{sub:demand}
 Obecně řečeno musí zaměstnanci plnit úkoly podle toho, jaké události nastanou. Modelováním poptávky se rozumí proces, jehož výstupem je předpověď přibližného počtu zaměstnanců a jejich očekávaných kompetencí \cite[s.~219]{armstrong2014}, a to na základě očekávaných událostí \cite{ernst2004staff}.
 Například prodejce hraček tedy na základě historických dat ví, že nejvíce zákazníků přichází před Vánoci a předpokládá, že tomu tak bude i v~následujícím roce. Na tuto událost bude reagovat tím, že se rozhodne rozšířit otevírací dobu. To celkově zvýší poptávku po personálu.
 
@@ -243,8 +295,10 @@ TODO.
 \chapter{Algoritmy pro rozvrhování směn}
 Problém plánování směn je obecně velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). \cite{cai2000genetic} Proto se také na jeho řešení nejčastěji používají heuristické metody.
 
+% Operační výzkum
+
 \section{Definice problému}
-Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $D$~pracovních dní. V~každém pracovním dni je vypsáno několik směn (ráno, odpoledne, v~noci). Pro každou směnu je stanoven přesný počet potřebných pracovníků.
+Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $D$~pracovních dní. V~každém pracovním dni je vypsáno několik směn (ráno, odpoledne, v~noci). Pro každou směnu je stanoven přesný počet potřebných pracovníků. V~literatuře se tento problém obvykle nazývá \uv{problém rozvrhování zdravotních sester} (angl. nurse rostering problem nebo nurse scheduling problem). Pro vyšší obecnost zde budou \uv{sestry} nazývány jako zaměstnanci.
 
 
 \section{Proces rozvrhování směn}
@@ -258,7 +312,105 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů
 	\item přidělení osob.
 \end{enumerate}
 
-Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí rozdělit na nezbytné (které musí být splněny vždy) a~zbytné (jejichž splnění je žádoucí). \cite{todorovic2012bee}
+\section{Optimalizace včelím rojem}
+Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou iterací, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka. \cite{teodorovic2009bee}
+
+\subsection{Dopředná fáze}
+V~dopředné fázi každá ze včel prohledává prostor, a~to v~předdefinovaném počtu~kroků, kterými vytváří nové nebo zlepšují známé řešení. S~částečným řešením se vrací včela do úlu. \cite{teodorovic2009bee}
+
+\subsection{Zpětná fáze}
+Ve zpětné fázi si včely sdílejí informace o~kvalitě svých řešení (například za porušení některých podmínek mohou být různé sankce, a nejkvalitnější bude ten, kdo má sankci nejmenší). Pak se každá včela náhodně (pravděpodobnost bude distribuována dle kvality řešení) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
+
+\subsection{Vstupní podmínky}
+Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí před samotným řešením problému rozdělit na nezbytné~(hard, značeno $H_i$, musí být splněny vždy) a~zbytné~(soft, značeno $S_i$, jejich splnění je žádoucí). \cite{todorovic2012bee}
+
+Pro každou podmínku je třeba stanovit její váhu, nezbytné podmínky mají například váhu v~řádu vyšších stovek (mezi 500 a 1000) a zbytné podmínky mají váhu řádově menší (mezi 50 a 150). \cite{buyukozkan2014applicability}
+
+\subsection{Objektivní funkce}
+Objektivní funkce je taková funkce, která posuzuje kvalitu řešení. Lze ji formulovat jako
+
+\begin{equation}
+	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
+\end{equation}
+kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
+
+\subsection{Interpretace řešení}
+Řešení tohoto problému je interpretováno jako vektor $\boldsymbol{x} = (x^{1}, x^{2}, \ldots, x^{N})$, kde $x^i = (j, k, l)$, $j$ je zaměstnanec, $k$ je den a~$l$~je číslo směny. \cite{awadallah2015hybrid}
+
+\subsection{Vstupní data}
+Byla použita některá z~metodik na předpovídání poptávky po personálu (viz podkapitolu \ref{sub:demand}), výsledkem je tabulka (viz např. \ref{tab:demand}), v~buňkách je potřebný počet zaměstnanců v~daném čase.
+
+\begin{table}[h]
+	\input{tables/demand-tabular.tex}
+	\caption{Příklad týdenní poptávky}
+	\label{tab:demand}
+\end{table}
+
+Dalším vstupem je tabulka s~nezbytnými \ref{tab:hard} a zbytnými požadavky.
+
+\begin{table}[h]
+	\begin{tabular}{|@{\makebox[3em][c]{${H}_{\rownumber}$}} |l|c|}
+	\hline
+	\multicolumn{1}{|@{\makebox[3em][c]{ID}} | l |}{ Požadavek } & Váha\\
+	\hline
+	Všechny směny musí být zaplněny. & 1000 \\
+	{Každý pracovník může pracovat nejvýše jednu směnu denně.} & 1000 \\
+	\hline
+	\end{tabular}
+
+	\caption{Příklad nezbytných podmínek}
+	\label{tab:hard}
+
+\end{table}
+
+\begin{table}[h]
+	\begin{tabular}{|@{\makebox[3em][c]{${S}_{\rownumber}$}} |l|c|}
+	\hline
+	\multicolumn{1}{|@{\makebox[3em][c]{ID}} | l |}{ Požadavek } & Váha\\
+	\hline
+	{Jsou dodrženy požadavky zaměstnanců na volno.} & 100 \\
+	{Zaměstnanec má mezi dvěma směnami 12hodinovou přestávku.} & 150 \\
+	\multicolumn{1}{|@{\makebox[3em][c]{$\vdots$ }} | c |}{ $\vdots$  } & $\vdots$ \\
+	\hline
+	\end{tabular}
+
+	\caption{Příklad zbytných podmínek}
+	\label{tab:soft}
+\end{table}
+
+\begin{figure}[h]
+	\input{img/img_bees.pdf_tex}
+	\caption{Vstupní data}
+	\label{tab:beeinput}
+\end{figure}
+
+Máme kolonii včel o~velikosti~$B$, která může udělat $NF$ iterací. V jedné iteraci může včela udělat $NC$ konstrukčních kroků, v~každém jednotlivém konstrukčním kroku musí rozřadit $NS$~směn mezi $NS$~různých zaměstnanců. V~každém konstrukčním kroku se evaluují všechny kombinace, aby se nalezlo nejlepší řešení. \cite{khader2013artificial}
+
+\subsection{Algoritmus}
+Zjednodušený průběh optimalizace včelím rojem je zobrazen na vývojovém diagramu~\ref{fig:beeflow}.
+\begin{figure}[h]
+	\input{img/img_bees_flow.pdf_tex}
+	\caption{Zjednodušený průběh algoritmu}
+	\label{fig:beeflow}
+\end{figure}
+
+V~textové podobě pak dle \cite{rajeswari2017directed} algoritmus vypadá následovně:
+\begin{lstlisting}
+Inicializace: Vytvoř včely.
+Iteruj přes všechny včely.
+	Nastav čítač na 1.
+	Vyhodnoť všechny možné konstrukční kroky.
+	Vyber náhodně jedno řešení.
+	Zvyš čítač o 1. Jestliže je hodnota čítače menší než celkový počet konstrukčních kroků, vrať se k vykonávání řádky 4.
+Vrať se do úlu.
+Spočítej objektivní funkci pro každou včelu; seřaď řešení dle hodnoty.
+Včela s nejlepším výsledkem se stane vedoucím.
+Každá včela se náhodně stane vůdcem nebo následovníkem. Následovník zahodí své řešení.
+Každý následovník se přidá k některému z vůdců a převezme jeho řešení.
+Jestliže nebyla splněna výstupní podmínka, vrať se na řádku 2.
+Vyhodnoť a vyber nejlepší řešení.
+Vrať nejlepší řešení.
+\end{lstlisting}
 
 % PEAST algorithm = http://www.lnse.org/papers/51-CA009.pdf
 % Employee scheduling in service industries with flexible employee availability and demand https://www.sciencedirect.com/science/article/pii/S0305048316000475#bib1
