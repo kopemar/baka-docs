@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{212.66352135bp}%
+    \setlength{\unitlength}{254.64799055bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,19 +50,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.51599054)%
+  \begin{picture}(1,0.21013342)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{img_bees.pdf}}%
-    \put(0.12351698,0.2435777){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\vdots$\end{tabular}}}}%
-    \put(0.12413689,0.02850543){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$B$ včel\end{tabular}}}}%
+    \put(0.20815713,0.12275157){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\hdots$\end{tabular}}}}%
+    \put(0.20862881,0.01587719){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$N$ zaměstnanců\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{img_bees.pdf}}%
-    \put(0.84617801,0.28920798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}podmínky\end{tabular}}}}%
+    \put(0.87819587,0.01705069){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}podmínky\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{img_bees.pdf}}%
-    \put(0.84617801,0.0299106){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}poptávka\end{tabular}}}}%
+    \put(0.56452104,0.01705068){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}poptávka\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{img_bees.pdf}}%
-    \put(0.44572415,0.24357767){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\vdots$\end{tabular}}}}%
-    \put(0.43451248,0.02850543){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$N$ zaměstnanců\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{img_bees.pdf}}%
   \end{picture}%
 \endgroup%

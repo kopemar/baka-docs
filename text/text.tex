@@ -312,32 +312,15 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů
 	\item přidělení osob.
 \end{enumerate}
 
-\section{Optimalizace včelím rojem}
-Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou iterací, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka. \cite{teodorovic2009bee}
-
-\subsection{Dopředná fáze}
-V~dopředné fázi každá ze včel prohledává prostor, a~to v~předdefinovaném počtu~kroků, kterými vytváří nové nebo zlepšují známé řešení. S~částečným řešením se vrací včela do úlu. \cite{teodorovic2009bee}
-
-\subsection{Zpětná fáze}
-Ve zpětné fázi si včely sdílejí informace o~kvalitě svých řešení (například za porušení některých podmínek mohou být různé sankce, a nejkvalitnější bude ten, kdo má sankci nejmenší). Pak se každá včela náhodně (pravděpodobnost bude distribuována dle kvality řešení) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
-
-\subsection{Vstupní podmínky}
+\section{Podmínky}
 Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí před samotným řešením problému rozdělit na nezbytné~(hard, značeno $H_i$, musí být splněny vždy) a~zbytné~(soft, značeno $S_i$, jejich splnění je žádoucí). \cite{todorovic2012bee}
 
 Pro každou podmínku je třeba stanovit její váhu, nezbytné podmínky mají například váhu v~řádu vyšších stovek (mezi 500 a 1000) a zbytné podmínky mají váhu řádově menší (mezi 50 a 150). \cite{buyukozkan2014applicability}
 
-\subsection{Objektivní funkce}
-Objektivní funkce je taková funkce, která posuzuje kvalitu řešení. Lze ji formulovat jako
 
-\begin{equation}
-	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
-\end{equation}
-kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
+\section{Vstupy}
+Organizace má množinu zaměstnanců $E$, jejich podmnožině $M \subseteq E$ o mohutnosti $\mbox{card}~M = N$ v~daném období může být rozvrhnuta směna.
 
-\subsection{Interpretace řešení}
-Řešení tohoto problému je interpretováno jako vektor $\boldsymbol{x} = (x^{1}, x^{2}, \ldots, x^{N})$, kde $x^i = (j, k, l)$, $j$ je zaměstnanec, $k$ je den a~$l$~je číslo směny. \cite{awadallah2015hybrid}
-
-\subsection{Vstupní data}
 Byla použita některá z~metodik na předpovídání poptávky po personálu (viz podkapitolu \ref{sub:demand}), výsledkem je tabulka (viz např. \ref{tab:demand}), v~buňkách je potřebný počet zaměstnanců v~daném čase.
 
 \begin{table}[h]
@@ -364,12 +347,12 @@ Dalším vstupem je tabulka s~nezbytnými \ref{tab:hard} a zbytnými požadavky.
 \end{table}
 
 \begin{table}[h]
-	\begin{tabular}{|@{\makebox[3em][c]{${S}_{\rownumber}$}} |l|c|}
+	\begin{tabular}{|@{\makebox[3em][c]{${S}_{\rownumber}$}} |p{0.8\linewidth}|c|}
 	\hline
 	\multicolumn{1}{|@{\makebox[3em][c]{ID}} | l |}{ Požadavek } & Váha\\
 	\hline
 	{Jsou dodrženy požadavky zaměstnanců na volno.} & 100 \\
-	{Zaměstnanec má mezi dvěma směnami 12hodinovou přestávku.} & 150 \\
+	{Dvojice zaměstnanců nechce pracovat společně.} & 50 \\
 	\multicolumn{1}{|@{\makebox[3em][c]{$\vdots$ }} | c |}{ $\vdots$  } & $\vdots$ \\
 	\hline
 	\end{tabular}
@@ -378,15 +361,30 @@ Dalším vstupem je tabulka s~nezbytnými \ref{tab:hard} a zbytnými požadavky.
 	\label{tab:soft}
 \end{table}
 
-\begin{figure}[h]
-	\input{img/img_bees.pdf_tex}
-	\caption{Vstupní data}
-	\label{tab:beeinput}
-\end{figure}
+\section{Interpretace řešení}
+Řešení tohoto problému lze interpretovat jako vektor $\boldsymbol{x} = (x^{1}, x^{2}, \ldots, x^{N})$, kde $x^i = (j, k, l)$, $j$ je zaměstnanec, $k$ je den a~$l$~je číslo směny. \cite{awadallah2015hybrid}
 
-Máme kolonii včel o~velikosti~$B$, která může udělat $NF$ iterací. V jedné iteraci může včela udělat $NC$ konstrukčních kroků, v~každém jednotlivém konstrukčním kroku musí rozřadit $NS$~směn mezi $NS$~různých zaměstnanců. V~každém konstrukčním kroku se evaluují všechny kombinace, aby se nalezlo nejlepší řešení. \cite{khader2013artificial}
+
+\section{Objektivní funkce}
+Objektivní funkce je taková funkce, která posuzuje kvalitu řešení. Lze ji formulovat jako
+
+\begin{equation}
+	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
+\end{equation}
+kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
+
+\section{Optimalizace včelím rojem}
+Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou iterací, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka. \cite{teodorovic2009bee}
+
+\subsection{Dopředná fáze}
+V~dopředné fázi každá ze včel prohledává prostor, a~to v~předdefinovaném počtu~kroků, kterými vytváří nové nebo zlepšují známé řešení. S~částečným řešením se vrací včela do úlu. \cite{teodorovic2009bee}
+
+\subsection{Zpětná fáze}
+Ve zpětné fázi si včely na základě hodnoty objektivní funkce sdílejí informace o~kvalitě svých řešení. Pak se každá včela náhodně (pravděpodobnost bude distribuována dle kvality řešení) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
 
 \subsection{Algoritmus}
+Máme kolonii včel o~velikosti~$B$, která může udělat $NF$ iterací. V jedné iteraci může včela udělat $NC$ konstrukčních kroků, v~každém jednotlivém konstrukčním kroku musí rozřadit $NS$~směn mezi $NS$~různých zaměstnanců. V~každém konstrukčním kroku se evaluují všechny kombinace, aby se nalezlo nejlepší řešení. \cite{khader2013artificial}
+
 Zjednodušený průběh optimalizace včelím rojem je zobrazen na vývojovém diagramu~\ref{fig:beeflow}.
 \begin{figure}[h]
 	\input{img/img_bees_flow.pdf_tex}
@@ -437,6 +435,65 @@ Vrať nejlepší řešení.
 % \label{fig:arc}
 % \end{figure}
 
+
+\section{Cyklické rozdělení}
+Hlavní myšlenkou metody cyklického rozdělení je, že směny lze mezi zaměstnance rozdělit na základě opakujících se schémat. Skládá se ze tří fází: dekompozice, konstrukce a následné zpracování. \cite{brucker2005decomposition} Hlavním problémem zde je nalezení schémat, podproblémem jejich sestavení do rozvrhu. \cite{becker2020decomposition}
+
+\subsection{Dekompozice}
+Zaměstnanci jsou rozděleni do několika skupin. Nejprve se sestaví schéma pro směny, jejichž zaplnění je nejtěžší (tzn., že způsobu jejich zaplnění se týkají největší sankce). Na základě toho se vytvoří schéma cyklicky se opakujících bloků (např. schéma pro jeden týden). Vytváření schématu pokračuje i pro další druhy směn a cílem je, aby se co nejvíce směn rozdělovalo cyklicky dle bloků a co nejméně jich bylo třeba rozdělit dodatečně.
+
+\subsection{Konstrukce}
+Směny, které nejsou rozděleny dle cyklického schématu v~první fázi, se rozdělí v~druhé fázi. Součástí může být i přesunutí některých už přiřazených směn.
+
+\subsection{Následné zpracování}
+V poslední fázi se provede opětovný průzkum prostoru. Sousedící směny se mohou přeházet, pokud se zdá, že toto řešení bude lepší. Výsledkem nemusí být cyklicky se opakující rozvrh.
+
+\newpage
+\section{Návrh vlastního algoritmu}
+
+\subsection{Požadavky na algoritmus}
+Na základě potřeb tohoto systému byly stanoveny požadavky na algoritmus uvedené v~tab.~\ref{tab:algorithm_req}.
+
+\begin{table}[h!]
+	\input{tables/algorithm_req.tex}
+	\caption{Požadavky na algoritmus}
+	\label{tab:algorithm_req}
+\end{table}
+
+\subsection{Průběh}
+Rozdělování směn bude probíhat po menších skupinách, prioritně se rozdělí směny pro ty zaměstnance, kteří mají nejspecifičtější požadavky (a je tedy nejtěžší je rozdělit). V~počátečním stavu je rozvrh prázdný, zaměstnancům nejsou přiděleny žádné směny. Rozvrh se sestavuje po dnech, v~každém dni se rozdělí směny mezi zaměstnance z~aktuální podskupiny (viz obr. \ref{fig:dayflow}).
+
+\begin{figure}[h]
+	\input{img/flowchart-algo-day.pdf_tex}
+	\caption{Zjednodušený průběh algoritmu}
+	\label{fig:dayflow}
+\end{figure}
+
+Rozložení pravděpodobnosti při náhodném výběru vhodné směny\footnote{Směna vhodná pro daného zaměstnance je taková, která splňuje nezbytné požadavky -- neuvažuje se tedy např. ta směna, která začíná méně než 12~h po konci minulé směny.} nebo volna může záviset na několika faktorech, např.:
+\begin{enumerate}
+	\item prioritu má zaplnění rozvrhu ve všech časech, kdy jsou vypisovány směny;
+	\item preferováno je zaplnění relativně ku poptávce;
+	\item preferovány jsou 8hodinové směny;
+	\item preferováno je více dnů volna pohromadě.
+\end{enumerate}
+
+\subsection{Příklad}
+V~tomto příkladu se předpokládá, že organizace má $N = 10$ zaměstnanců, kteří mají různě velký úvazek a mohou pracovat v~různé dny (tab. \ref{tab:algorithm_employees}). Všichni mají stejné schopnosti a jejich specializace není určena. Navíc byl sestaven i~model vytíženosti (vyšší číslo značí, že v~daný čas je vyšší poptávka po zaměstnancích), který je v~tab. \ref{tab:algorithm_demand}.
+\begin{table}[h]
+	\input{tables/algorithm_employees.tex}
+	\caption{Příklad struktury zaměstnanců}
+	\label{tab:algorithm_employees}
+\end{table}
+
+\begin{table}[h]
+	\input{tables/algorithm_demand.tex}
+	\caption{Příklad poptávky po zaměstnancích}
+	\label{tab:algorithm_demand}
+\end{table}
+
+V tomto příkladu mají nejspecifičtější potřeby ti, kteří mohou pracovat nejméně dnů v~týdnu.
+
+V prvním kroku jsou vybráni dva zaměstnanci s~nejspecifičtějšími potřebami, tj. 9 a 10. Směny v~pondělí až čtvrtek mezi ně rozdělit nelze. V~pátek ale pracovat musí, stejně jako v~sobotu a v~neděli\footnote{Předpokládá se, že za týden musí odpracovat při svém úvazku právě 20 hodin. Každý den odpracují nejvýše 8~hodin, tzn., že 20~hodin lze rozdělit mezi 3 dny.}.
 
 
 \chapter{Backend}
