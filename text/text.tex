@@ -138,10 +138,10 @@ V Praze, \ctufield{day}.~\monthinlanguage{title}~\ctufield{year}
 
 \begin{document}
 
-\maketitle
-
-\chapter{Úvod}
-TODO
+% \maketitle
+%
+% \chapter{Úvod}
+% TODO
 
 
 \chapter{Analýza problematiky}
@@ -196,7 +196,7 @@ Dalším důležitým faktorem při plánování pracovních sil je celková cen
 
 \section{Legislativní podmínky}
 \label{section:legislativa}
-Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákoník práce \cite{zakon06_262}, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy.
+Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákoník práce, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy \cite{zakon06_262}.
 
 Zaměstnavatel je dle §~38 zákoníku práce povinen přidělovat zaměstnanci práci podle pracovní smlouvy. Zaměstnanec je pak povinen podle pokynů zaměstnavatele konat osobně práci v~rozvržené týdenní pracovní době.
 
@@ -233,10 +233,10 @@ Podle §~76 zákoníku práce není na základě dohody o pracovní činnosti mo
 
 \chapter{Analýza systému}
 
-
-\section{Motivace pro softwarové řešení}
-
-TODO.
+%
+% \section{Motivace pro softwarové řešení}
+%
+% TODO.
 % Jak zlepšilo produktivitu adoptování systémů? Jsou zaměstnanci víc spoko? Kolik nám to ušetři peněz?
 % People centric system
 
@@ -276,13 +276,13 @@ Při implementaci systému na plánování směn je žádoucí, aby byl dohled n
 \end{enumerate}
 
 
-\section{Uživatelská práva}
-TODO.
-% Vzhledem k~tomu, že se jedná o interní systém organizace, budou práva nepřihlášeného uživatele omezena jen na velmi malou množinu operací.
-
-
-\section{Existující systémy}
-TODO.
+% \section{Uživatelská práva}
+% TODO.
+% % Vzhledem k~tomu, že se jedná o interní systém organizace, budou práva nepřihlášeného uživatele omezena jen na velmi malou množinu operací.
+%
+%
+% \section{Existující systémy}
+% TODO.
 % V~následující kapitole bude provedena analýza vybraných systémů, které lze pro plánování lidských zdrojů použít.
 
 % Konkrétně se jedná o systémy Tamigo\footnote{https://tamigo.com}, Workforce\footnote{https://workforce.com} a When I work\footnote{https://wheniwork.com}, zmínka bude věnována i ERP systémům.
@@ -298,7 +298,7 @@ Problém plánování směn je obecně velmi komplexní, a to i v~případě, ž
 % Operační výzkum
 
 \section{Definice problému}
-Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $D$~pracovních dní. V~každém pracovním dni je vypsáno několik směn (ráno, odpoledne, v~noci). Pro každou směnu je stanoven přesný počet potřebných pracovníků. V~literatuře se tento problém obvykle nazývá \uv{problém rozvrhování zdravotních sester} (angl. nurse rostering problem nebo nurse scheduling problem). Pro vyšší obecnost zde budou \uv{sestry} nazývány jako zaměstnanci.
+Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $D$~pracovních dní. V~každém pracovním dni je vypsáno několik směn (ráno, odpoledne, v~noci). Pro každou směnu je stanoven přesný počet potřebných pracovníků. Teoretickým problémem, který se týká rozvrhování lidských zdrojů a kterému je v~literatuře věnována pozornost, je tzv.~problém rozvrhování zdravotních sester (angl. nurse rostering problem nebo nurse scheduling problem). Pro vyšší obecnost a z~důvodu odlišnosti problémů zde budou \uv{sestry} nazývány jako zaměstnanci.
 
 
 \section{Proces rozvrhování směn}
@@ -313,9 +313,7 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů
 \end{enumerate}
 
 \section{Podmínky}
-Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí před samotným řešením problému rozdělit na nezbytné~(hard, značeno $H_i$, musí být splněny vždy) a~zbytné~(soft, značeno $S_i$, jejich splnění je žádoucí). \cite{todorovic2012bee}
-
-Pro každou podmínku je třeba stanovit její váhu, nezbytné podmínky mají například váhu v~řádu vyšších stovek (mezi 500 a 1000) a zbytné podmínky mají váhu řádově menší (mezi 50 a 150). \cite{buyukozkan2014applicability}
+Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí před samotným řešením problému rozdělit na nezbytné~(hard, značeno $H_i$, musí být splněny vždy) a~zbytné~(soft, značeno $S_i$, jejich splnění je žádoucí). \cite{todorovic2012bee} Pro každou podmínku je třeba stanovit její váhu, nezbytné podmínky mají například váhu v~řádu vyšších stovek (mezi 500 a 1000) a zbytné podmínky mají váhu řádově menší (mezi 50 a 150). \cite{buyukozkan2014applicability}
 
 
 \section{Vstupy}
@@ -329,7 +327,7 @@ Byla použita některá z~metodik na předpovídání poptávky po personálu (v
 	\label{tab:demand}
 \end{table}
 
-Dalším vstupem je tabulka s~nezbytnými \ref{tab:hard} a zbytnými požadavky.
+Dalším vstupem je tabulka s~nezbytnými (tab.~\ref{tab:hard}) a zbytnými (tab.~\ref{tab:soft}) požadavky.
 
 \begin{table}[h]
 	\begin{tabular}{|@{\makebox[3em][c]{${H}_{\rownumber}$}} |l|c|}
@@ -374,7 +372,7 @@ Objektivní funkce je taková funkce, která posuzuje kvalitu řešení. Lze ji 
 kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
 
 \section{Optimalizace včelím rojem}
-Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou iterací, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka. \cite{teodorovic2009bee}
+Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou iterací, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka.
 
 \subsection{Dopředná fáze}
 V~dopředné fázi každá ze včel prohledává prostor, a~to v~předdefinovaném počtu~kroků, kterými vytváří nové nebo zlepšují známé řešení. S~částečným řešením se vrací včela do úlu. \cite{teodorovic2009bee}
@@ -452,7 +450,7 @@ V poslední fázi se provede opětovný průzkum prostoru. Sousedící směny se
 \section{Návrh vlastního algoritmu}
 
 \subsection{Požadavky na algoritmus}
-Na základě potřeb tohoto systému byly stanoveny požadavky na algoritmus uvedené v~tab.~\ref{tab:algorithm_req}.
+Na základě potřeb tohoto systému byly stanoveny požadavky na algoritmus uvedené v~tab.~\ref{tab:algorithm_req}. Tyto požadavky se liší od standardních požadavků na výše uvedené algoritmy pro rozvrhování zdravotních sester, neboť toto řešení předpokládá, že volné směny budou dále rozvrhnuty jiným způsobem. Zároveň je zde cílem netvořit zbytečné překážky v~zaměstnání, tedy rozvrhnout práci všem.
 
 \begin{table}[h!]
 	\input{tables/algorithm_req.tex}
@@ -461,7 +459,7 @@ Na základě potřeb tohoto systému byly stanoveny požadavky na algoritmus uve
 \end{table}
 
 \subsection{Průběh}
-Rozdělování směn bude probíhat po menších skupinách, prioritně se rozdělí směny pro ty zaměstnance, kteří mají nejspecifičtější požadavky (a je tedy nejtěžší je rozdělit). V~počátečním stavu je rozvrh prázdný, zaměstnancům nejsou přiděleny žádné směny. Rozvrh se sestavuje po dnech, v~každém dni se rozdělí směny mezi zaměstnance z~aktuální podskupiny (viz obr. \ref{fig:dayflow}).
+Rozdělování směn bude probíhat po menších skupinách, prioritně se rozdělí směny pro ty zaměstnance, kteří mají nejspecifičtější požadavky (a je tedy nejtěžší je přidělit). V~počátečním stavu je rozvrh prázdný, zaměstnancům nejsou přiděleny žádné směny. Rozvrh se sestavuje po dnech, v~každém dni se rozdělí směny mezi zaměstnance z~aktuální podskupiny (viz obr. \ref{fig:dayflow}).
 
 \begin{figure}[h]
 	\input{img/flowchart-algo-day.pdf_tex}
@@ -473,12 +471,14 @@ Rozložení pravděpodobnosti při náhodném výběru vhodné směny\footnote{S
 \begin{enumerate}
 	\item prioritu má zaplnění rozvrhu ve všech časech, kdy jsou vypisovány směny;
 	\item preferováno je zaplnění relativně ku poptávce;
-	\item preferovány jsou 8hodinové směny;
+	\item preferovány jsou celé 8hodinové směny\footnote{Je-li to však třeba, lze je i rozdělit.};
 	\item preferováno je více dnů volna pohromadě.
 \end{enumerate}
 
+
 \subsection{Příklad}
-V~tomto příkladu se předpokládá, že organizace má $N = 10$ zaměstnanců, kteří mají různě velký úvazek a mohou pracovat v~různé dny (tab. \ref{tab:algorithm_employees}). Všichni mají stejné schopnosti a jejich specializace není určena. Navíc byl sestaven i~model vytíženosti (vyšší číslo značí, že v~daný čas je vyšší poptávka po zaměstnancích), který je v~tab. \ref{tab:algorithm_demand}.
+Předpokládá se, že organizace má $N = 10$ zaměstnanců, kteří mají různě velký úvazek a mohou pracovat v~různé dny (tab. \ref{tab:algorithm_employees}). Všichni mají stejné schopnosti a jejich specializace není určena. Navíc byl sestaven i~model vytíženosti (je relativní; vyšší číslo značí, že v~daný čas je vyšší poptávka po zaměstnancích), který je v~tab. \ref{tab:algorithm_demand}.
+
 \begin{table}[h]
 	\input{tables/algorithm_employees.tex}
 	\caption{Příklad struktury zaměstnanců}
@@ -491,29 +491,69 @@ V~tomto příkladu se předpokládá, že organizace má $N = 10$ zaměstnanců,
 	\label{tab:algorithm_demand}
 \end{table}
 
-V tomto příkladu mají nejspecifičtější potřeby ti, kteří mohou pracovat nejméně dnů v~týdnu.
+\subsubsection{Rozdělení zaměstnanců}
+V prvním kroku jsou vybráni zaměstnanci, kteří mají nejspecifičtější potřeby, tedy 9 a 10, kteří mohou pracovat nejméně dnů v~týdnu.
 
-V prvním kroku jsou vybráni dva zaměstnanci s~nejspecifičtějšími potřebami, tj. 9 a 10. Směny v~pondělí až čtvrtek mezi ně rozdělit nelze. V~pátek ale pracovat musí, stejně jako v~sobotu a v~neděli\footnote{Předpokládá se, že za týden musí odpracovat při svém úvazku právě 20 hodin. Každý den odpracují nejvýše 8~hodin, tzn., že 20~hodin lze rozdělit mezi 3 dny.}.
+\paragraph{Pondělí až čtvrtek} Směny mezi tyto zaměstnance rozdělit nelze, neboť z~tab.~\ref{tab:algorithm_employees} vyplývá, že v~tyto dny není ani jeden z~těchto zaměstnanců k~dispozici.
 
+\paragraph{Pátek až neděle} Ve~zbývajících dnech je naopak nezbytné rozvrh pro tyto zaměstnance sestavit\footnote{Předpokládá se, že za týden musí odpracovat při svém úvazku právě 20~hodin. Každý den odpracují nejvýše 8~hodin, tzn., že 20~hodin lze rozdělit mezi 3 dny.}.
 
-\chapter{Backend}
+\subparagraph{Pátek} Náhodná funkce přidělí zaměstnance~9 na ranní směnu (zatím v~daném čase není na pracovišti žádný zaměstnanec, navíc jde o vytížený čas, pravděpodobnost tohoto kroku je tedy nejvyšší). Zaměstnanci~10 je přidělena odpolední směna.
 
+\subparagraph{Sobota} Zaměstnanci~9 může být přidělena ranní nebo odpolední směna, z~této množiny je mu náhodně vybrána ranní. Zaměstnanec~10 má v~sobotu specifičtější požadavky -- musí mezi směnami mít nejméně 12hodinovou přestávku, a tu by neměl, kdyby pracoval celou ranní směnu, v~úvahu tedy připadá pouze odpolední směna (celá či její část), případně část ranní směny (stále je třeba rozdělit 12~hodin mezi 2 dny). Je mu přidělena např. celá odpolední.
 
-\section{Autentizace}
-Autentizace je realizována pomocí knihovny Devise Token Auth\footnote{\url{https://github.com/lynndylanhurley/devise_token_auth}}, server v~případě úspěšné autentizace odešle klientovi v~hlavičce token typu bearer (tzn. nositel, \uv{umožni nositeli tohoto tokenu přístup} \cite{swagger2020bearer}) s~platností na dva týdny. Akce bude uživateli umožněna v~případě, že~na server odešle v~HTTP~hlavičce spolu se svým požadavkem i~údaje o~tokenu.
+\subparagraph{Neděle} Zaměstnanec~9 opět může pracovat ráno i odpoledne, náhodně se vybere odpoledne, směnu je však nezbytné zkrátit (zbývá rozdělit 4~hodiny, směna má běžně 8 hodin). Je mu tedy přidělena úvodní část odpolední směny. Zaměstnanci~10 může být přidělena jen část odpolední směny, vzhledem k~tomu, že je část odpolední směny neobsazená, je mu přiřazen její konec.
 
-Hesla uživatelů se v~databázi uchovávají v~hashované podobě.
+Po prvním rozdělení je tak v~daném čase počet zaměstnanců dle tab.~\ref{tab:firstiteration}, rozvrh prvních dvou zaměstnanců je v~tab.~\ref{tab:firstemployees}.
 
+\begin{table}[h]
+	\input{tables/example_first_iteration.tex}
+	\caption{Počet zaměstnanců v~daném čase po prvním rozdělení.}
+	\label{tab:firstiteration}
 
+\end{table}
 
-\chapter{Mobilní aplikace}
+\begin{table}[h]
+	\input{tables/example_first_iteration_employees.tex}
+	\caption{Směny prvních zaměstnanců po prvním rozdělení}
+	\label{tab:firstemployees}
 
+\end{table}
 
-\section{Design}
+Postup při rozdělení dalších zaměstnanců je analogický, validním výsledkem může být například tab.~\ref{tab:exemployees}.
 
+\begin{table}[h]
+	\input{tables/example_employees.tex}
+	\caption{Rozvrh směn na týden}
+	\label{tab:exemployees}
 
+\end{table}
 
-\chapter{Závěr}
+\begin{table}[h]
+	\input{tables/example_count.tex}
+	\caption{Počet zaměstnanců v~daném čase}
+	\label{tab:excount}
+
+\end{table}
+
+% \chapter{Backend}
+%
+%
+% \section{Autentizace}
+% Autentizace je realizována pomocí knihovny Devise Token Auth\footnote{\url{https://github.com/lynndylanhurley/devise_token_auth}}, server v~případě úspěšné autentizace odešle klientovi v~hlavičce token typu bearer (tzn. nositel, \uv{umožni nositeli tohoto tokenu přístup} \cite{swagger2020bearer}) s~platností na dva týdny. Akce bude uživateli umožněna v~případě, že~na server odešle v~HTTP~hlavičce spolu se svým požadavkem i~údaje o~tokenu.
+%
+% Hesla uživatelů se v~databázi uchovávají v~hashované podobě.
+%
+%
+%
+% \chapter{Mobilní aplikace}
+%
+%
+% \section{Design}
+%
+%
+%
+% \chapter{Závěr}
 
 \printbibliography[title={Seznam použité literatury}]
 
