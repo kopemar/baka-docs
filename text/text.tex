@@ -1,4 +1,4 @@
-% arara: pdflatex: { synctex: yes }
+ % arara: pdflatex: { synctex: yes }
 % arara: makeindex: { style: ctuthesis }
 % arara: bibtex
 
@@ -13,6 +13,8 @@
 \newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
 
 \usepackage{indentfirst}
+\usepackage{multirow}
+
 \graphicspath{{img/}}
 \renewcommand*{\finalnamedelim}{ a }
 \ctusetup{
@@ -293,16 +295,29 @@ Při implementaci systému na plánování směn je žádoucí, aby byl dohled n
 
 
 \chapter{Algoritmy pro rozvrhování směn}
-Problém plánování směn je obecně velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). \cite{cai2000genetic} Proto se také na jeho řešení nejčastěji používají heuristické metody.
+Problém plánování směn je jedním z~rozvrhovacích problémů\footnote{Dalšími takovými problémy jsou např.~sestavování školních rozvrhů nebo jízdních řádů.}, obecně se považuje velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). V~rámci velkých organizací lze komplexnost tohoto problému snížit například tím, že na sobě nezávislé části mají samostatný rozvrh (např. v~nemocnici je rozvrh ostrahy nezávislý na rozvrhu lékařů na patologii).
+
+Přístupů, jak problém rozvrhování řešit, existuje více, \cite{burke2004state} uvádí tři:
+% uvadi jako zdroj nekoho jinyho ale
+\begin{enumerate}
+	\item tradiční postup, kdy je rozvrh vytvořen ručně;
+	\item cyklické rozvrhování, které se stěží přizpůsobuje požadavkům zaměstnanců;
+	\item rozvrhování s~pomocí počítače, které zrychluje proces i umožňuje plnění požadavků.
+\end{enumerate}
+
+Problém je považován za NP-úplný, jeho výzkum se zaměřuje především na vývoj efektivních přibližných metod řešení \cite{adamuthe2012tabu}. Rozvrhovací problém lze algoritmicky řešit více způsoby -- jedním z~nich je jeho formulace, aby odpovídal problému již známému a řešitelnému standardními metodami\footnote{Může se jednat např. o~lineární programování, které nalezne optimální řešení, ovšem jen jedná-li se o~méně komplexní problémy (např. je obtížné formulovat všechny zbytné podmínky pouze jako lineární funkce). \cite{blochliger2004modeling}}, dalším je heuristika, která umožňuje řešení komplexnějších problémů, avšak ne vždy zaručuje nalezení optimálního řešení. \cite{blochliger2004modeling}
+
+Teoretických problémů, které byly popsány v literatuře a které se týkají rozvrhování lidských zdrojů, existuje více druhů dle podmínek a prostředí, jehož se bezprostředně týkají, jedním z~nich je tzv.~problém rozvrhování zdravotních sester (angl. nurse rostering problem nebo nurse scheduling problem).
+
+
 
 % Operační výzkum
 
 \section{Definice problému}
-Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $D$~pracovních dní. V~každém pracovním dni je vypsáno několik směn (ráno, odpoledne, v~noci). Pro každou směnu je stanoven přesný počet potřebných pracovníků. Teoretickým problémem, který se týká rozvrhování lidských zdrojů a kterému je v~literatuře věnována pozornost, je tzv.~problém rozvrhování zdravotních sester (angl. nurse rostering problem nebo nurse scheduling problem). Pro vyšší obecnost a z~důvodu odlišnosti problémů zde budou \uv{sestry} nazývány jako zaměstnanci.
-
+Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $S$ směn v~$D$~pracovních dnech, a~to na základě sady podmínek (dle charakteru provozu).
 
 \section{Proces rozvrhování směn}
-Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů, které mohou, ale nemusí být postupnými kroky tohoto procesu. Konkrétně se jedná o:
+Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik částí, které mohou, ale nemusí být postupnými kroky tohoto procesu. Konkrétně se jedná o:
 \begin{enumerate}
 	\item předpovídání poptávky po personálu;
 	\item rozvrhování volných dnů;
@@ -313,13 +328,31 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik modulů
 \end{enumerate}
 
 \section{Podmínky}
+\label{sec:constraints}
 Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí před samotným řešením problému rozdělit na nezbytné~(hard, značeno $H_i$, musí být splněny vždy) a~zbytné~(soft, značeno $S_i$, jejich splnění je žádoucí). \cite{todorovic2012bee} Pro každou podmínku je třeba stanovit její váhu, nezbytné podmínky mají například váhu v~řádu vyšších stovek (mezi 500 a 1000) a zbytné podmínky mají váhu řádově menší (mezi 50 a 150). \cite{buyukozkan2014applicability}
+
+Podmínky se mohou týkat například sekvence činností (např. po náročné chirurgické operaci může následovat pouze administrativní činnost nebo po směně nemůže následovat 12 hodin další směna), počtu (např. zaměstnanec pracuje týdně~$ 40~\mbox{h} \pm 8~\mbox{h}$), nekompatibilních stavů (např. Alice nechce pracovat s~Bobem) nebo nezbytných činností (např. je v~daném dni naplánována náročná operace srdce). Lze je rozdělit na globální, jejichž posouzení vyžaduje celkovou znalost řešení, a lokální, na jejichž verifikaci stačí pohled na vlastní podmnožinu řešení. Toto rozdělení je naznačeno na obr.~\ref{fig:constraints}, nezbytné činnosti však nelze rozdělit jednoznačně. \cite{blochliger2004modeling}
+
+\begin{figure}
+	\input{img/constraints.pdf_tex}
+	\caption{Rozdělení podmínek dle jejich rozsahu}
+	\label{fig:constraints}
+\end{figure}
+
 
 
 \section{Vstupy}
-Organizace má množinu zaměstnanců $E$, jejich podmnožině $M \subseteq E$ o mohutnosti $\mbox{card}~M = N$ v~daném období může být rozvrhnuta směna.
+Organizace má množinu zaměstnanců $M$, z~nichž každý zaměstnanec $m \in M$ má určenou množinu činností $Q_m$, které je kvalifikován vykonávat; podmnožině zaměstnanců $E \subseteq M$, $E = \{ 1, 2,~\ldots, e \}$ v~daném období může být rozvrhnuta směna. Každý zaměstnanec přitom v jednom čase může být pouze na jednom místě.
 
-Byla použita některá z~metodik na předpovídání poptávky po personálu (viz podkapitolu \ref{sub:demand}), výsledkem je tabulka (viz např. \ref{tab:demand}), v~buňkách je potřebný počet zaměstnanců v~daném čase.
+\begin{figure}[h]
+	\input{img/problem-definition.pdf_tex}
+	\caption{Ilustrace problému}
+	\label{fig:definition}
+\end{figure}
+
+Rozvrh se vytváří na období $T = \{1, 2,~\ldots, t \}$ (typicky je toto období rozděleno na dny), v~každém dni jsou vypsány směny $S = \{ 1, 2,~\ldots, s\}$, které jsou charakterizovány např. časovým intervalem nebo požadovanou kvalifikací.
+
+Byla použita některá z~metodik na předpovídání poptávky po personálu (viz podkapitolu \ref{sub:demand}), výsledkem je tabulka (viz např. \ref{tab:demand}), v~buňkách je potřebný počet zaměstnanců v~daném čase (poptávku může určit také rozmezí počtu zaměstnanců  nebo to může být relativní veličina).
 
 \begin{table}[h]
 	\input{tables/demand-tabular.tex}
@@ -360,26 +393,102 @@ Dalším vstupem je tabulka s~nezbytnými (tab.~\ref{tab:hard}) a zbytnými (tab
 \end{table}
 
 \section{Interpretace řešení}
-Řešení tohoto problému lze interpretovat jako vektor $\boldsymbol{x} = (x^{1}, x^{2}, \ldots, x^{N})$, kde $x^i = (j, k, l)$, $j$ je zaměstnanec, $k$ je den a~$l$~je číslo směny. \cite{awadallah2015hybrid}
+Řešení tohoto problému lze interpretovat jako trojrozměrnou binární matici $\boldsymbol{x}$, jejímiž parametry jsou zaměstnanec ($\forall i \in E$), den ($\forall j \in T$) a vypsaná směna $\forall k \in S$, jednotlivé hodnoty $x_{ijk}$ jsou určeny funkcí \ref{eq:3dmatrix}. \cite{vaclavik2016roster}
 
+\begin{equation}
+	\label{eq:3dmatrix}
+	x_{ijk} =
+	\begin{cases}
+		1, & \mbox{zaměstnanci $i$ je v den $j$ přiřazena směna $k$} \\
+		0, & \mbox{jinak}\\
+	\end{cases}
+\end{equation}
 
-\section{Objektivní funkce}
-Objektivní funkce je taková funkce, která posuzuje kvalitu řešení. Lze ji formulovat jako
+\begin{table}
+	\input{tables/interpretation-example.tex}
+	\caption{}
+	\label{}
 
+\end{table}
+
+\section{Cílová funkce}
+\label{sec:objective}
+Cílová nebo také účelová funkce (angl. objective function) je taková funkce, jejíž hodnotu je cílem optimalizovat. V~případě rozvrhování se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
+
+Například v~případě optimalizace na základě vážených podmínek dle podkapitoly \ref{sec:constraints} ji lze formulovat jako
 \begin{equation}
 	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
 \end{equation}
 kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
 
+\section{Lineární programování}
+Úlohou lineárního programování\footnote{Termín programování zde souvisí se slovem program ve významu plán nebo rozvrh, nikoli s~počítačovými programy. } je nalézt vektor $\boldsymbol{x}^{\ast} \in \mathbb{R}^n$ optimalizující hodnotu cílové funkce mezi všemi vektory, které splňují danou soustavu lineárních rovnic a nerovnic (kterým se zpravidla říká omezující podmínky nebo omezení). \cite{matousek2006linearni}
+
+\subsection{Celočíselné lineární programování}
+
+Celočíselné lineární programování je pro rozvrhování směn vhodné v jednoduchých případech, např. když jsou pro všechny zaměstnance stanoveny stejné počty po sobě jdoucích pracovních dnů a volna nebo, jsou-li rozvrhovány směny v rámci dne, je den rozdělen na několik disjunktních úseků, navíc je stanoven počet po sobě následujích úseků, které tvoří jednu směnu. Pro každý časový úsek (den či část dne) je navíc stanoven minimální počet personálu. \cite{satheeshkumar2014linear} Cílem je optimalizovat počet zaměstnanců tak, aby byla minimální poptávka naplněna.
+
+V~případě týdne, v~němž mají zaměstnanci 5 po sobě jdoucích pracovních dnů a 2 po sobě jdoucí dny volna, je rozdělení ilustrováno na obr. \ref{fig:linear}. Příklad minimální poptávky po personálu je uveden v~tab.~\ref{tab:linear}.
+
+\begin{figure}[h]
+	\input{img/linear-programming-days.pdf_tex}
+	\caption{Rozdělení pěti po sobě následujích dní}
+	\label{fig:linear}
+\end{figure}
+
+\begin{table}[h]
+	\input{tables/linear-programming-demand.tex}
+	\caption{Příklad minimální poptávky po personálu}
+	\label{tab:linear}
+\end{table}
+
+Cílem je na základě těchto údajů zjistit, jaký počet zaměstnanců $z$ je třeba povolat, aby $z = \sum_{i=1}^{7} x_i$ (jedná se rovněž o cílovou funkci, jež byla zmíněna v~podkapitole \ref{sec:objective}), kde $x_i$ je počet zaměstnanců, jejichž pracovní týden začíná v $i$-tém dni, bylo co nejmenší.
+
+Na základě~tab.~\ref{tab:linear} a~s~pomocí obr.~\ref{fig:linear} lze přitom sestavit několik podmínek, s jejichž pomocí lze $z$ vypočítat\footnote{Například použítím vhodného software.}:
+\begin{center}
+	\begin{tabular}{rl}
+		$\forall x_i: x_i \geq 0$; & $x_1 + x_4 + x_5 + x_6 + x_7 \geq 200$; \\
+		$x_1 + x_2 + x_5 + x_6 + x_7 \geq 150$; & $x_1 + x_2 + x_3 + x_6 + x_7 \geq 250$;\\
+		$x_1 + x_2 + x_3 + x_4 + x_7 \geq 90$; & $x_1 + x_2 + x_3 + x_4 + x_5 \geq 160$; \\
+		$x_2 + x_3 + x_4 + x_5 + x_6 \geq 300$; & $x_3 + x_4 + x_5 + x_6 + x_7 \geq 100$.
+	\end{tabular}
+\end{center}
+
+\subsection{Omezení algoritmu}
+
+Lineární programování může přinést optimální výsledky, avšak je vhodné pouze v~případech, kdy lze pro podmínky sestavit soustavu lineárních rovnic a nerovnic. Časová složitost v~závislosti na počtu zaměstnanců je exponenciální. \cite{chen2016comparison}
+
+
+\newpage
 \section{Optimalizace včelím rojem}
-Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou iterací, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka.
+Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou fází, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka.
 
-\subsection{Dopředná fáze}
-V~dopředné fázi každá ze včel prohledává prostor, a~to v~předdefinovaném počtu~kroků, kterými vytváří nové nebo zlepšují známé řešení. S~částečným řešením se vrací včela do úlu. \cite{teodorovic2009bee}
+\subsection{Umělý včelí roj}
+Umělý včelí roj se v~původní verzi algoritmu skládá ze tří skupin včel (dělnice, průzkumnice, vyčkávající včely), které vyhledávají zdroje potravy (které symbolizují možné řešení problému), množství nektaru symbolizuje cílovou funkci. \cite{anuar2016modified}
 
-\subsection{Zpětná fáze}
-Ve zpětné fázi si včely na základě hodnoty objektivní funkce sdílejí informace o~kvalitě svých řešení. Pak se každá včela náhodně (pravděpodobnost bude distribuována dle kvality řešení) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
+\subsection{Inicializační fáze}
+Dojde k inicializaci zdrojů potravy $\boldsymbol{x}_m$ pro $m \in \{1,~\ldots~, SN\}$ včelami průzkumnicemi, každý vektor $\boldsymbol{x}_m = (x_{mi},~i \in \{1,~\ldots, n \})$ je řešením problému o $n$ proměnných, které je třeba optimalizovat, v~inicializační fázi může $x_{mi}$ odpovídat definici~\ref{eq:initialization}, kde $l_i$ (resp. $u_i$) je dolní (resp. horní) mez parametu $x_{mi}$. \cite{karaboga2010artificial}
 
+\begin{equation}
+	\label{eq:initialization}
+	x_{mi} = l_i + \mbox{rand}(0,1) \cdot (u_i - l_i),
+\end{equation}
+
+
+% Úkolem včel dělnic je vyletět ke zdroji potravy a vrátit se do úlu (\textit{dopředná fáze}), kde sdílejí informace o svých zdrojích potravy s~vyčkávajícími včelami (způsob sdílení se nazývá tancem). Ze včel dělnic, jejichž řešení bylo vyčerpáno, se stávají průzkumnice, které mohou náhodně hledat nové zdroje potravy (\textit{zpětná fáze}).
+
+\subsubsection{Dopředná fáze}
+V~první iteraci se vytvoří $SN$ náhodných řešení, $SN$ odpovídá počtu včel dělnic a průzkumnic. V~každé další iteraci dělnice upravují své řešení náhodně tak, že pokud je lepší než předchozí, zapamatují si ho \cite{anuar2016modified}. Vyhledávací proces pokračuje, dokud není dosaženo maximálního počtu cyklů nebo přijatelné hodnoty \cite{banharnsakun2011best}.
+
+\subsubsection{Zpětná fáze}
+Ve zpětné fázi si včely na základě hodnoty cílové funkce sdílejí informace o~kvalitě svých řešení. Pak se každá včela náhodně (pravděpodobnost výběru $i$-tého~řešení $p_i$ bude distribuována dle kvality řešení -- cílové funkce $f(\boldsymbol{x}_i)$, jak je naznačeno v~rovnici \ref{eq:beeprobability}) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
+
+\begin{equation}
+	\label{eq:beeprobability}
+	p_i = \frac{f(\boldsymbol{x}_i)}{\sum_{n = 1}^{SN} f(\boldsymbol{x}_n)}
+\end{equation}
+
+\newpage
 \subsection{Algoritmus}
 Máme kolonii včel o~velikosti~$B$, která může udělat $NF$ iterací. V jedné iteraci může včela udělat $NC$ konstrukčních kroků, v~každém jednotlivém konstrukčním kroku musí rozřadit $NS$~směn mezi $NS$~různých zaměstnanců. V~každém konstrukčním kroku se evaluují všechny kombinace, aby se nalezlo nejlepší řešení. \cite{khader2013artificial}
 
@@ -392,21 +501,31 @@ Zjednodušený průběh optimalizace včelím rojem je zobrazen na vývojovém d
 
 V~textové podobě pak dle \cite{rajeswari2017directed} algoritmus vypadá následovně:
 \begin{lstlisting}
-Inicializace: Vytvoř včely.
-Iteruj přes všechny včely.
-	Nastav čítač na 1.
-	Vyhodnoť všechny možné konstrukční kroky.
-	Vyber náhodně jedno řešení.
-	Zvyš čítač o 1. Jestliže je hodnota čítače menší než celkový počet konstrukčních kroků, vrať se k vykonávání řádky 4.
-Vrať se do úlu.
-Spočítej objektivní funkci pro každou včelu; seřaď řešení dle hodnoty.
-Včela s nejlepším výsledkem se stane vedoucím.
-Každá včela se náhodně stane vůdcem nebo následovníkem. Následovník zahodí své řešení.
-Každý následovník se přidá k některému z vůdců a převezme jeho řešení.
-Jestliže nebyla splněna výstupní podmínka, vrať se na řádku 2.
+Vytvoř včely.
+Opakuj
+	Iteruj přes všechny včely.
+		Nastav čítač na 1.
+		Opakuj
+			Vyhodnoť všechny možné konstrukční kroky.
+			Vyber náhodně jedno řešení.
+			Zvyš čítač o 1.
+		dokud je hodnota čítače menší než celkový počet konstrukčních kroků.
+	Vrať se do úlu.
+	Spočítej cílovou funkci pro každou včelu; seřaď řešení dle hodnoty.
+	Včela s nejlepším výsledkem se stane vedoucím.
+	Každá včela se náhodně stane vůdcem nebo následovníkem. Následovník zahodí své řešení.
+	Každý následovník se přidá k některému z vůdců a převezme jeho řešení.
+dokud nebyla splněna výstupní podmínka.
 Vyhodnoť a vyber nejlepší řešení.
 Vrať nejlepší řešení.
 \end{lstlisting}
+
+\subsection{Složitost algoritmu}
+
+Původní algoritmus optimalizace včelím rojem má složitost $O(mnd)$, kde $n$ je celkový počet včel, $m$ je maximální pošet iterací a $d$ je dimenze řešení. \cite{banharnsakun2011best}
+
+
+% https://www.sciencedirect.com/science/article/pii/S1319157816300039
 
 % PEAST algorithm = http://www.lnse.org/papers/51-CA009.pdf
 % Employee scheduling in service industries with flexible employee availability and demand https://www.sciencedirect.com/science/article/pii/S0305048316000475#bib1

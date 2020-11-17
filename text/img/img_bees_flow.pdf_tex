@@ -20,7 +20,7 @@
 %%   \import{<path to file>}{<filename>.pdf_tex}
 %% Alternatively, one can specify
 %%   \graphicspath{{<path to file>/}}
-%% 
+%%
 %% For more information, please see info/svg-inkscape on CTAN:
 %%   http://tug.ctan.org/tex-archive/info/svg-inkscape
 %%
@@ -50,6 +50,7 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
+\begin{small}%
   \begin{picture}(1,0.85355649)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
@@ -62,4 +63,5 @@
     \put(0.38850954,0.56652893){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Ne\end{tabular}}}}%
     \put(0.40271525,0.25008425){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Ano\end{tabular}}}}%
   \end{picture}%
+\end{small}%
 \endgroup%
