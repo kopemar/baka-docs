@@ -6,37 +6,107 @@
 % and a couple more: draft and oneside
 \documentclass[twoside]{ctuthesis}
 \usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{makecell}
+\usepackage[colorinlistoftodos]{todonotes}
 \usepackage[sortlocale=cs_CZ, sorting=debug, style=iso-numeric, maxnames=2]{biblatex}
 \usepackage{array,etoolbox}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{chngpage}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+
+\renewcommand{\glossarysection}[2][]{}
+
+\newacronym{ui}{UI}{Uživatelské rozhraní}
+\newacronym{dpp}{DPP}{Dohoda o~provedení práce}
+\newacronym{dpc}{DPČ}{Dohoda o~pracovní činnosti}
+\newacronym{mvc}{MVC}{Model-View-Controller}
+\newacronym{mvvm}{MVVM}{Model-View-ViewModel}
+\newacronym{uc}{UC}{Use Case (případ užití)}
+\newacronym{dao}{DAO}{Data Access Object}
+\newacronym{rest}{REST}{Representational state transfer}
+\newacronym{api}{API}{Application Programming Interface}
+
+
+\newacronym{json}{JSON}{JavaScript Object Notation}
+\newacronym{crud}{CRUD}{Create, Read, Update, Delete}
+\newacronym{html}{HTML}{Hypertext Markup Language}
+\newacronym{xml}{XML}{Extensible Markup Language}
+\newacronym{bco}{BCO}{Bee Colony Optimization}
+\newacronym{abc}{ABC}{Artificial Bee Colony}
+\newacronym{sql}{SQL}{Structured Query Language}
+\newacronym{orm}{ORM}{Object Relation Mapping}
+\newacronym{id}{ID}{Identifikátor}
+
+\newacronym{dsl}{DSL}{Domain-specific language}
+\newacronym{http}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{url}{URL}{Uniform Resource Locator}
+\newacronym{mvp}{MVP}{Model-View-Presenter}
+\newacronym{ide}{IDE}{Integrated Development Environment}
+
+\usepackage{listings}
+
+\graphicspath{{img/}}
+
 \preto\tabular{\setcounter{magicrownumbers}{0}}
 \newcounter{magicrownumbers}
 \newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
 
-\usepackage{indentfirst}
-\usepackage{multirow}
-
-\graphicspath{{img/}}
 \renewcommand*{\finalnamedelim}{ a }
 \ctusetup{
 	mainlanguage = czech,
 	otherlanguages = {slovak, english},
 	title-czech = {Mobilní aplikace pro plánování lidských zdrojů},
-	title-english = {TODO},
+	title-english = {Mobile App for Human Resource Planning},
 	doctype = S,
 	faculty = F3,
 	department-czech = {Katedra počítačů},
 	department-english = {Department of Computer Science},
 	author = {Martina Kopecká},
-	supervisor = {Prof. Krutoš Spravedlivý},
+	supervisor = {Ing. Jiří Šebek},
 	supervisor-address = {TODO},
 	fieldofstudy-english = {Software Engineering -- TODO, co je ENG nazev},
 	fieldofstudy-czech = {Softwarové inženýrství a technologie},
 	keywords-czech = {slovo, klíč},
 	keywords-english = {word, key},
-	day = 1,
+	day = 4,
 	month = 1,
 	year = 2021,
 	pkg-listings = true,
+}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.88,0.96,0.98}
+\definecolor{NavyBlue}{RGB}{255,137,0}
+\definecolor{OrangeRed}{RGB}{225,118,242}
+\definecolor{BurntOrange}{rgb}{0.88,0.96,0.98}
+\definecolor{ForestGreen}{RGB}{18,91,10}
+
+\lstdefinelanguage{Kotlin}{
+  comment=[l]{//},
+  commentstyle={\color{gray}\ttfamily},
+  emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  keywords={abstract, actual, as, as?, break, by, class, companion, continue, do, dynamic, else, enum, expect, false, final, for, fun, if, import, in, interface, internal, is, null, object, override, package, private, public, return, sealed, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
+  keywordstyle={\color{NavyBlue}\bfseries},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, T},
+  ndkeywordstyle={\color{ctublue}\bfseries},
+  sensitive=true,
+  stringstyle={\color{ForestGreen}\ttfamily},
 }
 
 \ctuprocess
@@ -56,11 +126,6 @@
 		\ctutemplate{twocolumn.listoffigures}
 	\end{twocolumnfrontmatterpage}
 }
-
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.88,0.96,0.98}
 
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},
@@ -99,25 +164,27 @@
            {ú}{{\'u}}1
            {ů}{{\r{u}}}1
            {ĺ}{{\v{l}}}1
+					 {Ž}{{\v{Z}}}1
 }
 
+\renewcommand\lstlistingname{Výpis kódu}
 
 \setlength{\parskip}{0.5em}
 % \setlength{\parskip}{5ex plus 0.2ex minus 0.2ex}
 
 % Abstract in Czech
-\begin{abstract-czech}
-Český abstrakt
-\end{abstract-czech}
+% \begin{abstract-czech}
+% Český abstrakt
+% \end{abstract-czech}
 
 % Abstract in English
-\begin{abstract-english}
-English abstract
-\end{abstract-english}
+% \begin{abstract-english}
+% English abstract
+% \end{abstract-english}
 
 % Acknowledgements / Podekovani
 \begin{thanks}
-Děkuji ČVUT, že mi je tak dobrou \emph{alma mater}.
+Děkuji Ing. Jiřímu Šebkovi za cenné rady k~vypracování této práce.
 \end{thanks}
 
 % Declaration / Prohlaseni
@@ -140,9 +207,15 @@ V Praze, \ctufield{day}.~\monthinlanguage{title}~\ctufield{year}
 
 \begin{document}
 
-% \maketitle
+\maketitle
 %
-% \chapter{Úvod}
+\chapter{Úvod}
+
+V~dnešní době neustále stoupá podíl uživatelů, kteří na některé běžné činnosti na síti (vyhledávání informací, chatování, internetové bankovnictví, čtení a psaní e-mailů,~\ldots) nezapínají počítač, a namísto toho používají svůj chytrý telefon. Téměř vše, co aktuálně potřebují, tak mají rychle dostupné na zařízení, které mají neustále s~sebou.
+
+Vzhledem k~rozvoji mobilní platformy a její oblíbenosti tedy neexistuje důvod, proč by uživatelé (v~tomto případě tedy zaměstnanci, kteří mají nepravidelný pracovní rozvrh -- ať už se jedná o~pracovníky v~restauracích, obchodech, továrnách nebo o~zdravotníky) nemohli mít na svém zařízení snadno dostupný i~rozpis svých směn, namísto toho, aby ho hledali na nástěnce, v~tabulkovém editoru nebo kdekoli jinde. Právě proto je cílem této práce analyzovat, navrhnout a im\-ple\-men\-to\-vat uživatelsky přívětivý způsob, jakým by šlo aktuální rozvrh směn do chytrých telefonů dostat, a usnadnit (a snad i zpříjemnit) tak život nejen zaměstnancům, ale i~vedoucím pracovníkům.
+
+
 % TODO
 
 
@@ -153,7 +226,7 @@ Následující kapitola bude věnována analýze problematiky plánování zdroj
 
 Řízení lidských zdrojů (angl. human resource management\footnote{Také se užívá pojem people management, neboť pojem human resources může mít negativní konotace a~značit, že lidé jsou zdrojem ve výrobě jako cokoli jiného. \cite[s.~1]{armstrong2014} Samotné spojení human resources se používá ve spojitosti s~personálním oddělením v~rámci organizace. }) je definováno jako komplexní přístup k~zaměstnávání a rozvoji osob. Pojem zahrnuje všechny aspekty toho, jak jsou osoby zaměstnány a řízeny v~rámci organizace. \cite[s.~1]{armstrong2014}
 
-Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce nebo manpower), resp. její plánování, jedná se o základní proces řízení lidských zdrojů, který je utvářen strategií organizace a jeho cílem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal organizaci dosáhnout jejích cílů. \cite{cipd2020_workforce} Mezi kroky tohoto procesu dle \cite{cipd2020_workforce} patří:
+Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce nebo manpower), resp. její plánování, jedná se o základní proces řízení lidských zdrojů, který je utvářen strategií organizace a jeho cílem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal organizaci dosáhnout jejích cílů. Mezi kroky tohoto procesu dle \cite{cipd2020workforce} patří:
 \begin{itemize}
 	\item analýza aktuální personální situace;
 	\item stanovení budoucích potřeb;
@@ -161,29 +234,25 @@ Dalším termínem užívaným v~literatuře je pracovní síla (angl. workforce
 	\item podnikání akcí k~odstranění nedostatků;
 	\item monitorování a evaluace akcí.
 \end{itemize}
-
-[Kde si v~tom systému stojí rozvrhování???]
-
-
+% \todo{Kde si v~tom stojí rozvrhování?}
 
 \section{Rozhodující faktory při plánování}
 % PESTLE analyza
 
 \subsection{Pracovní síly}
-V rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~podkapitole \ref{section:legislativa}.
-% Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi.
+V rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~podkapitole \ref{section:legislativa}. Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi.
 % Dalším hlediskem, které je vhodné brát v~úvahu, je i spokojenost zaměstnanců, jejich časové možnosti a preference.
 
 \subsection{Směny}
 \label{sub:smeny}
-Jednotlivé organizace se od sebe mohou lišit způsobem, jakým vypisují směny. Existují tak podniky, kde je rozvrh práce pravidelný a stejný pro všechny zaměstnance, ale i ty, kde je provoz dvou- nebo i třísměnný, rozvrh směn je sestavován cyklicky a začátek směn daného zaměstnance se v~jednotlivých dnech liší (nejčastěji směny začínají ráno, odpoledne nebo v~noci). Mezi organizace s~cyklicky sestavovaným rozvhem se řadí nejčastěji provozy, které operují 7~dní v~týdnu, například nemocnice, vězení, policie nebo také restaurace a pobočky řetězců rychlého občerstvení \cite{bechtold1981work}.
+Jednotlivé organizace se od sebe mohou lišit způsobem, jakým vypisují směny. Existují tak podniky, kde je rozvrh práce pravidelný a stejný pro všechny zaměstnance, ale i ty, kde je provoz dvou- nebo i třísměnný, rozvrh směn je sestavován cyklicky a začátek směn daného zaměstnance se v~jed\-not\-li\-vý\-ch dnech liší (nejčastěji směny začínají ráno, odpoledne nebo v~noci). Mezi organizace s~cyklicky sestavovaným rozvhem se řadí nejčastěji provozy, které operují 7~dní v~týdnu, například nemocnice, vězení, policie nebo také restaurace a pobočky řetězců rychlého občerstvení \cite{bechtold1981work}.
 
-Nepravidelný rozvrh směn přitom může mít pro zaměstnance nežádoucí zdravotní účinky, \cite{flo2013shift} uvádí, že zaměstnanci ve vícesměnném provozu trpí nespavostí více než zbytek populace, a to především v~případě, že je mezi směnami kratší než 11hodinová přestávka, [TODO další zdravotní rizika].
+Nepravidelný rozvrh směn přitom může mít pro zaměstnance nežádoucí zdravotní účinky, \cite{flo2013shift} uvádí, že zaměstnanci ve vícesměnném provozu trpí nespavostí více než zbytek populace, a to především v~případě, že je mezi směnami kratší než 11hodinová přestávka.
 
-\subsection{Úkoly}
+% \subsection{Úkoly}
 % TODO -- může to být sekvence činností při směně nebo fakt, že teď pracuje organizace na něčem?
 
-V~případě, že zaměstnanci jsou při práci vystaveni zdravotním rizikům, je vhodné během směny rozdělit úkoly tak, aby riziko bylo minimalizováno. \cite{wongwien2013ergonomic}
+% V~případě, že zaměstnanci jsou při práci vystaveni zdravotním rizikům, je vhodné během směny rozdělit úkoly tak, aby riziko bylo minimalizováno. \cite{wongwien2013ergonomic}
 
 % Provozní úkoly (angl. operational tasks) jsou běžné činnosti, které musí během dne zaměstnanci vykonat \cite{lin2015}. Při jejich plnění se přitom nevytváří nový produkt, ale udržuje se chod organizace (např. se jedná o~administrativní úkoly). Lze je rozdělit na prioritní, plánované a neplánované \cite{miwa2010}.
 
@@ -198,7 +267,7 @@ Dalším důležitým faktorem při plánování pracovních sil je celková cen
 
 \section{Legislativní podmínky}
 \label{section:legislativa}
-Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákoník práce, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy \cite{zakon06_262}.
+Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákoník práce, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy \cite{zakonik06-262}.
 
 Zaměstnavatel je dle §~38 zákoníku práce povinen přidělovat zaměstnanci práci podle pracovní smlouvy. Zaměstnanec je pak povinen podle pokynů zaměstnavatele konat osobně práci v~rozvržené týdenní pracovní době.
 
@@ -211,13 +280,10 @@ Stanovená týdenní pracovní doba činí dle §~79 zákoníku práce 40~hodin 
 Zaměstnavatel je dle §~84 zákoníku práce povinen vypracovat rozvrh týdenní pracovní doby a seznámit s~ním nebo jeho změnou zaměstnance nejpozději 2~týdny předem (mimo výjimky stanovené zákonem nebo v~případě existence jiné dohody mezi zaměstnancem a zaměstnavatelem). Tento rozvrh musí být v~písemné formě. Pracovní dobu je podle §~90 třeba rozvrhovat s ohledem na nepřetržitý odpočinek mezi koncem jedné směny a začátkem následující (pro zletilé zaměstnance alespoň 11 hodin, pro nezletilé zaměstnance alespoň 12 hodin, v~zákonem stanovených výjimkách lze za určitých podmínek odpočinek zkrátit).
 
 \subsection{Směna, směnný provoz}
-TODO
+Směnou se dle §~78, písm. c) zákoníku práce rozumí část týdenní pracovní doby bez práce přesčas, kterou je zaměstnanec povinen na základě předem stanoveného rozvrhu pracovních směn odpracovat.
 
 \subsection{Pracovní poměr}
-Pracovní poměr mezi zaměstnancem a zaměstnavatelem se podle §~33, odst.~1 zákoníku práce zakládá pracovní smlouvou. Zaměstnavatel má zajišťovat plnění svých úkolů především zaměstnanci v pracovním poměru (§ TODO).
-
-\subsection{Přesčasy}
-TODO
+Pracovní poměr mezi zaměstnancem a zaměstnavatelem se podle §~33, odst.~1 zákoníku práce zakládá pracovní smlouvou. Zaměstnavatel má zajišťovat plnění svých úkolů především zaměstnanci v pracovním poměru (§~74, odst.~1).
 
 \subsection{Zkrácený úvazek}
 Podle §~80 zákoníku práce může být mezi zaměstnancem a~zaměstnavatelem sjednána kratší pracovní doba.
@@ -232,53 +298,438 @@ Podle §~75 zákoníku práce se dohoda o provedení práce uzavírá nejvýše 
 Podle §~76 zákoníku práce není na základě dohody o pracovní činnosti možné vykonávat práci v~rozsahu překračujícím v~průměru polovinu stanovené týdenní pracovní doby. Toto se posuzuje za celou dobu, po niž je uzavřena, nejdéle však za 52 týdnů. Musí být sjednán rozsah pracovní doby a doba, na niž se sjednává.
 
 
-
 \chapter{Analýza systému}
 
-%
-% \section{Motivace pro softwarové řešení}
-%
-% TODO.
-% Jak zlepšilo produktivitu adoptování systémů? Jsou zaměstnanci víc spoko? Kolik nám to ušetři peněz?
-% People centric system
+\section{Analýza existujících systémů}
+Následující podkapitola bude věnována popisu již existujících nástrojů pro plánování lidských zdrojů. Jedná se o komerční software, který byl otestován v~demoverzi, vzhledem k~tématu této práce byly hlavními sledovanými aspekty mobilní aplikace pro zaměstnance a~způsob rozvrhování směn.
 
+\subsection{Tamigo}
+Aplikace Tamigo\footnote{\url{https://www.tamigo.cz/}} je komplexní aplikace pro plánování lidských zdrojů, je indikována pro použití v~segmentech, jako jsou pohostinství, maloobchod, zdravotnictví aj. \cite{tamigo2020reseni}
 
-\section{Uživatelské role}
+Aplikace je organizacím nabízena v~několika variantách, které jsou zpop\-lat\-ně\-ny podle množství podporovaných funkcí (jedná se např. o~rozpisy směn všech zaměstnanců, výkazy práce, správu absencí, správu mezd smluv zaměstnanců, evidenci příchodů a odchodů) a počtu zapojených zaměstnanců. Mezi součásti tohoto produktu patří webové rozhraní i mobilní aplikace (přestože jde o nativní aplikaci, ve verzi 4.4.1 funguje pouze v~případě, že je uživatel online, jinak aplikace padá). Uživatelské role jsou v~tomto systému Administrátor, Manažer a Zaměstnanec.
+
+Systém umožňuje manažerům vytvářet rozvrh, částečně je tento proces manuální, částečně lze rozvrh vygenerovat na základě šablon, které si uživatel předem připraví (např. obvyklá pracovní doba pro jednotlivé zaměstnance). % Patrné je zde cílení na participativní tvorbu rozvrhu, zaměstnanci si mohou některé směny zapisovat a měnit mezi sebou.
+
+Za\-měst\-na\-nec si zde může aktualizovat osobní data, zobrazovat osobní rozvrh směn, žádat o dovolenou a sledovat stav jejího čerpání, zobrazovat výkaz práce pro výplatní období, aj.
+
+\subsection{Tanda}
+Na velmi podobném principu jako aplikace Tamigo pracuje i~aplikace Tanda\footnote{\url{https://www.tanda.co/}}. Automatické rozvrhování funguje na principu šablon -- rozvrh se tedy vytvoří jednou a následně se opětovně používá \cite{tanda2020rosters}.
+
+I tento systém má jak webové, tak mobilní rozhraní, obojí pro zaměstnance i vedoucí. Mobilní rozhraní opět nepodporuje ani čtení dat v~případě, že je uživatel offline.
+
+\subsection{When I Work}
+Aplikace When I Work\footnote{\url{https://wheniwork.com}} má opět webové i mobilní rozhraní. Rozvrhování zde opět funguje manuálně nebo na základě šablon, aplikace v~placené Pro verzi \cite{wheinwork2020pricing} však podporuje i automatické přiřazení volných směn k~vhodným zaměstnancům (v~potaz při rozvrhování bere pracovní pozici, již existující směny, požadavky na volno a další filtry). \cite{wheinwork2020employee} Mobilní aplikace umožňuje zaměstnancům zadat, jakou pracovní dobu preferují nebo kdy jsou naopak nedostupní. Ani tato aplikace nefunguje v~offline režimu.
+
+\subsection{Shrnutí}
+Všechny aplikace, které byly vyzkoušeny, jsou si v~principu jsou podobné a nabízejí podobné základní prvky (mobilní a webové rozhraní; uživatelské role; komplexní správa mezd, docházky, rozvrhů) svým uživatelům. Společné mají i to, že žádná z~aplikací neimplementuje ani částečný offline režim, což může být pro uživatele v~některých situacích nepříjemné. Liší se však způsobem, jakým rozvrhují směny -- největší automatizaci zde poskytuje aplikace When I Work. Dalším rozdílem je uživatelská přívětivost, její hodnocení by však bylo spíše subjektivní.
+\newpage
+\section{Funkční požadavky}\label{sec:frq}
+Funkční požadavky definují, jaké funkce by měl software mít (a to především z~hlediska koncového uživatele).
+
+\begin{enumerate}[label=\textbf{F\arabic*.}]
+	\item Nepřihlášený uživatel se přihlásí uživatelským jménem a heslem.
+	\item Přihlášený uživatel se ze systému odhlásí.
+	\item Přihlášený uživatel si zobrazí svůj profil.
+	\item Uživatel si zobrazí nápovědu
+	\item Zaměstnanec zobrazí rozvrh svých směn.
+	\item Zaměstnanec zobrazí detail směny.
+	\item Zaměstnanec na dohodu zobrazí seznam volných směn.
+	\item Zaměstnanec na dohodu se zapíše na volnou směnu.
+	\item Zaměstnanec zobrazí historii odpracovaných směn.
+	\item Zaměstnanec zobrazí přehled svých smluv.
+	\item Zaměstnanec zobrazí počet odpracovaných hodin u svých dohod.
+	\item Zaměstnanec na dohodu může filtrovat volné směny dle typu.
+	\item Zaměstnanec exportuje svůj rozvrh do kalendářové aplikace.
+	\item Vedoucí zobrazí komplexní rozvrh směn.
+	\item Vedoucí vytvoří šablonu směny a stanoví poptávku na tuto směnu.
+	\item Vedoucí přiřadí zaměstnance ke směně.
+	\item Vedoucí zruší zápis zaměstnance na směnu.
+	\item Vedoucí spustí automatické rozvržení směn.
+	\item V~dostatečném předstihu před začátkem pracovního týdne se spustí automatické rozvržení směn.
+\end{enumerate}
+
+\subsection{Požadavky na splnění legislativy}
+Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~podkapitoly~\ref{section:legislativa} stanoveny následující funkční požadavky:
+
+\begin{enumerate}[label=\textbf{L\arabic*.}]
+	\item Systém umožní uživatelům náhled jejich do rozvrhu nejméně s~dvou\-tý\-den\-ním předstihem.
+	\item Systém umožní naplánovat nezletilým zaměstnancům v~jednom dni maximálně 8hodinové směny, že jejich týdenní pracovní doba nepřekročí 40~hodin.
+	\item Systém umožní zaměstnancům na dohodu o~provedení práce odpracovat nejvýše 300~hodin v~kalendářním roce.
+	\item Systém umožní zaměstnancům na dohodu o~pracovní činnosti odpracovat nejvýše 20~hodin týdně v~průměru kalendářního roku.
+\end{enumerate}
+
+\section{Požadavky na kvalitu software}
+Požadavky na kvalitu software (angl. non-functional requirements) definují atributy systému, jako jsou bezpečnost, spolehlivost nebo udržitelnost.
+
+\begin{enumerate}[label=\textbf{N\arabic*.}]
+	\item Backend aplikace bude implementován ve webovém frameworku Ruby on Rails.
+	\item Backend aplikace bude přistupovat k~databázi Postgres.
+	\item Android aplikace bude s~backendem komunikovat přes REST API.
+	\item Autentizace uživatelů vůči backendu bude realizována s~pomocí přís\-tu\-po\-vé\-ho tokenu.
+	\item Android aplikace bude implementována v~jazyce Kotlin.
+	\item Design aplikace bude navrhnut dle pravidel Material Designu.
+	\item Android aplikace bude mít anglickou a českou lokalizaci.
+	\item Android aplikace bude mít tmavý a světlý mód.
+\end{enumerate}
+\newpage
+\section{Aktéři, uživatelské role}
 Jedním z~hlavních cílů celého systému na plánování směn je informovat individuálně zaměstnance o jejich vlastních směnách, proto se jeví vhodnou jeho personalizace, a to na základě uživatelských účtů. Vstupní operací bude přihlášení -- z~toho vyplývá nezbytnost existence role přihlášeného a nepřihlášeného uživatele.
 
-Pro roli přihlášeného uživatele byla identifikována nutnost dalšího rozšíření, a to na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti) a věku, resp. toho, zda je zletilý či nikoli. Důvodem pro toto rozšíření je, že každý uživatel bude moci provádět jiné operace dle odlišných pravidel. Uživatelská role ovšem není závislá na tom, zda má zaměstnanec plný nebo zkrácený úvazek, neboť v obou případech platí stejné podmínky, liší se jen týdenní pracovní doba. Stranou zůstává role, kterou má v~rámci tohoto systému zaměstnavatel či jím pověřená osoba (dále jen vedoucí), jež má zodpovědnost za rozvrhování pracovní doby. Ta by měla mít komplexní přehled o rozpisu a v~případě nutnosti i možnost do něj zasáhnout.
+Pro roli přihlášeného uživatele byla identifikována nutnost dalšího rozšíření, konkrétně na zaměstnance a roli, kterou má v~rámci tohoto systému za\-měst\-na\-va\-tel či jím pověřená osoba (dále jen vedoucí), jež má zodpovědnost za rozvrhování pracovní doby, které by měla mít komplexní přehled o rozpisu i možnost do něj zasáhnout.
+
+Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, a to především na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti), pro vizualizaci viz obr.~\ref{fig:userroles}. Důvodem pro toto rozšíření je, že někteří aktéři budou moci provádět specifické operace a systém s~nimi bude interagovat odlišně. Specifickým aktérem zde ovšem není zaměstnanec plný nebo zkrácený úvazek, neboť v obou případech platí stejné podmínky, liší se jen týdenní pracovní doba, stejně tak nezáleží na tom, zda je zaměstnanec nezletilý.
+
+\begin{figure}[h]
+	\input{img/actors.pdf_tex}
+	\caption{Diagram aktérů}
+	\label{fig:userroles}
+\end{figure}
+
+% \section{User stories}
+% Cílem této podkapitoly je formulovat user stories, tzn. jaké možnosti by měl systém poskytnout koncovým uživatelům, aniž by bylo specifikováno, jak to bude dělat.
+%
+% \subsubsection{Základní požadavky na systém}
+% \begin{enumerate}
+% 	\item Jako nepřihlášený uživatel se chci do systému přihlásit uživatelským jménem a heslem.
+% 	\item Jako přihlášený uživatel chci mít možnost se ze systému odhlásit.
+% 	\item Jako uživatel chci mít možnost zobrazit si relevantní nápovědu.
+% \end{enumerate}
+%
+% \subsubsection{Požadavky na správu směn}
+% \begin{enumerate}
+% 	\item Jako zaměstnanec chci vidět přehled svých směn.
+% 	\item Jako zaměstnanec na DPP chci mít možnost zapsat si volnou směnu.
+% \end{enumerate}
+
+\newpage
+\section{Analýza případů užití}\label{uc-analysis}
+V~této části budou rozebrány případy užití systému, tedy kroky interakce uživatele a systému, které byly vytvořeny na základě funkčních požadavků F1.--F10. (viz podkapitolu \ref{sec:frq}). Základní případy užití aplikace pro zaměstnance byly rozděleny do dvou modulů -- modul uživatelských účtů (obr.~\ref{fig:uc-account}), který zahrnuje základní operace pro přihlášení a odhlášení; a modul směn (obr.~\ref{fig:uc-employee}), který zahrnuje operace, které může dělat obecně jakýkoli zaměstnanec (vždy se jedná o~čtení) a operace, které může dělat dohodář -- v~tom jsou zahrnuty (C)RUD operace s~volnými a zapsanými směnami.
+
+Dále v~této podkapitole budou rozebrány scénáře těchto případů užití; součástí popisu jsou i~tzv. wireframes, náčrty uživatelského rozhraní. Wi\-re\-fra\-mes se rozdělují dle úrovně detailu (nízká -- ideálně rychlý náčrt na papír; střední -- nejčastěji náčrty v~odstínech šedi, už obsahují větší detail toho, jaké UI komponenty budou použity; vysoká -- jak konkrétně bude uživatelské rozhraní vypadat). \cite{lazarova2020low} Zde se jedná o střední úroveň detailu -- nízká úroveň byla vynechána; vysoká úroveň je dále popsána v~podkapitole~\ref{design}
+
+\begin{figure}[h!]
+\input{img/accounts-module.pdf_tex}
+
+	\caption{Případy užití pro správu uživatelských účtů}
+	\label{fig:uc-account}
+\end{figure}
+
+\begin{figure}[p!]
+		\input{img/uc-dohoda.pdf_tex}
+		\caption{Případy užití pro dohodáře}
+		\label{fig:uc-employee}
+\end{figure}
 
 
-\section{Funkční požadavky}
-Cílem této podkapitoly je formulovat funkční požadavky, tzn. jaké možnosti by měl systém poskytnout koncovým uživatelům, aniž by bylo specifikováno, jak to bude dělat \cite{lauesen2002}.
+\newpage
+\subsection{UC1: Přihlásit se}
+\paragraph{Aktér:} Nepřihlášený uživatel
+\paragraph{Hlavní scénář:}
+	\begin{enumerate}
+		\item Systém zobrazí obrazovku Přihlášení (obr.~\ref{fig:signin})
+		\item Nepřihlášený uživatel vyplní uživatelské jméno a heslo, klikne na tlačítko Přihlásit se.
+		\item Systém zobrazí obrazovku Hlavní stránka. Uživatel je přihlášen.
+	\end{enumerate}
 
-\subsubsection{Základní požadavky na systém}
+	\begin{figure}[h]
+		\includegraphics[scale=.35]{img/sign_in_form.png}
+		\caption{Obrazovka Přihlášení}
+		\label{fig:signin}
+	\end{figure}
+
+\paragraph{Alternativní scénář a) (uživatel nezadá uživatelské jméno a/nebo heslo):}
+
+	\begin{enumerate}[label=\arabic*a]
+		\setcounter{enumi}{2}
+		\item Systém zobrazí chybovou hlášku \uv{Vyplňte prosím uživatelské jméno/heslo}.
+	\end{enumerate}
+
+\paragraph{Alternativní scénář b) (uživatel zadá špatné přihlašovací údaje)}
+
+	\begin{enumerate}[label=\arabic*b]
+		\setcounter{enumi}{2}
+		\item Systém zobrazí chybovou hlášku \uv{Špatné uživatelské jméno nebo heslo}.
+	\end{enumerate}
+
+\paragraph{Alternativní scénář c) (uživatel je offline)}
+
+	\begin{enumerate}[label=\arabic*c]
+		\setcounter{enumi}{2}
+		\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu.}
+	\end{enumerate}
+\newpage
+\subsection{UC2: Odhlásit se}
+\paragraph{Aktér:} Přihlášený uživatel
+\paragraph{Hlavní scénář:}
 \begin{enumerate}
-	\item Jako nepřihlášený uživatel se chci do systému přihlásit uživatelským jménem a heslem.
-	\item Jako přihlášený uživatel chci mít možnost se ze systému odhlásit.
-	\item Jako uživatel chci mít možnost zobrazit si relevantní nápovědu.
+	\item Uživatel klikne na záložku Profil.
+	\item Systém zobrazí obrazovku Profil (obr.~\ref{fig:profile}).
+	\item Uživatel stiskne tlačítko Odhlásit se.
+	\item Systém odhlásí uživatele. Zobrazí se obrazovka Přihlášení
 \end{enumerate}
 
-\subsubsection{Požadavky na správu směn}
+\begin{figure}[h]
+	\includegraphics[scale=.35]{img/main-profile.png}
+	\caption{Obrazovka Profil}
+	\label{fig:profile}
+\end{figure}
+
+\paragraph{Alternativní scénář a) (uživatel je offline)}
+
+	\begin{enumerate}[label=\arabic*a]
+		\setcounter{enumi}{3}
+		\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu.}
+	\end{enumerate}
+
+\newpage
+\subsection{UC3: Zobrazit rozvrh směn}
+\paragraph{Aktér:} Zaměstnanec
+\paragraph{Hlavní scénář:}
 \begin{enumerate}
-	% \item Jako vedoucí chci vypsat časové sloty pro směny mně podřízených zaměstnanců.
-	\item Jako vedoucí chci vidět komplexní rozpis směn svých podřízených.
-	\item Jako vedoucí chci mít možnost změnit automaticky generovaný rozpis směn.
+	\item Uživatel klikne na záložku Rozvrh směn.
+	\item Systém zobrazí obrazovku Rozvrh směn (obr.~\ref{fig:schedule}), v~níž je seznam uživateli přiřazených směn.
 \end{enumerate}
 
-\subsubsection{Požadavky na splnění legislativy}
-Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~podkapitoly~\ref{section:legislativa} stanoveny následující požadavky:
+\begin{figure}[h]
+	\includegraphics[scale=.35]{img/main-schedule.png}
+	\caption{Obrazovka Rozvrh směn}
+	\label{fig:schedule}
+\end{figure}
 
+\paragraph{Alternativní scénář a) (uživatel je offline a data nejsou uložena lokálně):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu.}
+\end{enumerate}
+
+\paragraph{Alternativní scénář b) (rozvrh směn je prázdný):}
+\begin{enumerate}[label=\arabic*b]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Váš rozvrh směn je prázdný.}
+\end{enumerate}
+
+\newpage
+\subsection{UC4: Zobrazit detail směny}
+\paragraph{Aktér:} Zaměstnanec
+\paragraph{Předpoklady:} Je zobrazen přehled směn (např. obrazovka Rozvrh směn nebo Historie).
+\paragraph{Hlavní scénář:}
 \begin{enumerate}
-	\item Systém rozvrhne zaměstnancům v~pracovním poměru pracovní dobu úměrně jejich úvazku, a to vždy s~nejméně dvoutýdenním předstihem.
-	\item Systém bude automaticky plánovat ideálně 8hodinové, nejdéle však 12hodinové směny.
-	\item Systém při plánování směn nezletilým zaměstnancům rozvrhne v~jednom dni maximálně 8hodinové směny, jejich týdenní pracovní doba nepřekročí 40~hodin.
-	\item Systém umožní zaměstnancům na dohodu o provedení práce odpracovat nejvýše 300 hodin v~kalendářním roce.
+	\item Uživatel klikne na konkrétní směnu ze seznamu.
+	\item Systém zobrazí obrazovku Detail směny (obr.~\ref{fig:shift-detail}).
+\end{enumerate}
 
+\begin{figure}[h!]
+	\includegraphics[scale=.35]{img/shift-detail.png}
+	\caption{Obrazovka Detail směny}
+	\label{fig:shift-detail}
+\end{figure}
+	%
+	% \begin{tabular}{|p{0.2\linewidth}|p{0.02\linewidth}p{0.7\linewidth}|}
+	% 	\hline
+	% 	\multicolumn{3}{|c|}{Případ užití: \textbf{Zobrazit detail směny}}\\
+	% 	\hline
+	% 	Předpoklady: & \multicolumn{2}{|l|}{Zobrazit osobní rozvrh směn nebo Zobrazit seznam volných směn}\\
+	% 	\hline
+	% 	Hlavní scénář: & 1. & Uživatel klikne na konkrétní směnu.\\
+	% 	& 2. & Systém zobrazí obrazovku Detail směny. \\
+	% 	\hline
+	% 	Vedlejší scénáře: & 1a & Uživatel je offline a žádná data nejsou dostupná lokálně. Systém zobrazí hlášku \uv{Zkontrolujte připojení k~internetu.} \\
+	% 	\hline
+	% \end{tabular}
+
+% \begin{figure}
+% 	\input{img/use-cases.pdf_tex}
+% 	\caption{Diagram případů užití}
+% 	\label{fig:usecase}
+% \end{figure}
+\newpage
+\subsection{UC5: Zobrazit přehled nejbližších směn}
+\paragraph{Aktér:} Zaměstnanec
+\paragraph{Hlavní scénář:}
+\begin{enumerate}
+	\item Uživatel otevře aplikaci nebo klikne na záložku Domů.
+	\item Systém zobrazí Domovskou obrazovku (obr.~\ref{fig:home}) s~přehledem nejbližších směn.
+\end{enumerate}
+
+
+\paragraph{Alternativní scénář a) (uživatel je offline a data nejsou uložena lokálně):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu}.
+\end{enumerate}
+
+\paragraph{Alternativní scénář b) (rozvrh směn je prázdný):}
+\begin{enumerate}[label=\arabic*b]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Už nemáte nic naplánováno}.
+\end{enumerate}
+
+\begin{figure}[h]
+	\includegraphics[scale=.35]{img/main-home.png}
+	\caption{Domovská obrazovka}
+	\label{fig:home}
+\end{figure}
+\newpage
+\subsection{UC6: Zobrazit historii odpracovaných směn}
+\paragraph{Aktér:} Zaměstnanec
+\paragraph{Předpoklady:} Je zobrazena obrazovka Profil.
+\paragraph{Hlavní scénář:}
+\begin{enumerate}
+	\item Uživatel klikne na tlačítko \uv{Historie}
+	\item Systém zobrazí obrazovku Historie (obr.~\ref{fig:history}), v~níž je seznam uplynulých směn uživatele.
+\end{enumerate}
+
+\begin{figure}[h!]
+		\includegraphics[scale=.35]{img/history.png}
+		\caption{Obrazovka Historie}x
+		\label{fig:history}
+\end{figure}
+
+\paragraph{Alternativní scénář a) (uživatel je offline a data nejsou uložena lokálně):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu}.
+\end{enumerate}
+
+\paragraph{Alternativní scénář b) (seznam směn je prázdný):}
+\begin{enumerate}[label=\arabic*b]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Historie vašich směn je prázdná}.
+\end{enumerate}
+
+\newpage
+\subsection{UC7: Zobrazit přehled smluv}
+\paragraph{Aktér:} Zaměstnanec
+\paragraph{Předpoklady:} Je zobrazena obrazovka Profil.
+\paragraph{Hlavní scénář:}
+\begin{enumerate}
+	\item Uživatel klikne na tlačítko \uv{Smlouvy}
+	\item Systém zobrazí obrazovku Smlouvy (obr.~\ref{fig:contracts}), v~níž je seznam aktuálních i neaktuálních smluv uživatele.
+\end{enumerate}
+
+\begin{figure}[h!]
+		\includegraphics[scale=.35]{img/contracts.png}
+		\caption{Obrazovka Smlouvy}
+		\label{fig:contracts}
+\end{figure}
+
+\paragraph{Alternativní scénář a) (uživatel je offline a data nejsou uložena lokálně):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu}.
+\end{enumerate}
+
+\newpage
+\subsection{UC8: Zobrazit seznam volných směn}
+\paragraph{Aktér:} Zaměstnanec na dohodu
+\paragraph{Hlavní scénář:}
+\begin{enumerate}
+	\item Uživatel klikne na záložku Směny.
+	\item Systém zobrazí obrazovku Volné směny (obr.~\ref{fig:unassigned}) se seznamem všech směn, které si může uživatel zapsat do rozvrhu.
+\end{enumerate}
+
+\begin{figure}[h!]
+		\includegraphics[scale=.35]{img/main-shifts.png}
+		\caption{Obrazovka Volné směny}
+		\label{fig:unassigned}
+\end{figure}
+
+\paragraph{Alternativní scénář a) (uživatel je offline):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu}.
+\end{enumerate}
+
+\paragraph{Alternativní scénář b) (seznam volných směn je prázdný):}
+\begin{enumerate}[label=\arabic*b]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Žádné volné směny nebyly nalezeny.}.
+\end{enumerate}
+
+
+\newpage
+\subsection{UC9: Zapsat se na volnou směnu}
+\paragraph{Aktér:} Zaměstnanec na dohodu
+\paragraph{Předpoklady:} Je zobrazena obrazovka Detail směny (obr.~\ref{fig:shift-detail-up}) pro směnu, kterou si uživatel může zapsat\footnote{Bude tedy třeba ošetřit, aby se možnost zápisu na směnu nabídla pouze v~případě, že se směna nepřekrývá s~žádnou ze směn v~rozvrzích daného zaměstnance.}.
+\paragraph{Hlavní scénář:}
+\begin{enumerate}
+	\item Uživatel klikne na tlačítko Zapsat směnu.
+	\item Systém zobrazí obrazovku Vybrat rozvrh (obr.~\ref{fig:pick-schedule}) se seznamem všech rozvrhů, do nichž lze směnu zapsat.
+	\item Uživatel ze seznamu vybere rozvrh, do nějž chce směnu zapsat.
+	\item Systém zobrazí zprávu \uv{Směna byla zapsána do~rozvrhu.} Směna je zapsána do osobního rozvrhu zaměstnance.
+\end{enumerate}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[scale=.35]{img/shift-detail-up.png}
+		\caption{Obrazovka Detail směny}
+		\label{fig:shift-detail-up}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[scale=.35]{img/pick-schedule.png}
+		\caption{Obrazovka Vybrat rozvrh}
+		\label{fig:pick-schedule}
+	\end{subfigure}
+	\caption{Obrazovky pro UC9: Zapsat se na volnou směnu}
+\end{figure}
+
+
+\paragraph{Alternativní scénář a) (uživatel je offline a data nejsou uložena lokálně):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{1}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu}.
+\end{enumerate}
+
+
+\newpage
+\subsection{UC10: Zrušit zápis na směnu}
+\paragraph{Aktér:} Zaměstnanec na dohodu
+\paragraph{Předpoklady:} Je zobrazena obrazovka Detail směny (obr.~\ref{fig:shift-detail-remove}) pro směnu, jejíž zápis uživatel může zrušit.
+\paragraph{Hlavní scénář:}
+\begin{enumerate}
+	\item Uživatel klikne na tlačítko \uv{Odebrat z~rozvrhu}.
+	\item Systém zobrazí dialog Jste si jisti? (obr.~\ref{fig:shift-remove-confirm}).
+	\item Uživatel potvrdí smazání.
+	\item Systém zobrazí zprávu \uv{Směna byla odstraněna z~rozvrhu.} Směna je odstraněna z~rozvrhu.
+\end{enumerate}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[scale=.35]{img/shift-detail-remove.png}
+		\caption{Obrazovka Detail směny}
+		\label{fig:shift-detail-remove}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[scale=.35]{img/shift-detail-remove-confirm.png}
+		\caption{Dialog Jste si jisti?}
+		\label{fig:shift-remove-confirm}
+	\end{subfigure}
+	\caption{Obrazovky pro UC10: Zrušit zápis na směnu}
+\end{figure}
+
+
+\paragraph{Alternativní scénář a) (uživatel je offline a data nejsou uložena lokálně):}
+\begin{enumerate}[label=\arabic*a]
+	\setcounter{enumi}{3}
+	\item Systém zobrazí hlášku \uv{Nejste připojeni k~internetu}.
+\end{enumerate}
+
+\paragraph{Alternativní scénář b) (uživatel nepotvrdí smazání):}
+\begin{enumerate}[label=\arabic*b]
+	\setcounter{enumi}{3}
+	\item Systém schová dialog Jste si jisti? (obr.~\ref{fig:shift-remove-confirm}) a zobrazí obrazovku Detail směny (obr.~\ref{fig:shift-detail-remove}).
 \end{enumerate}
 
 
 % \section{Uživatelská práva}
+
+
 % TODO.
 % % Vzhledem k~tomu, že se jedná o interní systém organizace, budou práva nepřihlášeného uživatele omezena jen na velmi malou množinu operací.
 %
@@ -290,31 +741,14 @@ Při implementaci systému na plánování směn je žádoucí, aby byl dohled n
 % Konkrétně se jedná o systémy Tamigo\footnote{https://tamigo.com}, Workforce\footnote{https://workforce.com} a When I work\footnote{https://wheniwork.com}, zmínka bude věnována i ERP systémům.
 
 
-\section{UX analýza}
-
-
-
 \chapter{Algoritmy pro rozvrhování směn}
-Problém plánování směn je jedním z~rozvrhovacích problémů\footnote{Dalšími takovými problémy jsou např.~sestavování školních rozvrhů nebo jízdních řádů.}, obecně se považuje velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). V~rámci velkých organizací lze komplexnost tohoto problému snížit například tím, že na sobě nezávislé části mají samostatný rozvrh (např. v~nemocnici je rozvrh ostrahy nezávislý na rozvrhu lékařů na patologii).
+Problém plánování směn je jedním z~rozvrhovacích problémů\footnote{Dalšími takovými problémy jsou např.~sestavování školních rozvrhů nebo jízdních řádů.}, obecně se považuje velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). V~rámci velkých organizací lze komplexnost tohoto problému snížit například tím, že na sobě nezávislé části mají samostatný rozvrh (např. v~nemocnici je rozvrh ostrahy nezávislý na rozvrhu lékařů na patologii). Teoretických problémů, které byly popsány v literatuře a které se týkají rozvrhování pracovních sil, existuje více druhů dle podmínek a prostředí, jehož se bezprostředně týkají, jedním z~nich je tzv.~problém rozvrhování zdravotních sester (angl. nurse rostering problem nebo nurse scheduling problem), poznatky ovšem lze použít pro obecný problém rozvrhování směn.
 
-Přístupů, jak problém rozvrhování řešit, existuje více, \cite{burke2004state} uvádí tři:
-% uvadi jako zdroj nekoho jinyho ale
-\begin{enumerate}
-	\item tradiční postup, kdy je rozvrh vytvořen ručně;
-	\item cyklické rozvrhování, které se stěží přizpůsobuje požadavkům zaměstnanců;
-	\item rozvrhování s~pomocí počítače, které zrychluje proces i umožňuje plnění požadavků.
-\end{enumerate}
+Přístupů, jak problém rozvrhování personálu řešit, existuje celá řada, například lze rozvrh sestavovat centrálně, v~kooperaci se zaměstnanci nebo nějakým hybridním způsobem; rozvrh může být sestaven lidskou činností či automaticky.
 
-Problém je považován za NP-úplný, jeho výzkum se zaměřuje především na vývoj efektivních přibližných metod řešení \cite{adamuthe2012tabu}. Rozvrhovací problém lze algoritmicky řešit více způsoby -- jedním z~nich je jeho formulace, aby odpovídal problému již známému a řešitelnému standardními metodami\footnote{Může se jednat např. o~lineární programování, které nalezne optimální řešení, ovšem jen jedná-li se o~méně komplexní problémy (např. je obtížné formulovat všechny zbytné podmínky pouze jako lineární funkce). \cite{blochliger2004modeling}}, dalším je heuristika, která umožňuje řešení komplexnějších problémů, avšak ne vždy zaručuje nalezení optimálního řešení. \cite{blochliger2004modeling}
+Výzkum tohoto problému se zaměřuje především na vývoj efektivních přibližných metod řešení \cite{adamuthe2012tabu}. Rozvrhovací problém lze algoritmicky řešit více způsoby, které jsou vhodné v~závislosti na jeho formulaci (pro více viz podkapitolu~\ref{sec:clasif}) -- jedním z~nich je jeho formulace, aby odpovídal problému již známému a řešitelnému standardními metodami\footnote{Může se jednat např. o~lineární programování, které nalezne optimální řešení, ovšem jen jedná-li se o~méně komplexní problémy (např. je obtížné formulovat všechny zbytné podmínky pouze jako lineární funkce). \cite{blochliger2004modeling}}, dalším je heuristika, která umožňuje řešení komplexnějších problémů, avšak ne vždy zaručuje nalezení optimálního řešení. \cite{blochliger2004modeling}
 
-Teoretických problémů, které byly popsány v literatuře a které se týkají rozvrhování lidských zdrojů, existuje více druhů dle podmínek a prostředí, jehož se bezprostředně týkají, jedním z~nich je tzv.~problém rozvrhování zdravotních sester (angl. nurse rostering problem nebo nurse scheduling problem).
-
-
-
-% Operační výzkum
-
-\section{Definice problému}
-Máme k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $S$ směn v~$D$~pracovních dnech, a~to na základě sady podmínek (dle charakteru provozu).
+V~této kapitole bude podrobněji popsán proces rozvrhování směn a některé teoretické metody, jak tento problém lze řešit, z~nichž se bude vycházet při další implementaci.
 
 \section{Proces rozvrhování směn}
 Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik částí, které mohou, ale nemusí být postupnými kroky tohoto procesu. Konkrétně se jedná o:
@@ -327,19 +761,74 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik část�
 	\item přidělení osob.
 \end{enumerate}
 
+\section{Definice problému}
+
+Obecně je problém takový, že organizace má k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $S$ směn v~$D$~pracovních dnech, a~to na základě sady podmínek (dle charakteru provozu).
+
+\section{Klasifikace}
+\label{sec:clasif}
+
+Každý jednotlivý problém rozvrhování směn se od sebe může lišit, \cite{de2011categorisation} jako příklad uvádí:
+
+\subparagraph{Základní charakteristiky}
+Na jaké úrovni detailu se definují typy směn, schopnosti nebo pokrytí? Jak flexibilní jsou parametry? Jsou rozvrhy cyklické?
+
+\subparagraph{Cíle}
+Je cílem optimalizovat, nebo jenom nějak rozhodnout? Optimalizuje se dle podmínek, počtu personálu nebo něčeho jiného?
+
+\subparagraph{Podmínky}
+Kolik je podmínek? Jakého jsou podmínky typu? Jaké podmínky jsou zbytné a jaké nezbytné?
+
+\subparagraph{Velikost problému}
+Na jak dlouho se plánuje? Pro kolik zaměstnanců se rozvrh plánuje? Kolik je typů směn?
+
+\subsection{Fixní a flexibilní rozvrhování}
+Rozvrhování je fixní (cyklické), pokud zaměstnanec pracuje v $n$-týdenních cyklech a jeho rozvrh se periodicky opakuje. Naproti tomu stojí rozvrhování flexibilní, v~němž taková pravidelnost neexistuje. \cite{burke2004state}
+
+
 \section{Podmínky}
 \label{sec:constraints}
 Rozvrhování směn závisí na takovém množství podmínek, že je obvykle není možné splnit všechny, proto se také často musí před samotným řešením problému rozdělit na nezbytné~(hard, značeno $H_i$, musí být splněny vždy) a~zbytné~(soft, značeno $S_i$, jejich splnění je žádoucí). \cite{todorovic2012bee} Pro každou podmínku je třeba stanovit její váhu, nezbytné podmínky mají například váhu v~řádu vyšších stovek (mezi 500 a 1000) a zbytné podmínky mají váhu řádově menší (mezi 50 a 150). \cite{buyukozkan2014applicability}
 
 Podmínky se mohou týkat například sekvence činností (např. po náročné chirurgické operaci může následovat pouze administrativní činnost nebo po směně nemůže následovat 12 hodin další směna), počtu (např. zaměstnanec pracuje týdně~$ 40~\mbox{h} \pm 8~\mbox{h}$), nekompatibilních stavů (např. Alice nechce pracovat s~Bobem) nebo nezbytných činností (např. je v~daném dni naplánována náročná operace srdce). Lze je rozdělit na globální, jejichž posouzení vyžaduje celkovou znalost řešení, a lokální, na jejichž verifikaci stačí pohled na vlastní podmnožinu řešení. Toto rozdělení je naznačeno na obr.~\ref{fig:constraints}, nezbytné činnosti však nelze rozdělit jednoznačně. \cite{blochliger2004modeling}
 
-\begin{figure}
+\begin{figure}[h]
 	\input{img/constraints.pdf_tex}
 	\caption{Rozdělení podmínek dle jejich rozsahu}
 	\label{fig:constraints}
 \end{figure}
 
 
+\section{Interpretace řešení}
+Řešení tohoto problému lze interpretovat jako trojrozměrnou binární matici $\boldsymbol{R}$, jejímiž parametry jsou zaměstnanec ($\forall i \in E$), den ($\forall j \in T$) a vypsaná směna ($\forall k \in S$), jednotlivé hodnoty $R_{ijk}$ jsou určeny funkcí \ref{eq:3dmatrix}. \cite{vaclavik2016roster}
+
+\begin{equation}
+	\label{eq:3dmatrix}
+	R_{ijk} =
+	\begin{cases}
+		1, & \mbox{zaměstnanci $i$ je v den $j$ přiřazena směna $k$,} \\
+		0, & \mbox{jinak.}\\
+	\end{cases}
+\end{equation}
+
+Příklad toho, jak lze řešení popsané ve funkci~\ref{eq:3dmatrix} interpretovat ve formě tabulky, je v~tab.~\ref{tab:interpretation}
+\begin{table}[h]
+	\input{tables/interpretation-example.tex}
+	\caption{Interpretace řešení}
+	\label{tab:interpretation}
+\end{table}
+
+Dále může být rozvrh směn interpretován jako vektor $\boldsymbol{x} = (x^1, x^2,~\ldots,~x^N)$, kde každé přiřazení $x^m = (i, j, k)$ značí, že zaměstnanci $i$ je ve dni~$j$ přiřazena $k$-tá směna. \cite{awadallah2015hybrid}
+
+\section{Cílová funkce}
+\label{sec:objective}
+Cílová nebo také účelová funkce (angl. objective function) je taková funkce, jejíž hodnotu je cílem optimalizovat. V~případě rozvrhování se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
+
+Například v~případě optimalizace na základě vážených podmínek dle podkapitoly \ref{sec:constraints} ji lze formulovat jako
+\begin{equation}
+	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
+\end{equation}
+kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
 
 \section{Vstupy}
 Organizace má množinu zaměstnanců $M$, z~nichž každý zaměstnanec $m \in M$ má určenou množinu činností $Q_m$, které je kvalifikován vykonávat; podmnožině zaměstnanců $E \subseteq M$, $E = \{ 1, 2,~\ldots, e \}$ v~daném období může být rozvrhnuta směna. Každý zaměstnanec přitom v jednom čase může být pouze na jednom místě.
@@ -392,41 +881,13 @@ Dalším vstupem je tabulka s~nezbytnými (tab.~\ref{tab:hard}) a zbytnými (tab
 	\label{tab:soft}
 \end{table}
 
-\section{Interpretace řešení}
-Řešení tohoto problému lze interpretovat jako trojrozměrnou binární matici $\boldsymbol{x}$, jejímiž parametry jsou zaměstnanec ($\forall i \in E$), den ($\forall j \in T$) a vypsaná směna $\forall k \in S$, jednotlivé hodnoty $x_{ijk}$ jsou určeny funkcí \ref{eq:3dmatrix}. \cite{vaclavik2016roster}
-
-\begin{equation}
-	\label{eq:3dmatrix}
-	x_{ijk} =
-	\begin{cases}
-		1, & \mbox{zaměstnanci $i$ je v den $j$ přiřazena směna $k$} \\
-		0, & \mbox{jinak}\\
-	\end{cases}
-\end{equation}
-
-\begin{table}
-	\input{tables/interpretation-example.tex}
-	\caption{}
-	\label{}
-
-\end{table}
-
-\section{Cílová funkce}
-\label{sec:objective}
-Cílová nebo také účelová funkce (angl. objective function) je taková funkce, jejíž hodnotu je cílem optimalizovat. V~případě rozvrhování se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
-
-Například v~případě optimalizace na základě vážených podmínek dle podkapitoly \ref{sec:constraints} ji lze formulovat jako
-\begin{equation}
-	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
-\end{equation}
-kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
 
 \section{Lineární programování}
 Úlohou lineárního programování\footnote{Termín programování zde souvisí se slovem program ve významu plán nebo rozvrh, nikoli s~počítačovými programy. } je nalézt vektor $\boldsymbol{x}^{\ast} \in \mathbb{R}^n$ optimalizující hodnotu cílové funkce mezi všemi vektory, které splňují danou soustavu lineárních rovnic a nerovnic (kterým se zpravidla říká omezující podmínky nebo omezení). \cite{matousek2006linearni}
 
-\subsection{Celočíselné lineární programování}
+\subsubsection{Celočíselné lineární programování}
 
-Celočíselné lineární programování je pro rozvrhování směn vhodné v jednoduchých případech, např. když jsou pro všechny zaměstnance stanoveny stejné počty po sobě jdoucích pracovních dnů a volna nebo, jsou-li rozvrhovány směny v rámci dne, je den rozdělen na několik disjunktních úseků, navíc je stanoven počet po sobě následujích úseků, které tvoří jednu směnu. Pro každý časový úsek (den či část dne) je navíc stanoven minimální počet personálu. \cite{satheeshkumar2014linear} Cílem je optimalizovat počet zaměstnanců tak, aby byla minimální poptávka naplněna.
+Celočíselné lineární programování je pro rozvrhování směn vhodné v jed\-no\-du\-chých případech, např. když jsou pro všechny zaměstnance stanoveny stejné počty po sobě jdoucích pracovních dnů a volna nebo, jsou-li rozvrhovány směny v rámci dne, je den rozdělen na několik disjunktních úseků, navíc je stanoven počet po sobě následujích úseků, které tvoří jednu směnu. Pro každý časový úsek (den či část dne) je navíc stanoven minimální počet personálu. \cite{satheeshkumar2014linear} Cílem je optimalizovat počet zaměstnanců tak, aby byla minimální poptávka naplněna.
 
 V~případě týdne, v~němž mají zaměstnanci 5 po sobě jdoucích pracovních dnů a 2 po sobě jdoucí dny volna, je rozdělení ilustrováno na obr. \ref{fig:linear}. Příklad minimální poptávky po personálu je uveden v~tab.~\ref{tab:linear}.
 
@@ -454,75 +915,186 @@ Na základě~tab.~\ref{tab:linear} a~s~pomocí obr.~\ref{fig:linear} lze přitom
 	\end{tabular}
 \end{center}
 
-\subsection{Omezení algoritmu}
-
-Lineární programování může přinést optimální výsledky, avšak je vhodné pouze v~případech, kdy lze pro podmínky sestavit soustavu lineárních rovnic a nerovnic. Časová složitost v~závislosti na počtu zaměstnanců je exponenciální. \cite{chen2016comparison}
+\subsubsection{Omezení a složitost algoritmu}
+Matematické programování obecně může přinést optimální výsledky, avšak pro komplexní je tento model příliš jednoduchý. \cite{burke2004state} Časová složitost v~závislosti na počtu zaměstnanců je exponenciální. \cite{chen2016comparison}
 
 
 \newpage
-\section{Optimalizace včelím rojem}
-Optimalizace včelím rojem (angl. bee colony optimization) je evoluční algoritmus, v~němž každá ze \uv{včel} hledá řešení. Tato heuristická metoda se~skládá ze dvou fází, dopředné~a~zpětné, které se opakují, dokud není splněna výstupní podmínka.
+\section{Algoritmy inspirované včelím rojem}
+Existuje skupina (meta)heuristických algoritmů inspirovaných chováním včelího roje v~přírodě, k~řešení kombinatorického problému se využívá spolupráce a kolektivní inteligence. Mezi varianty, které se v~literatuře objevují, patří optimalizace včelím rojem (Bee Colony Optimization) nebo umělý včelí roj (Artificial Bee Colony) a jejich další modifikace.
 
-\subsection{Umělý včelí roj}
-Umělý včelí roj se v~původní verzi algoritmu skládá ze tří skupin včel (dělnice, průzkumnice, vyčkávající včely), které vyhledávají zdroje potravy (které symbolizují možné řešení problému), množství nektaru symbolizuje cílovou funkci. \cite{anuar2016modified}
+\subsection{Optimalizace včelím rojem (BCO)}
+Optimalizace včelím rojem se skládá ze dvou střídajících se fází -- dopředné (forward pass) a zpětné (backward pass). Zjednodušený průběh optimalizace včelím rojem je zobrazen na vývojovém diagramu~\ref{fig:bcoflow}.
+\begin{figure}[h]
+	\input{img/img_bees_flow.pdf_tex}
+	\caption{Zjednodušený průběh algoritmu BCO}
+	\label{fig:bcoflow}
+\end{figure}
 
-\subsection{Inicializační fáze}
-Dojde k inicializaci zdrojů potravy $\boldsymbol{x}_m$ pro $m \in \{1,~\ldots~, SN\}$ včelami průzkumnicemi, každý vektor $\boldsymbol{x}_m = (x_{mi},~i \in \{1,~\ldots, n \})$ je řešením problému o $n$ proměnných, které je třeba optimalizovat, v~inicializační fázi může $x_{mi}$ odpovídat definici~\ref{eq:initialization}, kde $l_i$ (resp. $u_i$) je dolní (resp. horní) mez parametu $x_{mi}$. \cite{karaboga2010artificial}
+\paragraph{Inicializační fáze} Vytvoří se včely s~prázdným řešením.
 
-\begin{equation}
-	\label{eq:initialization}
-	x_{mi} = l_i + \mbox{rand}(0,1) \cdot (u_i - l_i),
-\end{equation}
+\paragraph{Dopředná fáze} V~dopředné fázi každá ze včel prohledává prostor, a~to v~předdefinovaném počtu~kroků, a tak vytváří nové nebo zlepšují stávající řešení. S~částečným řešením se vrací včela do úlu.
 
-
-% Úkolem včel dělnic je vyletět ke zdroji potravy a vrátit se do úlu (\textit{dopředná fáze}), kde sdílejí informace o svých zdrojích potravy s~vyčkávajícími včelami (způsob sdílení se nazývá tancem). Ze včel dělnic, jejichž řešení bylo vyčerpáno, se stávají průzkumnice, které mohou náhodně hledat nové zdroje potravy (\textit{zpětná fáze}).
-
-\subsubsection{Dopředná fáze}
-V~první iteraci se vytvoří $SN$ náhodných řešení, $SN$ odpovídá počtu včel dělnic a průzkumnic. V~každé další iteraci dělnice upravují své řešení náhodně tak, že pokud je lepší než předchozí, zapamatují si ho \cite{anuar2016modified}. Vyhledávací proces pokračuje, dokud není dosaženo maximálního počtu cyklů nebo přijatelné hodnoty \cite{banharnsakun2011best}.
-
-\subsubsection{Zpětná fáze}
-Ve zpětné fázi si včely na základě hodnoty cílové funkce sdílejí informace o~kvalitě svých řešení. Pak se každá včela náhodně (pravděpodobnost výběru $i$-tého~řešení $p_i$ bude distribuována dle kvality řešení -- cílové funkce $f(\boldsymbol{x}_i)$, jak je naznačeno v~rovnici \ref{eq:beeprobability}) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
+\paragraph{Zpětná fáze} Ve zpětné fázi si včely na základě hodnoty objektivní funkce sdílejí informace o~kvalitě svých řešení. Pak se každá včela náhodně (prav\-dě\-po\-dob\-nost bude distribuována dle kvality řešení -- cílové funkce $f(\boldsymbol{x}_i)$, jak je naznačeno v~rovnici \ref{eq:beeprobability}) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
 
 \begin{equation}
 	\label{eq:beeprobability}
 	p_i = \frac{f(\boldsymbol{x}_i)}{\sum_{n = 1}^{SN} f(\boldsymbol{x}_n)}
 \end{equation}
 
-\newpage
-\subsection{Algoritmus}
-Máme kolonii včel o~velikosti~$B$, která může udělat $NF$ iterací. V jedné iteraci může včela udělat $NC$ konstrukčních kroků, v~každém jednotlivém konstrukčním kroku musí rozřadit $NS$~směn mezi $NS$~různých zaměstnanců. V~každém konstrukčním kroku se evaluují všechny kombinace, aby se nalezlo nejlepší řešení. \cite{khader2013artificial}
-
-Zjednodušený průběh optimalizace včelím rojem je zobrazen na vývojovém diagramu~\ref{fig:beeflow}.
-\begin{figure}[h]
-	\input{img/img_bees_flow.pdf_tex}
-	\caption{Zjednodušený průběh algoritmu}
-	\label{fig:beeflow}
-\end{figure}
-
-V~textové podobě pak dle \cite{rajeswari2017directed} algoritmus vypadá následovně:
-\begin{lstlisting}
+V~textové podobě algoritmus BCO vypadá následovně:
+% \cite{rajeswari2017directed}:
+\begin{lstlisting}[caption={Pseudokód pro BCO}]
 Vytvoř včely.
-Opakuj
+OPAKUJ
 	Iteruj přes všechny včely.
 		Nastav čítač na 1.
-		Opakuj
+		OPAKUJ
 			Vyhodnoť všechny možné konstrukční kroky.
 			Vyber náhodně jedno řešení.
 			Zvyš čítač o 1.
-		dokud je hodnota čítače menší než celkový počet konstrukčních kroků.
+		DOKUD je hodnota čítače menší než celkový počet konstrukčních kroků.
 	Vrať se do úlu.
 	Spočítej cílovou funkci pro každou včelu; seřaď řešení dle hodnoty.
 	Včela s nejlepším výsledkem se stane vedoucím.
-	Každá včela se náhodně stane vůdcem nebo následovníkem. Následovník zahodí své řešení.
+	Každá včela se náhodně stane vůdcem nebo následovníkem.
 	Každý následovník se přidá k některému z vůdců a převezme jeho řešení.
-dokud nebyla splněna výstupní podmínka.
+DOKUD nebyla splněna výstupní podmínka.
 Vyhodnoť a vyber nejlepší řešení.
 Vrať nejlepší řešení.
 \end{lstlisting}
 
-\subsection{Složitost algoritmu}
+\subsubsection{Aplikace BCO na rozvrhování směn}
+\label{sub:bconrp}
+Způsob, jak sestavit rozvrh (zdravotních sester) s pomocí optimalizace včelím rojem, je popsán v~\cite{todorovic2012bee}.
 
-Původní algoritmus optimalizace včelím rojem má složitost $O(mnd)$, kde $n$ je celkový počet včel, $m$ je maximální pošet iterací a $d$ je dimenze řešení. \cite{banharnsakun2011best}
+\paragraph{Dopředná fáze} V~dopředné fázi se rozvrh rozšiřuje o~další části (dle počtu konstrukčních kroků). Během konstrukčního kroku se vybere $NS$ nepřiřazených směn\footnote{$NS$ přitom musí být relativně nízké, neboť počet možností roste s~$NS$ exponenciálně. } a ty se přiřadí zaměstnancům. Všechny možné kombinace se přitom musí posoudit, aby se nalezlo to nejlepší řešení (které porušuje co nejméně podmínek), přiřazení proběhne náhodně (použije se ruletový výběr\footnote{Ruletový výběr je náhodný výběr na základě vah, zde tedy dle hodnot cílové funkce.}). Během dopředné fáze probíhají dva vnořené cykly, jeden z~nich jsou konstrukční kroky ($NC$ opakování), druhý vyhledávání v~rámci konstrukčního kroku ($NI$ opakování). Počet opakování těchto kroků se může v~průběhu měnit.
+
+Při lokálním vyhledávání mohou být použity operace mezi sousedícími strukturami, konkrétně přesun sousedících struktur (obr.~\ref{fig:abc-msn}), prohození sousedících struktur (obr.~\ref{fig:abc-sns}), prohození schémat směn (obr.~\ref{fig:abc-sps}) a přesunutí do kruhu (obr.~\ref{fig:abc-trm}).
+
+\begin{figure}[h]
+	\input{img/abc-msn.pdf_tex}
+	\caption{Přesun sousedících struktur}
+	\label{fig:abc-msn}
+\end{figure}
+
+\begin{figure}[h!]
+	\input{img/abc-sns.pdf_tex}
+	\caption{Prohození sousedících struktur}
+	\label{fig:abc-sns}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\input{img/abc-sps.pdf_tex}
+	\caption{Prohození schémat směn}
+	\label{fig:abc-sps}
+\end{figure}
+
+\begin{figure}[h!]
+	\input{img/abc-trm.pdf_tex}
+	\caption{Prohození do kruhu}
+	\label{fig:abc-trm}
+\end{figure}
+
+\paragraph{Zpětná fáze} Pro zpětnou fázi zde nejsou žádná specifika oproti obecnému popisu.
+
+\newpage
+
+\subsection{Umělý včelí roj (ABC)}
+Včelí roj se v~této verzi algoritmu, která byla popsána v~\cite{karaboga2010artificial}, skládá ze tří skupin včel (dělnice, průzkumnice, vyčkávající včely), které vyhledávají zdroje potravy (které symbolizují možné řešení problému), množství nektaru symbolizuje cílovou funkci. \cite{anuar2016modified} Zjednodušený průběh tohoto algoritmu je naznačen na vývojovém diagramu~\ref{fig:abcflow}.
+
+\begin{figure}[h]
+	\input{img/abc-flowchart.pdf_tex}
+	\caption{Zjednodušený průběh algoritmu ABC}
+	\label{fig:abcflow}
+\end{figure}
+
+\paragraph{Inicializační fáze}
+Dojde k inicializaci zdrojů potravy $\boldsymbol{x}_m$ pro $m \in \{1,~\ldots~, SN\}$ včelami dělnicemi, každý vektor $\boldsymbol{x}_m = (x_{mi},~i \in \{1,~\ldots, n \})$ je řešením problému o $n$ proměnných, které je třeba optimalizovat, v~inicializační fázi může $x_{mi}$ odpovídat definici~\ref{eq:initialization}, kde $l_i$ (resp. $u_i$) je dolní (resp. horní) mez parametu $x_{mi}$. První řešení se tedy nalezne náhodně a dále se jen vylepšuje.
+\cite{karaboga2010artificial}
+
+\begin{equation}
+	\label{eq:initialization}
+	x_{mi} = l_i + \mbox{rand}(0,1) \cdot (u_i - l_i)
+\end{equation}
+
+\paragraph{Včely dělnice}
+Včely dělnice (employed bees) mohou prozkoumávat okolí již známých zdrojů potravy a hledat, kde je více nektaru. V~případě, že je jejich zdroj potravy vyčerpán (je stanoven limit počtu pokusů na vylepšení řešení, je-li jej dosaženo, je řešení vyčerpáno).
+
+\paragraph{Vyčkávající včely}
+Vyčkávající včely (onlooker bees) čekají na taneční ploše, aby se náhodně rozhodly pro zdroj potravy podle toho, co jim sdělí dělnice a podle množství nektaru. Přesunou se k~tomu zdroji potravy, který vybraly.
+
+\paragraph{Včely průzkumnice}
+Úkolem průzkumnic (scout bees) je náhodně nalézt nový zdroj potravy v~případě, že je některý ze zdrojů potravy vyčerpán.
+
+\subsubsection{Aplikace ABC na rozvrhování směn}
+Způsob, jak aplikovat algoritmus umělého včelího roje na problém roz\-vr\-ho\-vá\-ní (zdravotních sester), který je zde představen, byl rozebrán v~\cite{buyukozkan2014applicability}~a~\cite{awadallah2015hybrid}.
+
+\paragraph{Inicializace ABC a parametrů}
+Nastaví se tři parametry pro ABC, tzn. počet řešení v~populaci $SN$, maximální počet cyklů $MCN$ a limit pro vyčerpání řešení. Dále se inicializují vstupy ve formě podmínek.
+
+\paragraph{Inicializace známých zdrojů potravy}
+Známé zdroje potravy $\boldsymbol{\mathrm{FSM}}$ (viz rov. \ref{eq:fsm}) jsou souborem známých řešení problému (tedy rozvrhů). Řešení jsou uchována seřazená dle hodnoty cílové funkce.
+
+\begin{equation}
+	\label{eq:fsm}
+	\boldsymbol{\mathrm{FSM}} =
+	\begin{bmatrix}
+			x_1^1 & x_1^2 & \ldots & x_1^{N} \\
+			x_2^1 & x_2^2 & \ldots & x_2^{N} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			x_{SN}^1 & x_{SN}^2 & \ldots & x_{SN}^{N}
+	\end{bmatrix}
+	\begin{bmatrix}
+			f(\boldsymbol{x}_1)\\
+			f(\boldsymbol{x}_2)\\
+			\vdots \\
+			f(\boldsymbol{x}_{SN})
+	\end{bmatrix}
+\end{equation}
+
+Algoritmus ABC vyžaduje nějaké již existující úplné řešení již ve fázi inicializace, \cite{buyukozkan2014applicability} navrhuje následující postup:
+\begin{lstlisting}[caption={Pseudokód pro ABC}]
+OPAKUJ pro každou včelu dělnici z roje
+	OPAKUJ
+		Vyber náhodný den
+		Vyber náhodnou směnu
+		Vyber náhodného zaměstnance
+		JESTLIŽE poptávka pro danou směnu nebyla naplněna A zam. ještě nebyl na danou směnu přiřazen
+			Přiřaď tohoto zaměstnance na tuto směnu
+	DOKUD není naplněna poptávka
+\end{lstlisting}
+
+\paragraph{Fáze včel dělnic}
+Na každém již existujícím rozvrhu lze v~této fázi provádět stejné operace mezi sousedícími strukturami jako v~případě dopředné fáze BCO (viz~podkapitolu~\ref{sub:bconrp}). Pokud je v~případě nového řešení hodnota cílové funkce lepší, původní řešení se nahradí novým.
+
+\subsection{Porovnání algoritmů}
+Oba zde uvedené algoritmy jsou si v~principu podobné, liší se především tím, že ABC vyžaduje vytvoření nějakého platného řešení\footnote{Platné je takové řešení, které neporušuje nezbytné podmínky.} již v~inicializační fázi, kdežto BCO v~mezikrocích pracuje s~částečným řešením.
+
+% Úkolem včel dělnic je vyletět ke zdroji potravy a vrátit se do úlu, kde sdílejí informace o svých zdrojích potravy s~vyčkávajícími včelami (způsob sdílení se nazývá tancem). Ze včel dělnic, jejichž řešení bylo vyčerpáno, se stávají průzkumnice, které mohou náhodně hledat nové zdroje potravy (\textit{zpětná fáze}).
+%
+% \subsection{Dopředná fáze}
+% V~první iteraci se vytvoří $SN$ náhodných řešení, $SN$ odpovídá počtu včel dělnic a průzkumnic. V~každé další iteraci dělnice upravují své řešení náhodně tak, že pokud je lepší než předchozí, zapamatují si ho \cite{anuar2016modified}. Vyhledávací proces pokračuje, dokud není dosaženo maximálního počtu cyklů nebo přijatelné hodnoty \cite{banharnsakun2011best}.
+%
+% \subsection{Zpětná fáze}
+% Ve zpětné fázi si včely na základě hodnoty cílové funkce sdílejí informace o~kvalitě svých řešení. Pak se každá včela náhodně (pravděpodobnost výběru $i$-tého~řešení $p_i$ bude distribuována dle kvality řešení -- cílové funkce $f(\boldsymbol{x}_i)$, jak je naznačeno v~rovnici \ref{eq:beeprobability}) rozhodne, zda své řešení bude prosazovat či nikoli. Pokud nepokračuje, vybere náhodně to řešení, ke kterému se přikloní, a to si zapamatuje. \cite{teodorovic2009bee}
+%
+% \begin{equation}
+% 	\label{eq:beeprobability}
+% 	p_i = \frac{f(\boldsymbol{x}_i)}{\sum_{n = 1}^{SN} f(\boldsymbol{x}_n)}
+% \end{equation}
+%
+% \newpage
+
+%
+% \subsection{Aplikace na rozvrhování směn}
+% Máme kolonii včel o~velikosti~$B$, která může udělat $NF$ iterací. V jedné iteraci může včela udělat $NC$ konstrukčních kroků, v~každém jednotlivém konstrukčním kroku musí rozřadit $NS$~směn mezi $NS$~různých zaměstnanců. V~každém konstrukčním kroku se evaluují všechny kombinace, aby se nalezlo nejlepší řešení. \cite{khader2013artificial}
+
+%
+% \subsection{Omezení a složitost algoritmu}
+%
+% Jedná se o optimalizační algoritmus, který může pomoci s~nalezením lepšího řešení, v~inicializační fázi ovšem nějaké platné řešení vyžaduje. Původní algoritmus optimalizace včelím rojem má složitost $O(mnd)$, kde $n$ je celkový počet včel, $m$ je maximální pošet iterací a $d$ je dimenze řešení. \cite{banharnsakun2011best}
 
 
 % https://www.sciencedirect.com/science/article/pii/S1319157816300039
@@ -556,124 +1128,937 @@ Původní algoritmus optimalizace včelím rojem má složitost $O(mnd)$, kde $n
 \section{Cyklické rozdělení}
 Hlavní myšlenkou metody cyklického rozdělení je, že směny lze mezi zaměstnance rozdělit na základě opakujících se schémat. Skládá se ze tří fází: dekompozice, konstrukce a následné zpracování. \cite{brucker2005decomposition} Hlavním problémem zde je nalezení schémat, podproblémem jejich sestavení do rozvrhu. \cite{becker2020decomposition}
 
-\subsection{Dekompozice}
+\subsubsection{Dekompozice}
 Zaměstnanci jsou rozděleni do několika skupin. Nejprve se sestaví schéma pro směny, jejichž zaplnění je nejtěžší (tzn., že způsobu jejich zaplnění se týkají největší sankce). Na základě toho se vytvoří schéma cyklicky se opakujících bloků (např. schéma pro jeden týden). Vytváření schématu pokračuje i pro další druhy směn a cílem je, aby se co nejvíce směn rozdělovalo cyklicky dle bloků a co nejméně jich bylo třeba rozdělit dodatečně.
 
-\subsection{Konstrukce}
+\subsubsection{Konstrukce}
 Směny, které nejsou rozděleny dle cyklického schématu v~první fázi, se rozdělí v~druhé fázi. Součástí může být i přesunutí některých už přiřazených směn.
 
-\subsection{Následné zpracování}
+\subsubsection{Následné zpracování}
 V poslední fázi se provede opětovný průzkum prostoru. Sousedící směny se mohou přeházet, pokud se zdá, že toto řešení bude lepší. Výsledkem nemusí být cyklicky se opakující rozvrh.
 
 \newpage
-\section{Návrh vlastního algoritmu}
 
-\subsection{Požadavky na algoritmus}
-Na základě potřeb tohoto systému byly stanoveny požadavky na algoritmus uvedené v~tab.~\ref{tab:algorithm_req}. Tyto požadavky se liší od standardních požadavků na výše uvedené algoritmy pro rozvrhování zdravotních sester, neboť toto řešení předpokládá, že volné směny budou dále rozvrhnuty jiným způsobem. Zároveň je zde cílem netvořit zbytečné překážky v~zaměstnání, tedy rozvrhnout práci všem.
+\section{Požadavky na algoritmus v~tomto projektu}
 
-\begin{table}[h!]
-	\input{tables/algorithm_req.tex}
-	\caption{Požadavky na algoritmus}
-	\label{tab:algorithm_req}
-\end{table}
+V této podkapitole budou stručně popsány požadavky na algoritmus, které byly stanoveny dle potřeb systému, jež byl v~této práci popsán.
 
-\subsection{Průběh}
-Rozdělování směn bude probíhat po menších skupinách, prioritně se rozdělí směny pro ty zaměstnance, kteří mají nejspecifičtější požadavky (a je tedy nejtěžší je přidělit). V~počátečním stavu je rozvrh prázdný, zaměstnancům nejsou přiděleny žádné směny. Rozvrh se sestavuje po dnech, v~každém dni se rozdělí směny mezi zaměstnance z~aktuální podskupiny (viz obr. \ref{fig:dayflow}).
+Z~hlediska klasifikace uvedené v~podkapitole~\ref{sec:clasif} zde půjde o neperiodický rozvrh s~flexibilními parametry, co se naplněnosti směn týče, cílem bude spíše rozhodnout než optimalizovat. Nezbytné podmínky budou dány legislativními požadavky na rozvrh směn; rozvrh bude sestaven nejméně na týden. Toto řešení předpokládá, že jiné směny budou dále rozvrhnuty jiným způsobem. Zároveň je zde cílem netvořit zbytečné překážky v~zaměstnání, tedy rozvrhnout práci všem.
 
-\begin{figure}[h]
-	\input{img/flowchart-algo-day.pdf_tex}
-	\caption{Zjednodušený průběh algoritmu}
-	\label{fig:dayflow}
-\end{figure}
-
-Rozložení pravděpodobnosti při náhodném výběru vhodné směny\footnote{Směna vhodná pro daného zaměstnance je taková, která splňuje nezbytné požadavky -- neuvažuje se tedy např. ta směna, která začíná méně než 12~h po konci minulé směny.} nebo volna může záviset na několika faktorech, např.:
+Konkrétní požadavky byly stanoveny následovně:
 \begin{enumerate}
-	\item prioritu má zaplnění rozvrhu ve všech časech, kdy jsou vypisovány směny;
-	\item preferováno je zaplnění relativně ku poptávce;
-	\item preferovány jsou celé 8hodinové směny\footnote{Je-li to však třeba, lze je i rozdělit.};
-	\item preferováno je více dnů volna pohromadě.
+	\item Algoritmus rozvrhne směny na jeden týden.
+	\item Algoritmus rozvrhne směny v~celém dni na základě poptávky.
+	\item Algoritmus rozdělí směny mezi zaměstnance v~pracovním poměru.
+	\item Algoritmus rozdělí směny mezi všechny zaměstnance, kteří mají v~daném týdnu pracovat.
+	\item Algoritmus vezme v~potaz legislativní požadavky.
 \end{enumerate}
 
-
-\subsection{Příklad}
-Předpokládá se, že organizace má $N = 10$ zaměstnanců, kteří mají různě velký úvazek a mohou pracovat v~různé dny (tab. \ref{tab:algorithm_employees}). Všichni mají stejné schopnosti a jejich specializace není určena. Navíc byl sestaven i~model vytíženosti (je relativní; vyšší číslo značí, že v~daný čas je vyšší poptávka po zaměstnancích), který je v~tab. \ref{tab:algorithm_demand}.
-
-\begin{table}[h]
-	\input{tables/algorithm_employees.tex}
-	\caption{Příklad struktury zaměstnanců}
-	\label{tab:algorithm_employees}
-\end{table}
-
-\begin{table}[h]
-	\input{tables/algorithm_demand.tex}
-	\caption{Příklad poptávky po zaměstnancích}
-	\label{tab:algorithm_demand}
-\end{table}
-
-\subsubsection{Rozdělení zaměstnanců}
-V prvním kroku jsou vybráni zaměstnanci, kteří mají nejspecifičtější potřeby, tedy 9 a 10, kteří mohou pracovat nejméně dnů v~týdnu.
-
-\paragraph{Pondělí až čtvrtek} Směny mezi tyto zaměstnance rozdělit nelze, neboť z~tab.~\ref{tab:algorithm_employees} vyplývá, že v~tyto dny není ani jeden z~těchto zaměstnanců k~dispozici.
-
-\paragraph{Pátek až neděle} Ve~zbývajících dnech je naopak nezbytné rozvrh pro tyto zaměstnance sestavit\footnote{Předpokládá se, že za týden musí odpracovat při svém úvazku právě 20~hodin. Každý den odpracují nejvýše 8~hodin, tzn., že 20~hodin lze rozdělit mezi 3 dny.}.
-
-\subparagraph{Pátek} Náhodná funkce přidělí zaměstnance~9 na ranní směnu (zatím v~daném čase není na pracovišti žádný zaměstnanec, navíc jde o vytížený čas, pravděpodobnost tohoto kroku je tedy nejvyšší). Zaměstnanci~10 je přidělena odpolední směna.
-
-\subparagraph{Sobota} Zaměstnanci~9 může být přidělena ranní nebo odpolední směna, z~této množiny je mu náhodně vybrána ranní. Zaměstnanec~10 má v~sobotu specifičtější požadavky -- musí mezi směnami mít nejméně 12hodinovou přestávku, a tu by neměl, kdyby pracoval celou ranní směnu, v~úvahu tedy připadá pouze odpolední směna (celá či její část), případně část ranní směny (stále je třeba rozdělit 12~hodin mezi 2 dny). Je mu přidělena např. celá odpolední.
-
-\subparagraph{Neděle} Zaměstnanec~9 opět může pracovat ráno i odpoledne, náhodně se vybere odpoledne, směnu je však nezbytné zkrátit (zbývá rozdělit 4~hodiny, směna má běžně 8 hodin). Je mu tedy přidělena úvodní část odpolední směny. Zaměstnanci~10 může být přidělena jen část odpolední směny, vzhledem k~tomu, že je část odpolední směny neobsazená, je mu přiřazen její konec.
-
-Po prvním rozdělení je tak v~daném čase počet zaměstnanců dle tab.~\ref{tab:firstiteration}, rozvrh prvních dvou zaměstnanců je v~tab.~\ref{tab:firstemployees}.
-
-\begin{table}[h]
-	\input{tables/example_first_iteration.tex}
-	\caption{Počet zaměstnanců v~daném čase po prvním rozdělení.}
-	\label{tab:firstiteration}
-
-\end{table}
-
-\begin{table}[h]
-	\input{tables/example_first_iteration_employees.tex}
-	\caption{Směny prvních zaměstnanců po prvním rozdělení}
-	\label{tab:firstemployees}
-
-\end{table}
-
-Postup při rozdělení dalších zaměstnanců je analogický, validním výsledkem může být například tab.~\ref{tab:exemployees}.
-
-\begin{table}[h]
-	\input{tables/example_employees.tex}
-	\caption{Rozvrh směn na týden}
-	\label{tab:exemployees}
-
-\end{table}
-
-\begin{table}[h]
-	\input{tables/example_count.tex}
-	\caption{Počet zaměstnanců v~daném čase}
-	\label{tab:excount}
-
-\end{table}
-
-% \chapter{Backend}
+% \subsection{Průběh}
+% Rozdělování směn bude probíhat po menších skupinách, prioritně se rozdělí směny pro ty zaměstnance, kteří mají nejspecifičtější požadavky (a je tedy nejtěžší je přidělit). V~počátečním stavu je rozvrh prázdný, zaměstnancům nejsou přiděleny žádné směny. Rozvrh se sestavuje po dnech, v~každém dni se rozdělí směny mezi zaměstnance z~aktuální podskupiny (viz obr. \ref{fig:dayflow}).
 %
+% \begin{figure}[h]
+% 	\input{img/flowchart-algo-day.pdf_tex}
+% 	\caption{Zjednodušený průběh algoritmu}
+% 	\label{fig:dayflow}
+% \end{figure}
 %
-% \section{Autentizace}
-% Autentizace je realizována pomocí knihovny Devise Token Auth\footnote{\url{https://github.com/lynndylanhurley/devise_token_auth}}, server v~případě úspěšné autentizace odešle klientovi v~hlavičce token typu bearer (tzn. nositel, \uv{umožni nositeli tohoto tokenu přístup} \cite{swagger2020bearer}) s~platností na dva týdny. Akce bude uživateli umožněna v~případě, že~na server odešle v~HTTP~hlavičce spolu se svým požadavkem i~údaje o~tokenu.
+% Rozložení pravděpodobnosti při náhodném výběru vhodné směny\footnote{Směna vhodná pro daného zaměstnance je taková, která splňuje nezbytné požadavky -- neuvažuje se tedy např. ta směna, která začíná méně než 12~h po konci minulé směny.} nebo volna může záviset na několika faktorech, např.:
+% \begin{enumerate}
+% 	\item prioritu má zaplnění rozvrhu ve všech časech, kdy jsou vypisovány směny;
+% 	\item preferováno je zaplnění relativně ku poptávce;
+% 	\item preferovány jsou celé 8hodinové směny\footnote{Je-li to však třeba, lze je i rozdělit.};
+% 	\item preferováno je více dnů volna pohromadě.
+% \end{enumerate}
+
+
+% \subsection{Příklad}
+% Předpokládá se, že organizace má $N = 10$ zaměstnanců, kteří mají různě velký úvazek a mohou pracovat v~různé dny (tab. \ref{tab:algorithm_employees}). Všichni mají stejné schopnosti a jejich specializace není určena. Navíc byl sestaven i~model vytíženosti (je relativní; vyšší číslo značí, že v~daný čas je vyšší poptávka po zaměstnancích), který je v~tab. \ref{tab:algorithm_demand}.
 %
-% Hesla uživatelů se v~databázi uchovávají v~hashované podobě.
+% \begin{table}[h]
+% 	\input{tables/algorithm_employees.tex}
+% 	\caption{Příklad struktury zaměstnanců}
+% 	\label{tab:algorithm_employees}
+% \end{table}
 %
+% \begin{table}[h]
+% 	\input{tables/algorithm_demand.tex}
+% 	\caption{Příklad poptávky po zaměstnancích}
+% 	\label{tab:algorithm_demand}
+% \end{table}
 %
+% \subsubsection{Rozdělení zaměstnanců}
+% V prvním kroku jsou vybráni zaměstnanci, kteří mají nejspecifičtější potřeby, tedy 9 a 10, kteří mohou pracovat nejméně dnů v~týdnu.
 %
-% \chapter{Mobilní aplikace}
+% \paragraph{Pondělí až čtvrtek} Směny mezi tyto zaměstnance rozdělit nelze, neboť z~tab.~\ref{tab:algorithm_employees} vyplývá, že v~tyto dny není ani jeden z~těchto zaměstnanců k~dispozici.
 %
+% \paragraph{Pátek až neděle} Ve~zbývajících dnech je naopak nezbytné rozvrh pro tyto zaměstnance sestavit\footnote{Předpokládá se, že za týden musí odpracovat při svém úvazku právě 20~hodin. Každý den odpracují nejvýše 8~hodin, tzn., že 20~hodin lze rozdělit mezi 3 dny.}.
 %
-% \section{Design}
+% \subparagraph{Pátek} Náhodná funkce přidělí zaměstnance~9 na ranní směnu (zatím v~daném čase není na pracovišti žádný zaměstnanec, navíc jde o vytížený čas, pravděpodobnost tohoto kroku je tedy nejvyšší). Zaměstnanci~10 je přidělena odpolední směna.
 %
+% \subparagraph{Sobota} Zaměstnanci~9 může být přidělena ranní nebo odpolední směna, z~této množiny je mu náhodně vybrána ranní. Zaměstnanec~10 má v~sobotu specifičtější požadavky -- musí mezi směnami mít nejméně 12hodinovou přestávku, a tu by neměl, kdyby pracoval celou ranní směnu, v~úvahu tedy připadá pouze odpolední směna (celá či její část), případně část ranní směny (stále je třeba rozdělit 12~hodin mezi 2 dny). Je mu přidělena např. celá odpolední.
 %
+% \subparagraph{Neděle} Zaměstnanec~9 opět může pracovat ráno i odpoledne, náhodně se vybere odpoledne, směnu je však nezbytné zkrátit (zbývá rozdělit 4~hodiny, směna má běžně 8 hodin). Je mu tedy přidělena úvodní část odpolední směny. Zaměstnanci~10 může být přidělena jen část odpolední směny, vzhledem k~tomu, že je část odpolední směny neobsazená, je mu přiřazen její konec.
 %
-% \chapter{Závěr}
+% Po prvním rozdělení je tak v~daném čase počet zaměstnanců dle tab.~\ref{tab:firstiteration}, rozvrh prvních dvou zaměstnanců je v~tab.~\ref{tab:firstemployees}.
+%
+% \begin{table}[h]
+% 	\input{tables/example_first_iteration.tex}
+% 	\caption{Počet zaměstnanců v~daném čase po prvním rozdělení.}
+% 	\label{tab:firstiteration}
+%
+% \end{table}
+%
+% \begin{table}[h]
+% 	\input{tables/example_first_iteration_employees.tex}
+% 	\caption{Směny prvních zaměstnanců po prvním rozdělení}
+% 	\label{tab:firstemployees}
+%
+% \end{table}
+%
+% Postup při rozdělení dalších zaměstnanců je analogický, validním výsledkem může být například tab.~\ref{tab:exemployees}.
+%
+% \begin{table}[h]
+% 	\input{tables/example_employees.tex}
+% 	\caption{Rozvrh směn na týden}
+% 	\label{tab:exemployees}
+%
+% \end{table}
+%
+% \begin{table}[h]
+% 	\input{tables/example_count.tex}
+% 	\caption{Počet zaměstnanců v~daném čase}
+% 	\label{tab:excount}
+%
+% \end{table}
+
+\chapter{Backend}
+
+\section{Ruby on Rails}
+
+Backend aplikace byl implementován ve webovém frameworku Ruby on Rails. Jedná se o MVC\footnote{Model-View-Controller} framework, založený na jazyce Ruby, jeho hlavním cílem je zjednodušit vývoj webových aplikací, mezi jeho dvě hlavní zásady dle \cite{rails2020} patří:
+\paragraph{Don't Repeat Yourself} Kód by měl být znovupoužitelný, bez zbytečného opakování.
+\paragraph{Convention Over Configuration} Webová aplikace je nakonfigurována dle konvencí, a vývojář tak nemusí trávit čas psaním konfiguračních souborů.
+
+\subsection{Model (model)}
+
+Model je část aplikace, která reprezentuje business data aplikace a jejich logiku, v~sobě zahrnuje jak perzistentní data, tak operace s~nimi. V Rails jsou modely implementovány jako ActiveRecord, který zde slouží jako ORM\footnote{Object-Relation Mapper} framework, stará se o~validace objektů před jejich uložením do databáze, mapuje asociace mezi objekty a~zprostředkovává databázové operace (není tak třeba psát žádné SQL dotazy -- o vytvoření databáze a~operace s~ní se starají Rails samy).
+
+\subsection{View (pohled)}
+
+Pohled je zodpovědný za vykreslování uživatelského rozhraní, především za generování HTML kódu stránky (základem jsou šablony, do nichž se doplňují konkrétní data z~modelů).
+
+\subsection{Controller (řadič)}
+
+Controller je část aplikace, která je zodpovědná za zpracování požadavků -- když přijde na controller požadavek, naleznou se odpovídající data v modelu a view je zobrazí.
+
+\section{Použité gemy}
+
+Zde bude uveden seznam gemů (termín specifický pro knihovny v~Ruby), které byly použity při implementaci, a jejich krátká specifikace.
+
+\subsection{Devise Token Auth}
+\label{sub:devise}
+Autentizace je realizována pomocí knihovny Devise Token Auth\footnote{\url{https://github.com/lynndylanhurley/devise_token_auth}}, server v~případě úspěšné autentizace (bylo zadáno správné uživatelské jméno a heslo) odešle klientovi v~hlavičce token typu bearer (tzn. nositel, \uv{umožni nositeli tohoto tokenu přístup} \cite{swagger2020bearer}) s~platností na dva týdny. Akce bude uživateli umožněna v~případě, že~na server odešle v~HTTP~hlavičkách spolu se svým požadavkem i~údaje o~tokenu -- knihovna dle \cite{devise} konkrétně vyžaduje následující hlavičky:
+\begin{enumerate}
+	\item \texttt{access\_token}: uživatelovo \uv{heslo} ke každému požadavku na server, na serveru jsou platné tokeny uloženy v~zahashované podobě;
+	\item \texttt{token\_type}: typ tokenu, vždy bude mít hodnotu \texttt{Bearer};
+	\item \texttt{client}: identifikátor klienta -- umožňuje uživateli být přihlášen na více zařízeních najednou;
+	\item \texttt{expiry}: čas expirace tokenu -- umožňuje zneplatnění požadavku na straně klienta už před jeho odesláním;
+	\item \texttt{uid}: identifikátor uživatele (zde jeho e-mail).
+\end{enumerate}
+
+Hesla uživatelů se v~databázi uchovávají v~hashované podobě.
+
+\subsection{FFaker}
+
+FFaker\footnote{\url{https://github.com/ffaker/ffaker}} je knihovna, která je použita pro vytváření náhodných testovacích dat (např. jména nebo data).
+
+\subsection{FactoryBot}
+
+Gem FactoryBot\footnote{\url{https://github.com/thoughtbot/factory_bot/}} umožňuje jednoduchým způsobem vytvořit továrny na různá testovací data (především umožňuje snadno nadefinovat vlastnosti, které má testovací objekt mít).
+
+\subsection{will\_paginate}
+
+will\_paginate\footnote{\url{https://github.com/mislav/will_paginate}} je knihovna, která se používá pro stránkování výsledků databázových dotazů.
+
+\section{Architektura aplikace}
+
+Architektura webové aplikace, jež byla implementována, vychází z~ar\-chi\-tek\-tury MVC, vzhledem k~tomu, že se jedná o backend mobilní aplikace, není view součástí Rails aplikace; controller vrací data ve formátu JSON.
+
+\subsection{Model}
+Vrstva je v~aplikaci implementována v~souladu s~diagramem tříd, který je na obr.~\ref{fig:model}. Vzhledem k~tomu, že Rails používají dědičnost s~jednou tabulkou, diagram neodpovídá zcela tomu, jakým jsou vytvořeny databázové tabulky. Stejně tak třídy modelu mají své pomocné funkce a proměnné, ty však v~diagramu nebyly naznačeny.
+
+\subsubsection{User}
+Třída \texttt{User} reprezentuje libovolný uživatelský účet. Slouží jako třída pro autentizaci, kterou vyžaduje knihovna Devise Token Auth.
+
+
+\subsubsection{Employee}
+Třída reprezentuje uživatelskou roli obecného zaměstnance. Každý zaměstnanec může mít uzavřených více smluv (měl by mít alespoň jednu, neboť jinak by se nejednalo o zaměstnance).
+
+\texttt{Employee} se v~databázi ukládá do tabulky \texttt{users}. Jedná se o rozšíření tžídy \texttt{User}, které vyžaduje vyplněné křestní jméno a příjmení a datum narození.
+
+\subsubsection{Contract}
+Třída reprezentuje obecnou smlouvu. Potomky (vzhledem k~dědičnosti s~jed\-nou ta\-bul\-kou jsou jednotlivé třídy reprezentovány proměnnou \texttt{type}) jsou \texttt{AgreementToCompleteAJob} (DPP), \texttt{AgreementToPerformAJob} (DPČ) a \texttt{EmploymentContract} (pracovní smlouva). Každá smlouva musí mít vyplněno datum nástupu (\texttt{start\_date}) a musí mít přiřazen nějaký rozvrh. Ssmlouva může mít nedefinovanou hodnotu \texttt{end\_date}, pak se jedná o~smlouvu na dobu neurčitou.
+
+\paragraph{EmploymentContract:} Pro pracovní smlouvu je třeba definovat úvazek (\texttt{work\_load}), jde o číslo z~intervalu $(0; 1]$, které značí, jaký násobek standardní týdenní pracovní doby by měl zaměstnanec odpracovat. Je třeba definovat i výčet pracovních dní (\texttt{working\_days}, např. hodnota~\texttt{[1, 2, 4]} značí pondělí, úterý a čtvrtek), v~nichž může zaměstnanec pracovat.
+
+\subsubsection{Schedule}
+Třída pro rozvrh existuje spíše z~důvodu oddělení implementace smluv a~směn, rozvrh je v~1:1 relaci se smlouvou. Rozvrh se skládá z 0 až $n$ směn.
+
+\subsubsection{Shift}
+Směna je definována začátkem a koncem, před uložením je tedy třeba definovat hodnoty \texttt{start\_time} a \texttt{end\_time}. Směna může, ale nemusí patřit do rozvrhu (ID rozvrhu tedy může mít hodnotu \texttt{null}); pokud do rozvrhu patří, validuje se před uložením, zda se časově neprotíná s~jinou směnou v~tomto rozvrhu.
+
+\begin{figure}[t!]
+	\input{img/class_diagram.pdf_tex}
+	\caption{Diagram tříd}
+	\label{fig:model}
+\end{figure}
+\newpage
+\subsection{Controller}
+Controller zde provolává přímo Model (v~případě základních CRUD operací) nebo Service\footnote{Service je Plain Old Ruby Object, který je použit, aby byly složitější operace odsunuty z controlleru.} třídy (v~případě složitějších operací). Vrací se data ve formátu JSON, případně, dojde-li k~chybě na serveru, HTML stránka.
+\newpage
+\section{REST API}
+V této podkapitole budou popsány endpointy, které jsou použity v~mobilní aplikaci. Endpointy pro přihlášení a odhlášení v~této aplikaci vytváří knihovna Devise Token Auth, ostatní jsou definovány v~souboru \texttt{/config/routes.rb}.
+
+\subsection{Přihlášení uživatele}
+\label{sub:sign-in}
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.36\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{POST /auth/sign\_in}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{není vyžadována}\\
+		\textbf{Parametry} 		& \texttt{username} & string & (povinné) uživatelské jméno \\
+											 		& \texttt{password} & string & (povinné) heslo\\
+		\textbf{Vrací} 				& 	\texttt{200} & viz kód~\ref{lst:user} & autentizace byla úspěšná (v~hlavičkách vrací tokeny)\\
+									 				& \texttt{401} & - & autentizace neúspěšná\\
+		\hline
+	\end{tabular}
+
+\end{center}
+
+\begin{lstlisting}[caption={Přihlášení}, label={lst:user}]
+	{
+  "data": {
+    "id": 0,
+    "username": "string",
+    "email": "string",
+    "provider": "email",
+    "first_name": "string",
+    "last_name": "string",
+    "birth_date": "1970-01-01",
+    "uid": "string",
+    "role": 1,
+    "agreement": true
+  }
+}
+\end{lstlisting}
+\subsection{Odhlášení uživatele}
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{DELETE /auth/sign\_out}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
+		\textbf{Vrací} 				& 	\texttt{200} & - & odhlášení bylo úspěšné\\
+									 				& \texttt{404} & - & token nebyl nalezen\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+\subsection{Seznam směn pro daného uživatele}
+
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{GET /shifts}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
+		\textbf{Parametry} 		& 	\texttt{start\_date} & string & (volitelné) datum ve formátu \texttt{1970-01-01}  \\
+													& 	\texttt{end\_date} & string & (volitelné) datum ve formátu \texttt{1970-01-01} \\
+													& 	\texttt{page} & integer & (volitelné) číslo stránky \\
+													& 	\texttt{per\_page} & integer & (volitelné) počet záznamů na stránce \\
+													& 	\texttt{unassigned} & boolean & (volitelné) nastavit na \texttt{true}, pokud se mají vrátit (pouze) nepřiřazené směny \\
+		\textbf{Vrací} 				& 	\texttt{200} & viz~kód~\ref{lst:shifts} & stránkovaný seznam směn specifický pro přihlášeného uživatele\\
+									 				& 	\texttt{401} & - & uživatel není přihlášen\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{lstlisting}[caption={Seznam směn},label={lst:shifts}]
+{
+	"shifts": [
+		{
+			"id": 0,
+			"created_at": "1970-01-01T00:00:00.000Z",
+			"updated_at": "1970-01-01T00:00:00.000Z",
+			"end_time": "1970-01-01T00:00:00.000Z",
+			"start_time": "1970-01-01T00:00:00.000Z",
+			"schedule_id": 0,
+			"duration": 0,
+			"user_scheduled": true
+		}
+	],
+	"current_page": 1,
+	"total_pages": 1,
+	"has_next": true
+}
+\end{lstlisting}
+\newpage
+\subsection{Rozvrhy, do nichž lze zapsat danou směnu}
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{GET /shift/:id/schedules}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
+		\textbf{Parametry} 		& \texttt{id} & integer & (povinné) ID směny \\
+		\textbf{Vrací} 				& \texttt{200} & viz~kód~\ref{lst:schedules} & seznam rozvrhů, do nichž může být směna zapsána\\
+									 				& \texttt{401} & - & uživatel není přihlášen\\
+													& \texttt{404} & - & směna nebyla nalezena\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{lstlisting}[caption={Rozvrhy, do nichž může být směna zapsána},label={lst:schedules}]
+{
+	"schedules": [
+		{
+			"id": 0,
+			"created_at": "1970-01-01T00:00:00.000Z",
+			"updated_at": "1970-01-01T00:00:00.000Z",
+			"contract_id": 0,
+			"contract_type": 0
+		}
+	]
+}
+\end{lstlisting}
+
+\subsection{Seznam smluv daného uživatele}
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{GET /contracts}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
+		\textbf{Vrací} 				& \texttt{200} & viz~kód~\ref{lst:contracts} & seznam všech smluv, které náleží uživateli\\
+									 				& \texttt{401} & - & uživatel není přihlášen\\
+		\hline
+	\end{tabular}
+\end{center}
+\begin{lstlisting}[caption={Seznam smluv uživatele},label={lst:contracts}]
+{
+	"contracts": [
+		{
+			"id": 0,
+			"start_date": "1970-01-01",
+			"end_date": "1970-01-01",
+			"created_at": "1970-01-01T00:00:00.000Z",
+			"updated_at": "1970-01-01T00:00:00.000Z",
+			"work_load": 1.0,
+			"employee_id": 0,
+			"working_days": [1],
+			"schedule_id": 0,
+			"active": true,
+			"type": 0
+		}
+	]
+}
+\end{lstlisting}
+
+\subsection{Přidání směny do rozvrhu}
+
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{POST /shift/:id/schedule}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
+		\textbf{Parametry} 		& \texttt{id} & integer & (povinné) ID směny \\
+												 	& \texttt{schedule\_id} & integer & (povinné) ID rozvrhu \\
+		\textbf{Vrací} 				& \texttt{200} & viz~kód~\ref{lst:shiftscheduled} & směna, jež byla přidána do rozvrhu\\
+													& \texttt{400} & - & chybí \texttt{schedule\_id}\\
+													& \texttt{401} & - & uživatel není přihlášen\\
+													& \texttt{422} & - & směnu nelze zapsat do rozvrhu\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{lstlisting}[caption={Odpověď po přidání směny do / odebrání směny z~rozvrhu}, label={lst:shiftscheduled}]
+{
+  "schedule_id": 0,
+  "user_scheduled": true,
+  "id": 0,
+  "start_time": "1970-01-01T00:00:00.000Z",
+  "end_time": "1970-01-01T00:00:00.000Z",
+  "duration": 0,
+	"created_at": "1970-01-01T00:00:00.000Z",
+	"updated_at": "1970-01-01T00:00:00.000Z",
+}
+\end{lstlisting}
+
+\subsection{Odebrání směny z rozvrhu}
+
+\begin{center}
+	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
+		\hline
+		\multicolumn{4}{c}{\texttt{DELETE /shift/:id/schedule}}\\
+		\hline
+		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
+		\textbf{Parametry} 		& \texttt{id} & integer & (povinné) ID směny \\
+												 	& \texttt{schedule\_id} & integer & (povinné) ID rozvrhu \\
+		\textbf{Vrací} 				& \texttt{200} & viz~kód~\ref{lst:shiftscheduled} & směna, jež byla odebrána z~rozvrhu\\
+													& \texttt{401} & - & uživatel není přihlášen\\
+													& \texttt{422} & - & směnu nelze odebrat z~rozvrhu\\
+		\hline
+	\end{tabular}
+\end{center}
+
+%
+\chapter{Mobilní aplikace}
+%
+\section{Architektura MVVM}
+
+Model-View-ViewModel je softwarová architektura, jejíž použítí je sta\-dar\-dem při vývoji Android aplikací. \cite{android2020guide}. Aplikace má tři vrstvy, které spolu komunikují způsobem naznačeným na obr.~\ref{fig:mvvm}. Hlavním cílem je oddělit prezentační vrstvu od business logiky.  \cite{shekhar2020mvvm}
+
+\begin{figure}[h!]
+	\input{img/MVVM.pdf_tex}
+	\caption{Komunikace mezi vrstvami v~MVVM}
+	\label{fig:mvvm}
+\end{figure}
+
+MVVM vychází ze starší architektury MVP\footnote{Model-View-Presenter}, kde Presenter je podobný jako ViewModel a hlavním rozdílem je, že Presenter si drží referenci na View (relace mezi View a Presenterem je 1:1) a řídí, kdy se má View aktualizovat, kdežto ViewModel neví, jaký View ho pozoruje a relace mezi View a ViewModelem je 1:$n$. \cite{vogel2017android} Nadstavbou nad MVVM je tzv.~Clean Architecture, která zaručuje ještě větší oddělení prezentační vrstvy a business logiky (Android aplikace se rozděluje do více modulů, nejčastěji nazvaných Presentation, Domain a Data), viz obr.~\ref{fig:clean-architecture}. \cite{jain2019kotlin}
+
+\begin{figure}[h!]
+	\input{img/clean-architecture.pdf_tex}
+	\caption{Clean Architecture}
+	\label{fig:clean-architecture}
+\end{figure}
+
+
+\subsection{View}
+
+View je ta část aplikace, která vykresluje uživatelské rozhraní, může se jednat např.~o~layouty ve formátu XML, aktivity nebo fragmenty. Má referenci na ViewModel a pozoruje změny stavu jeho proměnných, podle čehož aktualizuje UI; při událostech na uživatelském rozhraní (např.~stisknutí tlačítka) může provolat ViewModel.
+
+\subsubsection{Layout}
+
+Layout definuje strukturu uživatelského rozhraní, tedy to, kde jsou na obrazovce jaké prvky a jak tyto prvky vypadají; lze ho deklarovat v~souboru formátu XML (pak je třeba tento layout propojit s~aktivitou/fragmentem) nebo za běhu programu. \cite{android2020layouts}
+
+\subsubsection{Aktivita}
+
+Aktivita (rozšíření třídy \texttt{android.app.Activity}) je základní stavební blok Android aplikace, jedná se o \uv{okno}, do nějž se vykresluje uživatelské rozhraní. Aktivity mají svůj životní cyklus, který se řídí především podle toho, zda zrovna jsou viditelné pro uživatele. Ničení aktivit (destroy) řídí operační systém. \cite{android2020activity}
+
+\subsubsection{Fragment}
+
+Fragment je znovupoužitelná část uživatelského rozhraní, která má svůj vlastní životní cyklus i layout; narozdíl od aktivity ale nemůže existovat samostatně -- fragment musí být vložen do aktivity. \cite{android2020fragments}
+
+\subsection{ViewModel}
+
+ViewModel interaguje s~modelem, na základě dat, která mu model vrátí, mění stav svých proměnných.
+
+\subsection{Model}
+
+Model se často skládá z~repozitářů (jedná se o~běžný způsob návrhu, nikoli o přímou součást platformy), které dále provolávají datové zdroje (lokální či vzdálené) a poskytuje tak požadovaná data.
+
+\newpage
+\section{Použité knihovny}
+
+\subsection{VValidator}
+VValidator \cite{follestad2021vvalidator} je knihovna na jednoduchou validaci formulářů.
+
+\subsection{Retrofit}
+Retrofit je HTTP klient pro Android. V~podstatě jsou pro jeho použití třeba tři třídy: model (tedy from), rozhraní s~definicí HTTP operací (viz kód~\ref{lst:retrofit}) a \texttt{Retrofit.Builder} pro konfiguraci. Při konfiguraci je třeba nastavit základní URL pro požadavky a, aby ho bylo možné použít pro přenos dat ve formátu JSON, je třeba použít knihovnu pro serializaci a deserializaci JSONu a konvertor (převádí tělo HTTP odpovědi ze serializovaného formátu na model a naopak). \cite{kantamani2019understand}
+
+\begin{lstlisting}[language=Kotlin,caption={Definice HTTP operací pro Retrofit},label={lst:retrofit}]
+import retrofit2.Response
+import retrofit2.http
+
+interface ApiService {
+    @GET("shifts")
+    suspend fun getShifs(): Response<ShiftResponse>
+}
+\end{lstlisting}
+
+\subsection{Koin}
+Koin \cite{koin2020what} je dependency injection\footnote{Dependency injection (vkládání závislostí) je návrhový vzor, v~němž je vytváření některých tříd (tzv.~závislostí, dependency) odsunuto na jinou třídu (injector), a~to tehdy, když si o to požádá třída závisející (dependent). } framework pro Kotlin s~jednoduchou kon\-fi\-gu\-ra\-cí modulů s~pomocí tzv.~Koin DSL (viz kód~\ref{lst:koin}). Závislosti lze vkládat v~kon\-struk\-to\-ru (viz kód~\ref{lst:koin} za předpokladu, že \texttt{UserRepository} přijímá parametr typu \texttt{RemoteDataSource}) nebo jako proměnnou (viz kód~\ref{lst:koinfield}). Knihovna umožňuje definovat moduly jako factory (při každém vložení se vytvoří nová instance) nebo single (vkládá se stále stejná instance); speciálně lze definovat ViewModely, které mohou být sdílené mezi fragmenty v~rámci aktivity (\texttt{sharedViewModel}) nebo závislé na životním cyklu jednoho fragmentu.
+
+
+\begin{lstlisting}[language=Kotlin,caption={Definice modulů v Koinu},label={lst:koin}]
+val myModule = module {
+	single { RemoteDataSource() }
+	single { UserRepository(get()) }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Kotlin,caption={Vložení závislosti },label={lst:koinfield}]
+val userRepository: UserRepository by inject(UserRepository::class.java)
+\end{lstlisting}
+
+\subsection{Moshi}
+
+Moshi \cite{square2021moshi} je knihovna pro serializaci a deserializaci dat ve formátu JSON (datové třídy, které se mají (de)serializovat, se označí anotací \texttt{@JsonClass}, poté se vygeneruje kód).
+
+\subsection{Material Components}
+Material Design je soubor pravidel pro tvorbu uživatelského rozhraní aplikací (pro platformy Android a iOS i pro web), cílem je sjednotit základní prvky designu, aby všechny aplikace byly pro uživatele intuitivní. \cite{material2020introduction}
+
+Material Components for Android \cite{material2020material} je oficiální knihovna UI komponent vytvořená Googlem, které z~principu Material Designu vycházejí.
+
+\subsection{Android Jetpack}
+Android Jetpack \cite{android2020jetpack} je soubor knihoven pro platformu Android, které usnadňují vývoj udržitelných aplikací a poskytují kompatibilitu se staršími verzemi OS.
+
+\subsubsection{LiveData}
+LiveData jsou knihovna pozorovatelných\footnote{Jde tedy o implementaci návrhového vzoru Observer -- LiveData jsou zde vydavatelem (observable), View může sloužit jako posluchač (observer) -- LiveData notifikují své pozorovatele o~změnách.} dat, která respektují životní cyklus Android komponent (aktivity, fragmenty) aplikace (především notifikují pouze když jsou jejich posluchače aktivní; posluchače musí být závislé na objektu, který implementuje rozhraní \texttt{LifecycleOwner}).
+
+Aby bylo možné LiveData použít, jsou potřeba tři kroky: vytvoření instance \texttt{LiveData} (viz kód~\ref{lst:livedatadef}); vytvoření objektu typu \texttt{Observer}, který implementuje metodu \texttt{onChanged()} (viz kód~\ref{lst:observer}); a propojení těchto objektů metodou \texttt{observe()}, která přijímá parametry typu \texttt{LifecycleOwner} (fragment nebo aktivita) a Observer (viz kód~\ref{lst:observe}). \cite{android2020livedata}
+
+
+\begin{lstlisting}[language=Kotlin, caption={Definice LiveData ve ViewModelu}, label={lst:livedatadef}]
+val shifts = MutableLiveData<List<Shift>>()
+\end{lstlisting}
+
+\begin{lstlisting}[language=Kotlin, caption={Definice observera v~UI komponentě}, label={lst:observer}]
+val observer = Observer<List<Shift>> {
+	[...]
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Kotlin, caption={Spojení Observera a LiveDat v~UI komponentě}, label={lst:observe}]
+vm.shifts.observe(this, observer)
+\end{lstlisting}
+
+\subsubsection{Navigation}
+Navigation je komponenta pro navigaci mezi fragmenty aplikace, která usnadňuje pohyb dat mezi jednotlivými částmi aplikace. Pro použití je přitom třeba vytvořit tzv. navigační graf (viz obr.~\ref{fig:main-navigation}), v~němž se definují fragmenty a vazby mezi nimi a argumenty, které se přenášejí.
+
+\begin{figure}[h!]
+	\includegraphics[scale=.65]{img/navigation.png}
+	\caption{Hlavní navigační diagram}
+	\label{fig:main-navigation}
+\end{figure}
+
+\subsubsection{Room}
+Room je knihovna pro perzistenci dat, která je abstraktní nadstavbou nad SQLite (relační databáze, kterou Android používá pro ukládání dat). Třídy dat jsou reprezenotvány jako entity (třídy značené \texttt{@Entity}). S~daty se interaguje skrz DAO\footnote{Data Access Object} (třída s~anotací \texttt{@Dao}), v němž se definují s~pomocí anotací (\texttt{@Query}, \texttt{@Insert}, \texttt{@Delete}, \texttt{@Update}) operace nad databází, SQL kód generuje knihovna. \cite{android2020room}
+
+
+\subsubsection{Data Binding}
+Data Binding Library\cite{android2020data} je knihovna, která umožňuje propojení UI komponent definovaných v~XML~layoutech s~daty. Pokud se celý layout obalí ve značce \texttt{<layout>\ldots</layout>}, vygeneruje knihovna kód (třídu implementující ab\-strakt\-ní \texttt{ViewDataBinding}), který zajistí propojení dat a layoutu; lze tak přímo v~layoutu definovat proměnné (zde lze definovat i ViewModel). Výhodou zde je i~snadné propojení LiveData a layoutu -- nastaví-li se pro binding \texttt{lifecycleOwner}, bude se o aktualizaci UI dle stavu LiveData starat knihovna.
+
+\begin{lstlisting}[language=XML]
+<TextView
+	android:text="@{vm.user.firstName}"	/>
+\end{lstlisting}
+
+\subsubsection{Security}
+
+Security je knihovna pro zabezpečení souborů a SharedPreferences (úložiště pro primitivní páry klíč-hodnota, které se používá především na ukládání údajů o~uživateli). Keysety pro šifrování a dešifrování klíčů a hodnot se ukládají do SharedPreferences, a to v šifrované podobě (hlavní klíč pro šifrování a dešifrování keysetů je uložen v~Android Keystore, systémovém úložisti pro kryptografické klíče). \cite{android2021security}
+
+\section{Nástroje pro implementaci}
+Zde budou představeny nástroje a knihovny, které aplikaci nepřidávají funkcionalitu a od kterých by měl být uživatel odstíněn, ale byly použity při implementaci (aby usnadnily vývoj či hledání chyb).
+
+\subsubsection{Android Studio}
+Android Studio je oficiální IDE\footnote{Integrated development environment}, které v~sobě zahrnuje sadu nástrojů pro vývoj, testování, build a analýzu aplikací pro platformu Android.
+
+\subsubsection{Firebase Crashlytics}
+Firebase Crashlytics\footnote{\url{https://firebase.google.com/products/crashlytics}} je součást platformy Firebase, která poskytuje analýzu pádů aplikace včetně stack trace (viz obr. \ref{fig:crashlytics}) a údajů o zařízení, na němž k~chybě došlo (viz obr. \ref{fig:crashlytics-device}).
+
+\begin{figure}[h!]
+	\includegraphics[scale=.45]{img/crashlytics.png}
+	\caption{Ukázka stack trace v~Crashlytics}
+	\label{fig:crashlytics}
+\end{figure}
+
+\begin{figure}[h!]
+	\includegraphics[scale=.45]{img/crashlytics_device.png}
+	\caption{Ukázka údajů o~zařízení v~Crashlytics}
+	\label{fig:crashlytics-device}
+\end{figure}
+
+\subsubsection{Lynx}
+Knihovna Lynx umožňuje zobrazit logy aplikace přímo v~mobilním telefonu, logy lze zobrazit jak v~samostatné aktivitě (např. po stisku tlačítka nebo po zatřesení telefonem), tak v~libovolném layoutu. \cite{sanchez2020lynx}
+
+% \begin{figure}[ht]
+% 	\includegraphics[scale=.3]{img/lynx.jpg}
+% 	\caption{Logy v LynxActivity}
+% 	\label{fig:lynx}
+% \end{figure}
+
+\subsubsection{Logger}
+Logger \cite{obut2020logger} je jednoduchá knihovna pro logování, která vyžaduje minimum konfigurace.
+
+\newpage
+\section{Architektura aplikace}
+
+Aplikace byla navrhnuta dle zásad architektury MVVM (vzhledem k~před\-po\-klá\-da\-né velikosti aplikace zde nebyla použita Clean Architecture).
+
+Jedná se o~aplikaci s~jednou hlavní aktivitou, v~níž navigace probíhá s~pomocí komponenty Navigation (např. detaily směn tedy nejsou sa\-mos\-tat\-ný\-mi aktivitami, ale jedná se o~ v~aktivitě \texttt{MainActivity}). Hlavní navigační diagram této aplikace je na obr.~\ref{fig:main-navigation}.
+
+
+\subsection{View}
+
+Pro zjednodušení vytváření nových aktivit při implemetaci byla vytvořena abstraktní třída \texttt{BindingActivity<B: ViewDataBinding>}, jež přijímá v~kon\-struk\-to\-ru jako parametr layout, každá konkrétní implementace této třídy ho tedy musí definovat (měl by být základem pro vygenerovanou třídu \texttt{B}). Abstraktní aktivita nastaví layout a binding, který je pro potomky přístupný jako proměnná \texttt{binding}, a~nastaví mu vlastníka životního cyklu.
+
+Třída \texttt{ViewModelActivity<V: BaseViewModel, B:  ViewDataBinding>} je abstraktnim potomkem \texttt{BindingActivity}, který je přípraven pro aktivity, které mají vazbu na ViewModel (parametry konstruktoru jsou layout a třída ViewModelu). Tato aktivita zajišťuje vytvoření ViewModelu (který se uloží do proměnné \texttt{viewModel} a navíc se nastaví jako parametr pro binding).
+
+Velmi podobně jako \texttt{BindingActivity} a \texttt{ViewModelActivity} fungují také abstraktní fragmenty, tj. \texttt{BindingFragment} a \texttt{ViewModelFragment}.
+
+\subsection{ViewModel}
+
+ViewModely jsou v~této aplikaci potomkem abstraktní třídy \texttt{BaseViewModel}, která v~sobě obsahuje odkazy na všechny repositáře (inicializace je tzv. \textit{lazy}); také obsahuje LiveData pro zobrazování chyb a metody pro zpracování chyb a dat (to vše proto, aby se méně opakoval stejný kód). ViewModel ukládá odpovědi z~repozitářů jako LiveData (obecně by repozitáře měly být odstíněny od specifik platformy).
+
+\subsection{Model}
+
+Vrstva je v~této aplikaci realizována jako repozitáře. Ty mají zodpovědnost za provolání správných datových zdrojů, jimiž jsou lokální databáze a vzdálený zdroj (tzn.~data ze serveru), a za ukládání dat do databáze. Odpovědi se vracejí obalené ve třídě \texttt{ResponseModel<T>} (viz kód~\ref{lst:responsemodel}), která může nést zprávu o chybě nebo požadovaná data. O~dalším osudu této odpovědi rozhoduje ViewModel.
+
+\begin{lstlisting}[language=Kotlin,caption={Třída \texttt{ResponseModel}},label={lst:responsemodel}]
+sealed class ResponseModel<T> {
+	class SUCCESS<T>(var data: T? = null, val headers: Headers? = null): ResponseModel<T>()
+
+	class ERROR<T>(val errorType: ErrorType? = null): ResponseModel<T>()
+}
+\end{lstlisting}
+
+\section{Design}\label{design}
+
+Design aplikace vznikl v souladu se základními pravidly Material Designu. Jako inspirace zde sloužil především minimalismus aktuálních veřejně dos\-tup\-ných aplikací, jako jsou například Instagram, Google Fit nebo Spotify. Základní návrh prvků uživatelského rozhraní byl načrtnut v~nástroji Figma (konkrétní podoba obrazovek však vznikala až při implementaci). Ikonky (obr.~\ref{fig:icons}) byly převzaty z~knihoven Font Awesome 5 (fas) a Material Design Icon (mdi), ilustrace (viz~podkapitolu~\ref{ilu}) byly vytvořeny v~programu Sketch. Pro konkrétní návrhy viz~přílohu~\ref{app:design}
+
+\chapter{Stav implementace}
+
+Aplikace byla prozatím testována pouze v~lokální síti a pouze na náhodně vygenerovaných testovacích datech. Testovací data se na straně serveru generují seedují\footnote{Seedování je proces, kterým se inicializují počáteční data v~databázi.}, nadefinovány jsou seedy pro uživatelské účty (vygenerují se účty employee1 až employee10, každý s~heslem \uv{12345678}). Uživatelům jsou náhodně vytvořeny a přiřazeny smlouvy a směny.
+
+Během implementace aplikace byl důraz kladen především na uživatelské rozhraní aplikace pro zaměstnance. Byla tak implementována ta část obrazovek, kterou potřebují aktuálně definované případy užití této aplikace a patřičné části backendu.
+
+\section{Implementace případů užití}
+
+V~této části bude rozebrána konkrétní implementace případů užití popsaných v~podkapitole~\ref{uc-analysis}. Součástí jsou i~snímky obrazovky z~mobilní aplikace.
+\newpage
+
+\subsection{UC1: Přihlásit se}
+Pro tento případ užití je připravena aktivita \texttt{SetupActivity}. Vzhledem k~tomu, že tato aplikace momentálně běží v~lokální síti a adresa backendu se může měnit, začíná scénář obrazovkou \uv{Zadejte URL backendu} (viz obr.~\ref{fig:uc1-url}). Po stisknutí tlačítka \uv{Nastavit} proběhne validace textového formuláře s~pomocí knihovny VValidator a je-li zadána validní URL, uloží se adresa backendu do SharedPreferences a~změní se fragment v~aktivitě na přihlašovací formulář (viz obr.~\ref{fig:uc1-login}), zde opět po stisknutí tlačítka \uv{Přihlásit se} proběhne validace formuláře, zda je vyplněn.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc1_screen001.jpg}
+		\subcaption{Zadejte URL backendu}
+		\label{fig:uc1-url}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc1_screen002.jpg}
+		\subcaption{Zadejte přihlašovací údaje}
+		\label{fig:uc1-login}
+	\end{subfigure}
+	\caption{Obrazovky pro scénář UC1: Přihlásit se}
+\end{figure}
+
+Jsou-li údaje všechny údaje vyplněny, odešle se požadavek (\texttt{POST} na endpoint \texttt{/auth/sign\_in} s~u\-ži\-va\-tel\-ským jménem a heslem v~těle požadavku) na server. Na serveru se požadavek zpracuje, o což se stará knihovna Devise Token Auth. Server může vrátit stavové kódy dle podkapitoly \ref{sub:sign-in}. V~případě neúspěchu je zobrazen Snackbar\footnote{Snackbar je UI komponenta pro zobrazování krátkých zpráv o~stavu aplikace, jedná se o~součást Material Design Library.} s popisem chyby; naopak pokud je požadavek úspěšný, server vrátí údaje o uživateli a přístupové tokeny (viz podkapitolu \ref{sub:devise}), které se na straně klienta uloží do SharedPreferences, aby se mohy posílat s~každým dalším požadavkem. Tím je tento scénář ukončen a uživatel je navigován do \texttt{MainActivity}.
+
+
+
+\subsection{UC2: Odhlásit se}
+
+Pokud je uživatel na obrazovce Profil (obr.~\ref{fig:uc2-profile}, tzn.~\texttt{ProfileFragment}), je jedinou věcí, co musí uživatel udělat, aby se odhlásil, stisknutí tlačítka Odhlásit se. Tím se odešle na server požadavek \texttt{DELETE /auth/sign\_out} s~hlavičkami s~tokenem, které jsou uloženy v SharedPreferences. Pokud je odpověď ze serveru 200 -- OK nebo 404 -- Not Found (to znamená, že token nebyl nalezen; každopádně by toto mělo zaručit, že uživatel bude z~aplikace odhlášen, i když se změní data na serveru), odstraní se všechny údaje o~uživateli a~všechna data uložená v~databázi. Uživatel je vrácen na obrazovku Přihlášení, tím je scénář ukončen.
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\linewidth]{img/uc2-profile.png}
+	\caption{Obrazovka Profil}
+	\label{fig:uc2-profile}
+\end{figure}
+
+\subsection{UC3: Zobrazit rozvrh směn}
+\label{sub:uc3}
+
+Rozvrh směn se zobrazuje na stránce Rozvrh (fragment \texttt{ScheduleFragment}). Pokud nejsou žádné směny uloženy v~databázi, odešle se \texttt{GET} požadavek na \texttt{/shifts} (o tom, zda se požadavek odešle, rozhoduje \texttt{ShiftRepository}). V~případě, že po odeslání požadavku na server dojde k~nějaké chybě, zobrazí se Snackbar s~popisem chyby. Pokud v~repozitáři nedojde k~chybě, udělá se dotaz na lokální databázi a vrátí se patřičné směny, které se zobrazí v~seznamu (obr.~\ref{fig:uc2-schedule-app}); pokud je seznam směn prázdný, zobrazí patřičnou hlášku (obr.~\ref{fig:uc2-schedule-app-empty}). Tato obrazovka (stejně jako zbytek seznamů) implementuje swipe to refresh -- uživatel tedy gestem \uv{swipe} může vynutit odeslání požadavku na server.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc3-schedule.png}
+		\subcaption{Seznam směn}
+		\label{fig:uc2-schedule-app}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc3-schedule-empty.jpg}
+		\subcaption{Seznam směn je prázdný}
+		\label{fig:uc2-schedule-app-empty}
+	\end{subfigure}
+	\caption{Obrazovky pro scénář UC3: Zobrazit rozvrh směn}
+\end{figure}
+
+\subsection{UC4: Zobrazit detail směny}
+
+Detail směny se zobrazuje v~\texttt{ShiftFragment} (viz obr.~\ref{uc4}), který přijímá jako argument \texttt{Shift}. Všechna data jsou už dostupná v~seznamu směn, z~něhož se do detailu naviguje, \texttt{ShiftFragment} je pouze zobrazuje. Na této obrazovce se v~určitých případech může zobrazovat tlačítko Zapsat směnu nebo Zrušit zápis na směnu.
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\linewidth]{img/uc4.jpg}
+	\caption{Obrazovka Detail směny}
+	\label{uc4}
+\end{figure}
+\newpage
+
+\subsection{UC5: Zobrazit přehled nejbližších směn}
+
+Přehled nejbližších směn se ukazuje na domovské obrazovce (tedy ve fragmentu \texttt{HomeFragment}, viz obr.~\ref{uc5}). \texttt{HomeViewModel} žádá repozitář o data -- pokud v~databázi nic není, odešle se \texttt{GET} požadavek na seznam následujích směn, tedy na endpoint \texttt{/shifts}. Relevantní data (aktuálně probíhající směna, následující směna, směny v~tomto kalendářním týdnu) se získají dotazem do lokální databáze.
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\linewidth]{img/uc5.png}
+	\caption{Domovská obrazovka s~přehledem nejbližších směn}
+	\label{uc5}
+\end{figure}
+\newpage
+
+
+\subsection{UC6: Zobrazit historii odpracovaných směn}\label{sub:uc6}
+
+Pokud je uživatel na obrazovce Profil (obr.~\ref{fig:uc2-profile}), může otevřít obrazovku Historie (\texttt{HistoryFragment}, obr.~\ref{uc6}). Celý scénář je velmi podobný jako scénář pro Zobrazit rozvrh směn (viz podkapitolu \ref{sub:uc3}) nebo Zobrazit seznam, hlavním rozdílem je to, jaká data se vracejí (\texttt{end\_date} směny už uplynulo) a jak seřazená jsou (sestupně dle \texttt{start\_date}).
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\linewidth]{img/uc6.png}
+	\caption{Obrazovka s~historií směn}
+	\label{uc6}
+\end{figure}
+\newpage
+
+\subsection{UC7: Zobrazit přehled smluv}
+
+Pokud je uživatel na obrazovce Profil (obr.~\ref{fig:uc2-profile}), může otevřít obrazovku Smlouvy (viz~obr.~\ref{uc7}). Nejsou-li uloženy v~lokální databázi, posílá se \texttt{GET} požadavek na \texttt{/contracts}, je-li úspěšný, smlouvy se ukládají do lokální databáze. Smlouvy jsou rozděleny na aktuální a neaktuální, a to dle data začátku a konce.
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\linewidth]{img/uc7.png}
+	\caption{Přehled smluv}
+	\label{uc7}
+\end{figure}
+\newpage
+
+\subsection{UC8: Zobrazit seznam volných směn}
+
+Jedná se o případ užití, který je velmi podobný jako Zobrazit seznam směn (viz~\ref{sub:uc3}) nebo Zobrazit historii odpracovaných směn \ref{sub:uc6}. Tentokrát uživatel musí otevřít záložku Volné směny (\texttt{UnassignedFragment}, obr.~\ref{uc8}); hlavním rozdílem je, že se volné směny neukládají do lokální databáze, neboť tato data by m+la být pokud možno vždy aktuální.
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\linewidth]{img/uc8.png}
+	\caption{Přehled smluv}
+	\label{uc8}
+\end{figure}
+\newpage
+
+
+\subsection{UC9: Zapsat se na volnou směnu}
+
+Na obrazovce Detail směny se může zobrazit tlačítko \uv{Zapsat se na směnu} (obr.~\ref{uc9a}), a to v~případě, že směna není zapsána do žádného rozvrhu. Pokud uživatel na toto tlačítko klikne, zobrazí se obrazovka Vybrat rozvrh, po jejíž inicializaci se odešle \texttt{GET} požadavek na seznam všech rozvrhů, do nichž lze směnu zapsat (na \texttt{/shift/:id/schedules}). Rozvrhy se zobrazí v~seznamu (je-li požadavek úspěšný), uživatel nějaký vybere a odešle se \texttt{POST} požadavek na \texttt{/shift/:id/schedule} s~id rozvrhu jako parametrem (toto má ten význam, bude-li zaměstnanec mít více smluv a~více rozvrhů). V~případě úspěchu se ze serveru vrátí směna, která se uloží do~lokální databáze. Uživatel je vrácen na obrazovku Volné směny, zobrazí se Snackbar se zprávou o úspěchu a~znovu se načtou data ze serveru.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc9a.png}
+		\subcaption{Detail směny}
+		\label{uc9a}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc9b.png}
+		\subcaption{Vyberte rozvrh}
+		\label{uc9b}
+	\end{subfigure}
+	\caption{Obrazovky pro scénář UC9: Zapsat se na volnou směnu}
+\end{figure}
+
+\subsection{UC10: Zrušit zápis na směnu}
+
+Zápis na směnu lze zrušit na obrazovce Detail směny (obr.~\ref{uc10a}), a to v~tom případě, že byla směna naplánována uživatelem a začíná za méně než 4 dny (v~opačném případě se tlačítko \uv{Zrušit zápis na směnu} vůbec nezobrazí). Pokud uživatel klikne na dané tlačítko, zobrazí se dialog Jste si jisti? (obr.~\ref{uc10b}). Pokud uživatel klikne jinam než na tlačítko Ano, dialog zmizí a nic se nestane; pokud smazání potvrdí, pošle se \texttt{DELETE} požadavek na \texttt{/shifts/:id/schedule}. V~případě úspěchu se ze serveru vrátí tato směna, která se následně smaže z~lokální databáze. Uživatel je vrácen na obrazovku Rozvrh směn, zobrazí se Snackbar se zprávou o úspěchu a~znovu se načtou data z~databáze.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc10a.png}
+		\subcaption{Detail směny s~tlačítkem Odstranit z~rozvrhu}
+		\label{uc10a}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/uc9b.png}
+		\subcaption{Dialog Jste si jisti?}
+		\label{uc10b}
+	\end{subfigure}
+	\caption{Obrazovky pro scénář UC10: zrušit zápis na směnu}
+\end{figure}
+
+\chapter{Závěr}
+
+V~rámci tohoto semestrálního projektu byla provedena analýza problematiky rozvrhování směn, a to jak manažerského, tak z~hlediska legislativy v~oblasti rozvrhování směn, na jejímž základě byly sestaveny funkční požadavky na mobilní aplikaci pro plánování lidských zdrojů.
+
+V~části implementace aktuálně je připraveno mobilní rozhraní pro za\-měst\-nan\-ce, které dostává testovací data ze serveru.
+
+Tento projekt bude dále pokračovat jako bakalářská práce, plánem je dále zlepšovat uživatelské rozhraní aplikace pro zaměstnance, jakož i vytvářet nové funkcionality a nové případy užití (např. rozhraní pro vedoucího pracovníka), zároveň bude třeba implementovat na základě analýzy algoritmů automatické sestavování rozvrhů. Zároveň je výhledem, bude-li to možné, i~testování aplikace na několika uživatelích.
 
 \printbibliography[title={Seznam použité literatury}]
+
+\appendix
+
+\chapter{Seznam použitých zkratek}
+\glsaddall
+\printnoidxglossaries
+
+\chapter{Design mobilní aplikace}\label{app:design}
+
+
+
+\section{Použité ikonky}
+Zde je seznam ikonek, které byly použity v~aplikaci včetně jejich zdroje (fas značí knihovnu Font Awesome 5\footnote{\url{https://fontawesome.com/}}; mdi Material Design Icon\footnote{\url{https://material.io/resources/icons/}})
+\begin{figure}[h!]
+	\includegraphics[scale=.7]{img/icons.png}
+	\caption{Použité ikonky}
+	\label{fig:icons}
+\end{figure}
+\newpage
+\section{Logo aplikace}
+
+V~logu aplikace byly použity ikonky z~knihovny Font Awesome 5.
+
+\begin{figure}[h!]
+	\includegraphics[scale=.5]{img/logo.png}
+	\caption{Logo aplikace}
+	\label{fig:logo}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{img/launcher-prod.png}
+		\subcaption{Verze Release}
+		\label{launcher-prod}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{img/launcher-debug.png}
+		\subcaption{Verze Debug}
+		\label{launcher-debug}
+	\end{subfigure}
+	\caption{Ikona Android aplikace}
+\end{figure}
+
+\section{Ilustrace}\label{ilu}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{.24\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth]{img/il-upcoming.png}
+		\subcaption{Budoucí směny}
+		\label{fig:il-upcoming}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.24\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth]{img/il-history.png}
+		\subcaption{Historie směn}
+		\label{fig:il-history}
+	\end{subfigure}
+	\begin{subfigure}[b]{.24\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/il-schedule.png}
+		\subcaption{Rozvrh směn}
+		\label{fig:il-schedule}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.24\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/il-connection.png}
+		\subcaption{Bez připojení}
+		\label{fig:il-connection}
+	\end{subfigure}
+	\caption{Návrh ilustrací}
+\end{figure}
+
+\newpage
+\section{Návrh obrazovek}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-home.png}
+		\subcaption{Světlý režim}
+		\label{fig:main-home}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-home-night.png}
+		\subcaption{Tmavý režim}
+		\label{fig:main-home-dark}
+	\end{subfigure}
+	\caption{Návrh domovské obrazovky}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-home-schedule.png}
+		\subcaption{Světlý režim}
+		\label{fig:main-schedule}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-home-schedule-night.png}
+		\subcaption{Tmavý režim}
+		\label{fig:main-schedule-dark}
+	\end{subfigure}
+	\caption{Návrh obrazovky rozvrh směn}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-home-schedule-empty.png}
+		\subcaption{Světlý režim}
+		\label{fig:main-schedule-empty}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-home-schedule-empty-night.png}
+		\subcaption{Tmavý režim}
+		\label{fig:main-schedule-dark-empty}
+	\end{subfigure}
+	\caption{Návrh obrazovky rozvrh směn (prázdný)}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-shift-detail.png}
+		\subcaption{Bez tlačítka}
+		\label{fig:v1-shift}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-shift-detail-button.png}
+		\subcaption{S~tlačítkem}
+		\label{fig:v1-shift-button}
+	\end{subfigure}
+	\caption{Návrh obrzovky detail směny}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-main-profile.png}
+		\subcaption{Obrazovka Profil}
+		\label{fig:v1-shift}
+	\end{subfigure}%
+	\begin{subfigure}[h!]{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/v1-help_interface.png}
+		\subcaption{Obrazovka Nápověda}
+		\label{fig:v1-shift-button}
+	\end{subfigure}
+	\caption{Návrh obrazovek Profil a Nápověda}
+\end{figure}
+
+\newpage
 
 \end{document}

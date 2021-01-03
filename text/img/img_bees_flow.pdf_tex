@@ -52,6 +52,7 @@
   \makeatother%
 \begin{small}%
   \begin{picture}(1,0.85355649)%
+  \begin{sffamily}
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{img_bees_flow.pdf}}%
@@ -62,6 +63,7 @@
     \put(0.34612804,0.40853821){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Konec?\end{tabular}}}}%
     \put(0.38850954,0.56652893){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Ne\end{tabular}}}}%
     \put(0.40271525,0.25008425){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Ano\end{tabular}}}}%
+    \end{sffamily}
   \end{picture}%
 \end{small}%
 \endgroup%
