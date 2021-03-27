@@ -208,6 +208,10 @@ V Praze, \ctufield{day}.~\monthinlanguage{title}~\ctufield{year}
 \begin{document}
 
 \maketitle
+
+\chapter{$\ast\ast$ DEBUG $\ast\ast$ Změny dokumentu}
+
+
 %
 \chapter{Úvod}
 
@@ -405,7 +409,7 @@ Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, a to před
 \section{Analýza případů užití}\label{uc-analysis}
 V~této části budou rozebrány případy užití systému, tedy kroky interakce uživatele a systému, které byly vytvořeny na základě funkčních požadavků F1.--F10. (viz podkapitolu \ref{sec:frq}). Základní případy užití aplikace pro zaměstnance byly rozděleny do dvou modulů -- modul uživatelských účtů (obr.~\ref{fig:uc-account}), který zahrnuje základní operace pro přihlášení a odhlášení; a modul směn (obr.~\ref{fig:uc-employee}), který zahrnuje operace, které může dělat obecně jakýkoli zaměstnanec (vždy se jedná o~čtení) a operace, které může dělat dohodář -- v~tom jsou zahrnuty (C)RUD operace s~volnými a zapsanými směnami.
 
-Dále v~této podkapitole budou rozebrány scénáře těchto případů užití; součástí popisu jsou i~tzv. wireframes, náčrty uživatelského rozhraní. Wi\-re\-fra\-mes se rozdělují dle úrovně detailu (nízká -- ideálně rychlý náčrt na papír; střední -- nejčastěji náčrty v~odstínech šedi, už obsahují větší detail toho, jaké UI komponenty budou použity; vysoká -- jak konkrétně bude uživatelské rozhraní vypadat). \cite{lazarova2020low} Zde se jedná o střední úroveň detailu -- nízká úroveň byla vynechána; vysoká úroveň je dále popsána v~podkapitole~\ref{design}
+Dále v~této podkapitole budou rozebrány scénáře těchto případů užití; součástí popisu jsou i~tzv. wireframes, náčrty uživatelského rozhraní. Wi\-re\-fra\-mes se rozdělují dle úrovně detailu (nízká -- ideálně rychlý náčrt na papír; střední -- nejčastěji náčrty v~odstínech šedi, už obsahují větší detail toho, jaké UI kom\-po\-nen\-ty budou použity; vysoká -- jak konkrétně bude uživatelské rozhraní vypadat). \cite{lazarova2020low} Zde se jedná o střední úroveň detailu -- nízká úroveň byla vynechána; vysoká úroveň je dále popsána v~podkapitole~\ref{design}
 
 \begin{figure}[h!]
 \input{img/accounts-module.pdf_tex}
@@ -1154,6 +1158,19 @@ Konkrétní požadavky byly stanoveny následovně:
 	\item Algoritmus vezme v~potaz legislativní požadavky.
 \end{enumerate}
 
+\subsection{Tvorba směn a poptávky}
+
+Při rozvrhování se pro zjednodušení předpokládá, že v každém týdnu budou vypsány směny pravidelným způsobem, to znamená, že všechny budou stejně dlouhé a budou každý den v~týdnu začínat ve stejnou dobu, a budou v rámci jednoho pracovního dne rozloženy pravidelně dle počtu směn (pro realističtější modelování situace existuje možnost některé směny z rozvrhu vyjmout). Půjde tak flexibilně stanovit parametry rozvrhování, konkrétně celkovou pracovní dobu, délku jedné směny, délku přestávky a počet směn v jednom dni. \todo{Obrázek, jak to myslim + noční směny vymyslet}
+
+\subsection{Podmínky}
+
+V~rámci této práce se rozhodování činí na základě nekolika podmínek. Přednost přitom téměř vždy mají podmínky týkající se jednotlivců (pracovní doba, specializace) a nikoli celku (obsazenost směn), jde tak o opak některých rozvrhovacích úloh. \todo{}
+
+\subsubsection{}
+
+
+
+
 % \subsection{Průběh}
 % Rozdělování směn bude probíhat po menších skupinách, prioritně se rozdělí směny pro ty zaměstnance, kteří mají nejspecifičtější požadavky (a je tedy nejtěžší je přidělit). V~počátečním stavu je rozvrh prázdný, zaměstnancům nejsou přiděleny žádné směny. Rozvrh se sestavuje po dnech, v~každém dni se rozdělí směny mezi zaměstnance z~aktuální podskupiny (viz obr. \ref{fig:dayflow}).
 %
@@ -1472,10 +1489,11 @@ V této podkapitole budou popsány endpointy, které jsou použity v~mobilní ap
 \begin{center}
 	\begin{tabular}{p{.19\linewidth}p{.18\linewidth}p{.15\linewidth}p{.35\linewidth}}
 		\hline
-		\multicolumn{4}{c}{\texttt{POST /shift/:id/schedule}}\\
+		\multicolumn{4}{c}{\texttt{POST /shifts}}\\
 		\hline
 		\textbf{Autentizace}  & 	\multicolumn{3}{l}{je vyžadována (tokeny)}\\
 		\textbf{Parametry} 		& \texttt{id} & integer & (povinné) ID směny \\
+												  & \texttt{template\_id} & integer & (povinné) ID šablony \\
 												 	& \texttt{schedule\_id} & integer & (povinné) ID rozvrhu \\
 		\textbf{Vrací} 				& \texttt{200} & viz~kód~\ref{lst:shiftscheduled} & směna, jež byla přidána do rozvrhu\\
 													& \texttt{400} & - & chybí \texttt{schedule\_id}\\
