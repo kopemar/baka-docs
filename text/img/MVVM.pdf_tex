@@ -1,0 +1,77 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'MVVM.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{265.00000763bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.10566032)%
+  \begin{sffamily}%
+  \begin{small}%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{MVVM.pdf}}%
+    \put(0.4985554,1.05530131){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{View}\end{tabular}}}}%
+    \put(0.49802474,1.01856356){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}(XML, aktivita,\\fragment)\end{tabular}}}}%
+    \put(0.4985554,0.72220131){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{ViewModel}\end{tabular}}}}%
+    \put(0.49802474,0.67980319){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}(LiveData)\end{tabular}}}}%
+    \put(0.92263674,0.45151574){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Model}\end{tabular}}}}%
+    \put(0.4985554,0.3831367){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Repository}\end{tabular}}}}%
+    \put(0.21053949,0.11998081){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Lokální }\\\textbf{DataSource}\end{tabular}}}}%
+    \put(0.78789795,0.11998081){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Vzdálený }\\\textbf{DataSource}\end{tabular}}}}%
+    \put(0.38546287,0.85671764){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}UI událost\end{tabular}}}}%
+    \put(0.59274093,0.85671764){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}pozoruje \end{tabular}}}}%
+    \put(0.59274093,0.54015663){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}pozoruje \end{tabular}}}}%
+    \put(0.32547668,0.21867795){\rotatebox{15.39167372}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}požadavek\end{tabular}}}}}%
+    \put(0.25402969,0.33257448){\rotatebox{15.39167372}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}odpověď\end{tabular}}}}}%
+    \put(0.69531443,0.20948){\rotatebox{-15.41519748}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}požadavek\end{tabular}}}}}%
+    \put(0.71862634,0.3518483){\rotatebox{-15.41519748}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}odpověď\end{tabular}}}}}%
+  \end{small}
+  \end{sffamily}
+  \end{picture}%
+\endgroup%

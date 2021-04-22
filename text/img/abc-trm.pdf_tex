@@ -1,0 +1,88 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'abc-trm.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{286.00000763bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.32517482)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{abc-trm.pdf}}%
+    \put(0.37351534,0.11026165){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{abc-trm.pdf}}%
+    \put(0.05500667,0.19255241){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_1$\end{tabular}}}}%
+    \put(0.05500667,0.11213283){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_2$\end{tabular}}}}%
+    \put(0.05500667,0.03171326){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_3$\end{tabular}}}}%
+    \put(0.7285743,0.27297199){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_1$\end{tabular}}}}%
+    \put(0.83696591,0.27297199){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_2$\end{tabular}}}}%
+    \put(0.94535751,0.27297199){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_3$\end{tabular}}}}%
+    \put(0.61649277,0.19255241){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_1$\end{tabular}}}}%
+    \put(0.61649277,0.11213283){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_2$\end{tabular}}}}%
+    \put(0.61649277,0.03171326){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_3$\end{tabular}}}}%
+    \put(0.16563729,0.27297199){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_1$\end{tabular}}}}%
+    \put(0.27402889,0.27297199){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_2$\end{tabular}}}}%
+    \put(0.3824205,0.27297199){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_3$\end{tabular}}}}%
+    \put(0.15641113,0.19064708){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.71934815,0.19064708){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.93634989,0.19046952){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.26502128,0.19046952){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.37341291,0.19046952){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.15673211,0.11026165){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.71966912,0.11026165){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.93645232,0.11026165){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.71956668,0.02963037){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.15662966,0.02963037){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.26342599,0.03175532){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.30071294,0.05270019){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}i\end{tabular}}}}%
+    \put(0.39511853,0.14011277){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ii\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{abc-trm.pdf}}%
+    \put(0.82636299,0.19064708){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.82658153,0.11026165){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

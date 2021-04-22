@@ -1,0 +1,92 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'uc-dohoda.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{398.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.086629)%
+  \begin{small}
+  \begin{sffamily}
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{uc-dohoda.pdf}}%
+    \put(0.5090378,1.01506591){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Modul směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{uc-dohoda.pdf}}%
+    \put(0.37114203,0.91902072){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC3: Zobrazit svůj\end{tabular}}}}%
+    \put(0.36837464,0.89265537){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}rozvrh směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{uc-dohoda.pdf}}%
+    \put(0.37051765,0.72316384){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC4: Zobrazit detail\end{tabular}}}}%
+    \put(0.36868223,0.69679849){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směny\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{uc-dohoda.pdf}}%
+    \put(0.37156042,0.54048964){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC5: Zobrazit přehled\end{tabular}}}}%
+    \put(0.36947994,0.51412429){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}nejbližších naplánovaných\end{tabular}}}}%
+    \put(0.36761555,0.48775895){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{uc-dohoda.pdf}}%
+    \put(0.36972132,0.33145009){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC6: Zobrazit historii\end{tabular}}}}%
+    \put(0.37073467,0.30508475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}odpracovaných směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{uc-dohoda.pdf}}%
+    \put(0.6548132,0.24482109){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC10: Zrušit zápis\end{tabular}}}}%
+    \put(0.65194742,0.21845574){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}na směnu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{uc-dohoda.pdf}}%
+    \put(0.65632218,0.44632768){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC9: Zapsat se na\end{tabular}}}}%
+    \put(0.6537479,0.41996234){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}volnou směnu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{uc-dohoda.pdf}}%
+    \put(0.66052545,0.64783427){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC8: Zobrazit seznam\end{tabular}}}}%
+    \put(0.66000636,0.62146893){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}volných směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{uc-dohoda.pdf}}%
+    \put(0.36402747,0.13559322){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC7: Zobrazit přehled\end{tabular}}}}%
+    \put(0.36159801,0.10922787){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}smluv\end{tabular}}}}%
+    \put(0.08034985,0.40677966){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.91839128,0.34651601){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.91441331,0.32015066){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dohoda\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{uc-dohoda.pdf}}%
+    \end{sffamily}
+    \end{small}
+  \end{picture}%
+\endgroup%

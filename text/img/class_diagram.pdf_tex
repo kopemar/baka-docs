@@ -1,0 +1,92 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'class_diagram.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{308.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.99756691)%
+  \begin{sffamily}
+  \begin{small}
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{class_diagram.pdf}}%
+    \put(0.00973236,0.9270073){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-username : string\end{tabular}}}}%
+    \put(0.00973236,0.89294404){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-encrypted\_password : string\end{tabular}}}}%
+    \put(0.22281129,0.96593674){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{User}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{class_diagram.pdf}}%
+    \put(0.00973236,0.6836983){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-first\_name : string\end{tabular}}}}%
+    \put(0.00973236,0.64963504){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-last\_name : string\end{tabular}}}}%
+    \put(0.00973236,0.61557178){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-birth\_date : Date\end{tabular}}}}%
+    \put(0.19765174,0.72262774){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Employee}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{class_diagram.pdf}}%
+    \put(0.45498783,0.49391727){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-start\_date : date\end{tabular}}}}%
+    \put(0.45498783,0.45985401){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-end\_date : date\end{tabular}}}}%
+    \put(0.45498783,0.42579075){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-work\_load : float\end{tabular}}}}%
+    \put(0.45498783,0.39172749){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-type : string\end{tabular}}}}%
+    \put(0.45498783,0.35766423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-working\_days : integer[]\end{tabular}}}}%
+    \put(0.72249408,0.53284672){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Contract}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{class_diagram.pdf}}%
+    \put(0.80412972,0.10462287){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Schedule}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{class_diagram.pdf}}%
+    \put(0.00973236,0.09975669){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-start\_time : datetime\end{tabular}}}}%
+    \put(0.00973236,0.06569343){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-end\_time : datetime\end{tabular}}}}%
+    \put(0.19494718,0.13868613){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textbf{Shift}\end{tabular}}}}%
+    \put(0.42335766,0.09975669){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0..*\end{tabular}}}}%
+    \put(0.81021898,0.57907543){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1..*\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{class_diagram.pdf}}%
+    \put(0.78832117,0.18978102){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}belongs to\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{class_diagram.pdf}}%
+    \put(0.65450122,0.63260341){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}has a\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{class_diagram.pdf}}%
+    \put(0.45012165,0.04379562){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}consists of\end{tabular}}}}%
+    \put(0.00851864,0.85973569){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-type : string\end{tabular}}}}%
+    \end{small}
+    \end{sffamily}
+  \end{picture}%
+\endgroup%

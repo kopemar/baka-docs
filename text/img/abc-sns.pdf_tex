@@ -1,0 +1,86 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'abc-sns.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{286.00000763bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.32517482)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{abc-sns.pdf}}%
+    \put(0.26342599,0.03175532){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{abc-sns.pdf}}%
+    \put(0.05362992,0.1944998){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_1$\end{tabular}}}}%
+    \put(0.05362992,0.11408022){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_2$\end{tabular}}}}%
+    \put(0.05362992,0.03366064){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_3$\end{tabular}}}}%
+    \put(0.72719755,0.27491938){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_1$\end{tabular}}}}%
+    \put(0.83558916,0.27491938){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_2$\end{tabular}}}}%
+    \put(0.94398076,0.27491938){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_3$\end{tabular}}}}%
+    \put(0.61511601,0.1944998){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_1$\end{tabular}}}}%
+    \put(0.61511601,0.11408022){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_2$\end{tabular}}}}%
+    \put(0.61511601,0.03366064){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$e_3$\end{tabular}}}}%
+    \put(0.16426054,0.27491938){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_1$\end{tabular}}}}%
+    \put(0.27265214,0.27491938){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_2$\end{tabular}}}}%
+    \put(0.38104374,0.27491938){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$d_3$\end{tabular}}}}%
+    \put(0.15503437,0.19259446){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.71797139,0.19259446){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.93497318,0.19241691){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.26364452,0.19241691){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.37203615,0.19241691){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.15535535,0.11220903){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.37213856,0.11220903){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.71829236,0.11220903){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.93507562,0.11220903){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.71818992,0.03157776){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.82658153,0.03157776){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.1552529,0.03157776){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.82636299,0.19259446){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{abc-sns.pdf}}%
+  \end{picture}%
+\endgroup%

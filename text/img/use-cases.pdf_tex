@@ -1,0 +1,103 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'use-cases.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{303.75bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.78271605)%
+  \begin{sffamily}%
+  \begin{small}%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{use-cases.pdf}}%
+    \put(0.75432099,1.7382716){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Systém\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{use-cases.pdf}}%
+    \put(0.75432099,1.07716049){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Odhlásit se\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{use-cases.pdf}}%
+    \put(0.75432099,1.35061728){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Přihlásit se\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{use-cases.pdf}}%
+    \put(0.75432099,1.60617284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zobrazit nápovědu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{use-cases.pdf}}%
+    \put(0.75432099,0.87222222){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zobrazit osobní\end{tabular}}}}%
+    \put(0.75432099,0.83765432){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}rozvrh směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{use-cases.pdf}}%
+    \put(0.75432099,0.34382716){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zapsat se\end{tabular}}}}%
+    \put(0.75432099,0.30925926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}na volnou\end{tabular}}}}%
+    \put(0.75432099,0.27469136){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směnu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{use-cases.pdf}}%
+    \put(0.75432099,0.65493827){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zobrazit detail\end{tabular}}}}%
+    \put(0.75432099,0.62037037){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směny\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{use-cases.pdf}}%
+    \put(0.75456792,0.47432093){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}<<Extend>>\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{use-cases.pdf}}%
+    \put(0.24691358,1.5){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}<<abstract>>\end{tabular}}}}%
+    \put(0.24691358,1.4654321){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Uživatel\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{use-cases.pdf}}%
+    \put(0.24691358,1.24444444){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Nepřihlášený\end{tabular}}}}%
+    \put(0.24691358,1.20987654){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}uživatel\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{use-cases.pdf}}%
+    \put(0.24691358,0.94814815){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}<<abstract>>\end{tabular}}}}%
+    \put(0.24691358,0.91358025){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Přihlášený\end{tabular}}}}%
+    \put(0.24691358,0.87901235){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}uživatel\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{use-cases.pdf}}%
+    \put(0.24691358,0.59382716){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}<<abstract>> \end{tabular}}}}%
+    \put(0.24691358,0.55925926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{use-cases.pdf}}%
+    \put(0.24691358,0.31851852){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec \end{tabular}}}}%
+    \put(0.24691358,0.28395062){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}DPČ\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{use-cases.pdf}}%
+    \put(0.24691358,0.04814815){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.24691358,0.01358025){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}DPP\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{use-cases.pdf}}%
+    \put(0.75456792,0.47432093){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}<<Extend>>\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{use-cases.pdf}}%
+    \end{small}
+    \end{sffamily}
+  \end{picture}%
+\endgroup%

@@ -1,0 +1,72 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'abc-flowchart.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{360bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.80833333)%
+  \begin{small}
+  \begin{sffamily}
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{abc-flowchart.pdf}}%
+    \put(0.23305663,0.75913084){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Fáze\\dělnic\end{tabular}}}}%
+    \put(0.2313531,0.5640354){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Fáze \\vyčkávajících \\\end{tabular}}}}%
+    \put(0.22445746,0.28243051){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\exists$ průzkumnice?\end{tabular}}}}%
+    \put(0.23310256,0.15921189){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}ano\end{tabular}}}}%
+    \put(0.39608552,0.29754163){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ne\end{tabular}}}}%
+    \put(0.22112087,0.06794164){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Průzkum \\nových řešení\end{tabular}}}}%
+    \put(0.56615629,0.27945268){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Konec?\end{tabular}}}}%
+    \put(0.88223197,0.3001465){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Výběr\\nejlepšího řešení\end{tabular}}}}%
+    \put(0.70858551,0.29754163){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ano\end{tabular}}}}%
+    \put(0.59322602,0.3941944){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ne\end{tabular}}}}%
+    \end{sffamily}
+    \end{small}
+  \end{picture}%
+\endgroup%
