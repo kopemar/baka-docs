@@ -307,7 +307,7 @@ Podle §~76 zákoníku práce není na základě dohody o pracovní činnosti mo
 
 \chapter{Analýza systému}
 
-Cílem této práce je navrhnout mobilní aplikaci pro plánování lidských zdrojů, obzvláště rozvrhování směn. Bude se tak jednat o aplikaci, která bude sloužit pro zjednodušení interních procesů v~rámci nějaké firmy, půjde o~minimalistický informační systém pro zaměstnance a zaměstnavatele. Pro účely identifikace požadavků bude v~této kapitole vytvořen předpoklad o~cílové skupině organizací, které by mohly tento software nasadit, jaká je jejich současná situace a co by jim mělo toto softwarové řešení poskytnout. Rovněž budou z~uživatelského pohledu popsána již existující řešení, která jsou pro řešení daných problémů určena.
+Cílem této práce je navrhnout mobilní aplikaci pro plánování lidských zdrojů, obzvláště rozvrhování směn. Bude se tak jednat o aplikaci, která bude sloužit pro zjednodušení interních procesů v~rámci nějaké firmy, půjde o~minimalistický informační systém pro zaměstnance a zaměstnavatele. Pro účely identifikace požadavků bude v~této kapitole vytvořen předpoklad o~cílové skupině organizací, které by mohly tento software nasadit, jaká je jejich současná situace a co by jim mělo toto softwarové řešení poskytnout. Rovněž budou z~uživatelského pohledu popsána již existující softwarová řešení, která jsou pro dané situace určena.
 
 \section{Cílová skupina}
 Pro účely stanovení požadavků byl vytvořen předpoklad o~cílové skupině pro tento systém: menší firma, případně malý tým v~rámci větší firmy o~10 až 20 zaměstnancích podnikající v~nekritickém vícesměnném provozu (tzn.~např.~jedna pobočka řetězce rychlého občerstvení, restaurace nebo obchod), jež zaměstnává jak pracovníky na plný úvazek, tak brigádníky na DPP/DPČ. Z~těchto důvodů řeší problém, jak rozvrhovat směny a stávající způsob je z~pohledu vedení firmy i samotných zaměstnanců neefektivní například z následujících důvodů:
@@ -324,7 +324,7 @@ Pro účely stanovení požadavků byl vytvořen předpoklad o~cílové skupině
 
 Následující požadavky definují, jaké základní funkce by měl tento systém mít, a to především z~pohledu organizace, která by jej využívala (jedná se zde tedy spíše o~požadavky s~vysokou mírou abstrakce). Vychází se z~představy popsané výše, tedy že tento software je určen pro nasazení ve firmě, která momentálně není z~blíže neurčených důvodů schopna efektivně připravovat rozvrhy směn a chtěla by ušetřit čas a zdroje, které k~sestavení rozvrhu vynakládá.
 
-\begin{enumerate}[label=\textbf{F\arabic*.}]
+\begin{enumerate}[label=\textbf{B\arabic*.}]
 	\item Systém umožní distribuci rozvrhů směn k~zaměstnancům.
 	\item Systém umožní zápis zaměstnance na~DPP/DPČ na směnu.
 	\item Systém vytvoří rozvrh směn na základě požadavků organizace.
@@ -422,7 +422,7 @@ Na základě výše uvedených požadavků organizace a~po otestování podobný
 	\item Systém umožní automatické přiřazení směn.
 	\item Systém umožní plánování směn na následující týdny.
 	\item Systém umožní náhled na rozvrh zaměstnanců.
-\end{itemize}
+\end{enumerate}
 
 \subsection{Legislativa}
 \begin{enumerate}[label=\textbf{L\arabic*.}]
@@ -499,6 +499,105 @@ Pro analýzu systému z~pohledu uživatele a jeho interakce se systémem byl zvo
 
 
 \newpage
+
+\chapter{Výběr technologií}
+Při výběru technologií pro tento projekt hrály kromě samotných požadavků na tuto aplikaci roli i zkušenosti a preference autorky, konkrétní výběr byl tedy zkreslen i subjektivním hlediskem.
+
+\section{Technologie pro uživatelské rozhraní}
+
+Přestože jako téma této práce byla určena mobilní aplikace, a tedy již tento výběr neprobíhal, v~případě, že by byla aplikace implementována v~produkčním prostředí, připadaly by v~úvahu nejméně dva přístupy -- mobilní nebo webová aplikace.
+
+\subsection{Webová aplikace}
+Pro použití webové aplikace hovoří fakt, že webové aplikace není třeba žádným způsobem instalovat a stačí prosté zadání adresy do internetového prohlížeče. Aplikace je z~podstaty věci multiplatformní, neboť ji lze zobrazit v libovolném internetovém prohlížeči, tedy jak na počítači, tak na mobilním zařízení (jedná-li se o responzivní aplikaci, může být i použití webové aplikace na mobilním zařízení uživatelsky přívětivé). Nevýhodou tohoto přístupu jsou omezené možnosti při implementace offline režimu a rovněž i to, že z hlediska rychlosti se nativním mobilním aplikacím nevyrovnají.
+
+
+\subsection{Mobilní aplikace}
+
+Oproti responzivnímu webu mají nativní aplikace výhodu, že mohou jednoduše přistupovat k API, které poskytuje samotné zařízení, na kterém jsou nainstalované, tedy mohou snadno získat přístup k fotoaparátu či poloze zařízení. Dále lze na zařízení jednoduše přijímat notifikace, i když je aplikace na pozadí. Nativní aplikace mohou být vhodné i pro použití v offline režimu (použitím lokální databáze).
+
+Pro uživatele mají tu nevýhodu, že se musí instalovat na zařízení (s~tím souvisí i o~něco složitější způsob distribuce). V~případě, že je možné zveřejnit aplikaci v~obchodech (Google Play, AppStore), musí projít schvalovacím procesem, což může trvat několik dní a nemusí být vždy úspěšné, pro Google Play např. v~případě, že aplikace obsahuje nevhodný obsah, narušuje ničí autorská práva nebo třeba nevhodným způsobem zpracovává osobní údaje svých uživatelů. Rovněž je třeba uvádět, jaká oprávnění aplikace pro přístup ke mobilním API (SMS, kontakty, poloha, soubory) požaduje. \cite{google2021policy}.
+
+Při výběru konkrétního způsobu implementace mobilní aplikace pak existuje několik dalších rozhodovacích situací, především~výběr podporované platformy (iOS, Android) nebo způsob vývoje (pro jednu platformu, multiplatformní, hybridní).
+
+\subsubsection{Platforma}
+Na trhu s~mobilními zařízeními jsou dvě dominantní platformy, a to Android (podíl na trhus~chytrými telefony celosvětově 72~\%) a iOS (podíl na trhu 27,5~\%) \cite{statcounter2021mobile}. Aplikace lze připravovat přímo pro danou platformu, případně multiplatformně.
+
+
+\paragraph{Multiplatformní vývoj}
+Multiplatformní vývoj umožňuje nasazení jedné aplikace na více platformách, přičemž pro všechny platformy mají aplikace sdílený kód, jádro aplikace tedy není třeba duplikovat, což je jejich nespornou výhodou, navíc to může i snížit náklady na vývoj.
+
+Problémem je přístup k~aplikačnímu rozhraní a hardwaru daného zařízení, omezené možnosti při používání knihoven specifických pro platformu nebo složitější vývoj uživatelského rozhraní tak, aby odpovídalo konvencím pro všechny platformy. \cite{manchanda2020where}   Používají se frameworky jako Flutter (jazyk Dart), React Native (JavaScript) nebo Xamarin (C\#).
+
+\paragraph{Vývoj pro jednu platformu}
+U vývoje na jednu platformu lze předpokládat, že bude možné používat všechny součásti zařízení naplno. Co se přístupu k hardwaru, výkonu a uživatelského prožitku týče, mají nativní aplikace nad multiplatformními jasnou převahu, jejich vývoj je však až dvakrát dražší. \cite{dennis2018native}
+
+
+\subsubsection{Programovací jazyk}
+Pro nativní vývoj na platformu Android lze vybrat nejméně ze tří možností, a to C/C++, Javy a Kotlinu. Toto rozhodování může v~této době u~nových projektů probíhat spíše pouze v teoretické rovině, neboť oficiální podporu ze strany Googlu má nejmodernější jazyk Kotlin.
+
+Mezi hlavní výhody Kotlinu oproti jiným variantám patří null-safety (tedy bezpečné volání na objektech, které mohou nabývat hodnotu \texttt{null}), coroutines (odlehčená verze vláken pro asynchronní operace) nebo Kotlin Extensions (knihovny nejrůznějších funkcí usnadňující vývoj, a to jak obecně, tak i specificky pro platformu Android). \cite{android2021kotlin}
+
+
+\subsection{Shrnutí}
+
+Jako nejvhodnější by se v~případě produkčního nasazení této aplikace jevilo zkombinovat oba přístupy, tedy mít uživatelské rozhraní jak ve formě webové aplikaci, tak mít i podpůrnou mobilní aplikaci. Tento přístup byl také zvolen v případě většiny podobných řešení (viz podkapitolu \ref{sec:existing}). Zde byla implementována pouze jedna část, a to mobilní aplikace, neboť důraz byl kladen především na pohodlí zaměstnanců, kteří chtějí mít svůj rozvrh po ruce co nejrychleji. Pokud by naopak bylo prioritou vytvořit rozhraní přívětivé pro zobrazení přehledu o celkovém rozvrhu všech zaměstnanců, které vyžaduje větší rozlišení obrazovky, dávalo by větší smysl implementovat nejprve webové rozhraní.
+
+Mobilní aplikace bude vyvinuta jako nativní Android aplikace, tento výběr je zkreslen zkušenostmi autorky, v~produkčním prostředí by bylo žádoucí uživatele iOS nediskriminovat a aplikaci jim také nabídnout, z~tohoto důvodu by bylo vhodné zvážit použití nějakého multiplatformního frameworku, rozhodující by byly plány na budoucí vývoj, případně i~finance. Pro vývoj se použije programovací jazyk Kotlin, protože se jedná o moderní programovací jazyk, který je pro vývoj na danou platformu nejvhodnější.
+
+
+\section{Backendová technologie}
+
+\subsection{Webový framework}
+
+Webové frameworky, tj. knihovny zdrojových kódů připravené pro tvorbu webů (především jejich serverové strany), se standardně používají pro zjednodušení vývoje a nasazení aplikací. Ať už jsou napsány v~libovolném programovacím jazyce (může jít např.~o~PHP, Java, Ruby nebo Python), standardními součástmi jsou dle \cite{docforge2014web} perzistence dat, autentizace uživatelů, správa session nebo šablony pro uživatelské rozhraná. Společnou mají rovněž podporu pro architekturu MVC\footnote{Model-View-Controller}.
+
+Z~množství variant, které se nabízejí, byl zvolen framework Ruby on Rails (v~jazyce Ruby), a to především z~důvodu jeho zásad Don't Repeat Yourself (kód by měl být znovupoužitelný, bez zbytečného opakování) a Convention Over Configuration (webová aplikace je nakonfigurována dle konvencí, a vývojář tak nemusí trávit čas psaním konfiguračních souborů) \cite{rails2020}, které slibují výrazné usnadnění vývoje.
+
+% \subsubsection{Model-View-Controller}
+
+% \paragraph{Model (model)}
+%
+% Model je část aplikace, která reprezentuje business data aplikace a jejich logiku, v~sobě zahrnuje jak perzistentní data, tak operace s~nimi. V Rails jsou modely implementovány jako ActiveRecord, který zde slouží jako ORM\footnote{Object-Relation Mapper} framework, stará se o~validace objektů před jejich uložením do databáze, mapuje asociace mezi objekty a~zprostředkovává databázové operace (není tak třeba psát žádné SQL dotazy -- o vytvoření databáze a~operace s~ní se starají Rails samy).
+%
+% \subsection{View (pohled)}
+%
+% Pohled je zodpovědný za vykreslování uživatelského rozhraní, především za generování HTML kódu stránky (základem jsou šablony, do nichž se doplňují konkrétní data z~modelů).
+%
+% \subsection{Controller (řadič)}
+%
+% Controller je část aplikace, která je zodpovědná za zpracování požadavků -- když přijde na controller požadavek, naleznou se odpovídající data v modelu a view je zobrazí.
+
+
+% \subsubsection{Ruby On Rails}
+
+\subsection{Aplikační rozhraní}
+
+Pro komunikaci s~dalšími aplikacemi (zde především pro komunikaci klienta se serverem) musí aplikace veřejně poskytnout své aplikační rozhraní, přičemž za tímto účelem existuje několik variant, které jsou vhodné pro různé případy (např.~REST, SOAP, GraphQL, gRPC). Tyto způsoby implementace se mohou od sebe odlišovat formátem přenosu (binární, textový) nebo protokolem (HTTP i~jiné).
+
+Pro účely tohoto projektu se jako optimální varianta jeví použití REST API, a to vzhledem k~velmi dobré podpoře ze strany webového frameworku bez nutnosti rozšiřování o~další knihovny (konkrétně Ruby on Rails podporují vytváření cest na základě konvencí – pokud tak controller definuje metodu \texttt{update}, automaticky se vytvoří endpoint \texttt{PUT/PATCH /resources/:id}, případně lze cesty definovat v~souboru \texttt{config/routes.rb} a provolat tak libovolnou akci v~libovolném controlleru).
+
+V některých případech by bylo vhodnější použít pro komunikaci jiný prostředek (především v~případě volání výpočtů na serveru), např.~RPC (gRPC, XML-RPC, JSON-RPC či jinou konkrétní implementaci), neboť zde nedochází k~přenosu zdrojů (způsob využití REST API, který vyplývá z~definice), ale pouze k~výpočtům na vzdáleném serveru. Toto by ale vytvořilo problémy při nasazení aplikace na PaaS službách (např. Heroku), proto bylo zvoleno řešení, které sice není z~hlediska architektury tou nejlepší volbou, ale je jednodušší na použití.
+
+\subsection{Databáze}
+
+Rozhodování ohledně použité databáze se může týkat způsobu uložení dat (relační nebo NoSQL) a samotného DBMS (systém správy báze dat). Je třeba se rozhodnout, zda v~projektu bude použita relační či NoSQL databáze. Relační databáze přitom jsou vhodné na ukládání dat se statickou strukturou, kdežto NoSQL databáze mohou být flexibilnější, co se ukládání dat týče.  \cite{geeks2020difference} Pro účely tohoto projektu byla zvolena relační databáze, a to z~důvodu předem určené struktury dat a taktéž proto, že jde o technologii, která má dobrou podporu, a to i ze strany webových frameworků. Upřednostněna tedy byla známá technologie. Jako konkrétní systém správy báze dat byl zvolen Postgres.
+
+
+\subsection{Shrnutí}
+
+Aplikace bude vyvinuta ve webovém frameworku Ruby on Rails, a to vzhledem k~tomu, že jde o~rozšířený framework, který slibuje jednoduchou konfiguraci. S~vnějškem bude tato aplikace komunikovat prostřednictvím REST API vzhledem k~jednoduché implementaci a silné podpoře pro jeho využití. Použita bude relační databáze, konkrétně Postgres.
+
+\section{Požadavky na kvalitu software}
+
+Z~rozhodování v~této kapitole vyplynuly následující požadavky na kvalitu software:
+
+\begin{enumerate}[label=\textbf{S\arabic*.}]
+	\item Bude vyvinuta nativní Android aplikace v~jazyce Kotlin.
+	\item Backend bude vyvinut ve webovém frameworku Ruby on Rails.
+	\item Mobilní aplikace bude se serverem komunikovat přes jeho REST API.
+	\item Bude použita databáze Postgres.
+\end{enumerate}
+
 % \subsection{UC1: Přihlásit se}
 % \paragraph{Aktér:} Nepřihlášený uživatel
 % \paragraph{Hlavní scénář:}
@@ -804,12 +903,12 @@ Pro analýzu systému z~pohledu uživatele a jeho interakce se systémem byl zvo
 % \end{enumerate}
 
 
-\chapter{Algoritmy pro rozvrhování směn}
-Problém plánování směn je jedním z~rozvrhovacích problémů\footnote{Dalšími takovými problémy jsou např.~sestavování školních rozvrhů nebo jízdních řádů.}, obecně se považuje velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). V~rámci velkých organizací lze komplexnost tohoto problému snížit například tím, že na sobě nezávislé části mají samostatný rozvrh (např. v~nemocnici je rozvrh ostrahy nezávislý na rozvrhu lékařů na patologii). Teoretických problémů, které byly popsány v literatuře a které se týkají rozvrhování pracovních sil, existuje více druhů dle podmínek a prostředí, jehož se bezprostředně týkají, jedním z~nich je tzv.~problém rozvrhování zdravotních sester (angl. nurse rostering problem nebo nurse scheduling problem), poznatky ovšem lze použít pro obecný problém rozvrhování směn.
+\chapter{Rozvrhování směn}
+Problém plánování směn je jedním z~rozvrhovacích problémů\footnote{Dalšími takovými problémy jsou např.~sestavování školních rozvrhů nebo jízdních řádů.}, obecně se považuje velmi komplexní, a to i v~případě, že se řeší jen jeho zjednodušená verze (např. se vyhodnocuje jen jedno kritérium a schopnosti zaměstnanců jsou homogenní). V~rámci velkých organizací lze složitost tohoto problému snížit například tím, že na sobě nezávislé části mají samostatný rozvrh (např. v~nemocnici je rozvrh ostrahy nezávislý na rozvrhu lékařů na patologii). Teoretických problémů, které byly popsány v literatuře a které se týkají rozvrhování pracovních sil, existuje více druhů dle podmínek a prostředí, jehož se bezprostředně týkají, poznatky ovšem lze použít pro obecný problém rozvrhování směn, i~když se týkají např.~problému rozvrhování zdravotních sester.
 
 Přístupů, jak problém rozvrhování personálu řešit, existuje celá řada, například lze rozvrh sestavovat centrálně, v~kooperaci se zaměstnanci nebo nějakým hybridním způsobem; rozvrh může být sestaven člověkem (na papír, v~tabulkovém editoru, \ldots) či automaticky.
 
-Výzkum tohoto problému se zaměřuje především na vývoj efektivních přibližných metod řešení \cite{adamuthe2012tabu}. Řešení totoho rozvrhovacího problému lze automatizovat více způsoby, které jsou vhodné v~závislosti na jeho formulaci (pro více viz podkapitolu~\ref{sec:clasif}) -- v~jednoduchém případě může být možné ho interpretovat tak, aby odpovídal problému již známému a řešitelnému standardními metodami\footnote{Může se jednat např. o~lineární programování, které nalezne optimální řešení, ovšem jen jedná-li se o~méně komplexní problémy (např. je obtížné formulovat všechny zbytné podmínky pouze jako lineární funkce). \cite{blochliger2004modeling}}, dalším je heuristika, která umožňuje řešení komplexnějších problémů, avšak ne vždy zaručuje nalezení optimálního řešení. \cite{blochliger2004modeling}
+Výzkum tohoto problému se zaměřuje především na vývoj efektivních přibližných metod řešení. \cite{adamuthe2012tabu} Řešení totoho rozvrhovacího problému lze automatizovat více způsoby, které jsou vhodné v~závislosti na jeho formulaci (pro více viz podkapitolu~\ref{sec:clasif}) -- v~jednoduchém případě může být možné ho interpretovat tak, aby odpovídal problému již známému a řešitelnému standardními metodami\footnote{Může se jednat např. o~lineární programování, které nalezne optimální řešení, ovšem jen jedná-li se o~méně komplexní problémy (např. je obtížné formulovat všechny zbytné podmínky pouze jako lineární funkce)}, dalším je heuristika, která umožňuje řešení komplexnějších problémů, avšak ne vždy zaručuje nalezení optimálního řešení. \cite{blochliger2004modeling}
 
 V~této kapitole bude podrobněji popsán proces rozvrhování směn, rozhodující proměnné a vybrané teoretické metody, jak tento problém lze řešit a dále způsob řešení, který byl na jejich základě poznatků z~tohoto vyplývajících implementován v~rámci této práce.
 
@@ -826,7 +925,7 @@ Dle \cite{ernst2004staff} lze proces rozvrhování rozdělit na několik část�
 
 \section{Definice problému}
 
-Rozvhrování směn obecně řeší problém, že organizace má k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $S$ směn v~$D$~pracovních dnech, a~to na základě sady podmínek, které se liší dle charakteru provozu.
+Rozvrhování směn obecně řeší problém, že organizace má k~dispozici $N$~zaměstnanců, které je třeba rozdělit do $S$ směn v~$D$~pracovních dnech, a~to na základě sady podmínek, které se liší dle charakteru provozu.
 
 \section{Klasifikace}
 \label{sec:clasif}
@@ -861,7 +960,7 @@ Podmínky se mohou týkat například sekvence činností (např. po náročné 
 	\label{fig:constraints}
 \end{figure}
 
-
+\newpage
 \section{Interpretace řešení}
 Řešení tohoto problému lze interpretovat jako trojrozměrnou binární matici $\boldsymbol{R}$, jejímiž parametry jsou zaměstnanec ($\forall i \in E$), den ($\forall j \in T$) a vypsaná směna ($\forall k \in S$), jednotlivé hodnoty $R_{ijk}$ jsou určeny funkcí \ref{eq:3dmatrix}. \cite{vaclavik2016roster}
 
@@ -885,13 +984,14 @@ Dále může být rozvrh směn interpretován jako vektor $\boldsymbol{x} = (x^1
 
 \section{Cílová funkce}
 \label{sec:objective}
-Cílová nebo také účelová funkce (angl. objective function) je taková funkce, jejíž hodnotu je cílem optimalizovat. V~případě rozvrhování směn se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
+Cílová nebo také účelová funkce (angl. objective function) je taková funkce, jejíž hodnotu je cílem optimalizovat (minimalizovat nebo maximalizovat). V~případě rozvrhování směn se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
 
 Například v~případě optimalizace na základě vážených podmínek dle podkapitoly \ref{sec:constraints} ji lze formulovat jako
 \begin{equation}
 	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
 \end{equation}
 kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
+\newpage
 
 \section{Vstupy}
 Organizace má množinu zaměstnanců $M$, z~nichž každý zaměstnanec $m \in M$ má určenou množinu činností $Q_m$, které je kvalifikován vykonávat; podmnožině zaměstnanců $E \subseteq M$, $E = \{ 1, 2,~\ldots, e \}$ v~daném období může být rozvrhnuta směna. Každý zaměstnanec přitom v jednom čase může být pouze na jednom místě, mezi směnami by měl mít přestávku.
@@ -912,7 +1012,7 @@ Byla použita některá z~metodik na předpovídání poptávky po personálu (v
 	\label{tab:demand}
 \end{table}
 
-Dalším vstupem je tabulka s~nezbytnými (tab.~\ref{tab:hard}) a zbytnými (tab.~\ref{tab:soft}) požadavky.
+Dalším vstupem je tabulka s~nezbytnými (tab.~\ref{tab:hard}) a zbytnými (tab.~\ref{tab:soft}) požadavky, které mohou být ohodnocené.
 
 \begin{table}[h]
 	\begin{tabular}{|@{\makebox[3em][c]{${H}_{\rownumber}$}} |l|c|}
@@ -981,12 +1081,15 @@ Na základě~tab.~\ref{tab:linear} a~s~pomocí obr.~\ref{fig:linear} lze přitom
 \end{center}
 
 \subsubsection{Omezení a složitost algoritmu}
-Matematické programování obecně může přinést optimální výsledky, avšak pro komplexní je tento model příliš jednoduchý. \cite{burke2004state} Časová složitost v~závislosti na počtu zaměstnanců je exponenciální. \cite{chen2016comparison}
+Matematické programování obecně může přinést optimální výsledky, avšak pro reálné použití je tento model příliš jednoduchý. \cite{burke2004state} Časová složitost v~závislosti na počtu zaměstnanců je exponenciální. \cite{chen2016comparison}
 
 
 \newpage
-\section{Algoritmy inspirované včelím rojem}
-Existuje skupina (meta)heuristických algoritmů inspirovaných chováním včelího roje v~přírodě, k~řešení kombinatorického problému se využívá spolupráce a kolektivní inteligence. Mezi varianty, které se v~literatuře objevují, patří optimalizace včelím rojem (Bee Colony Optimization) nebo umělý včelí roj (Artificial Bee Colony) a jejich další modifikace.
+\section{Heuristika}
+
+Heuristiky, které se vyskytují v~literatuře, se dají rozdělit do dvou základních skupin -- jedny rozšiřují částečné řešení, dokud není vytvořeno kompletní řešení, druhé pracují s~platným řešením, které dále vylepšují. \cite{van2013personnel}
+
+Z~nejrůznějších heuristických algoritmů popsaných v~literatuře, byly pro ilustraci způsobu, jakým se dají směny rozvrhovat, zvoleny dvě metody inspirované chováním včelího roje v~přírodě, a to z~důvodu, že jde o dvě metody, které si jsou v~principu podobné, ale jedna z~nich je konstrukční a druhá vylepšovací. K~řešení kombinatorického problému se využívá spolupráce a kolektivní inteligence. %Mezi jeho varianty patří optimalizace včelím rojem (Bee Colony Optimization) nebo umělý včelí roj (Artificial Bee Colony) a jejich další modifikace.
 
 \subsection{Optimalizace včelím rojem (BCO)}
 Optimalizace včelím rojem se skládá ze dvou střídajících se fází -- dopředné (forward pass) a zpětné (backward pass). Zjednodušený průběh optimalizace včelím rojem je zobrazen na vývojovém diagramu~\ref{fig:bcoflow}.
@@ -1189,18 +1292,18 @@ Oba zde uvedené algoritmy jsou si v~principu podobné, liší se především t
 % \label{fig:arc}
 % \end{figure}
 
-\section{Cyklické rozdělení}
-\todo{Možná popsat něco jinýho}
-Hlavní myšlenkou metody cyklického rozdělení je, že směny lze mezi zaměstnance rozdělit na základě opakujících se schémat. Skládá se ze tří fází: dekompozice, konstrukce a následné zpracování. \cite{brucker2005decomposition} Hlavním problémem zde je nalezení schémat, podproblémem jejich sestavení do rozvrhu. \cite{becker2020decomposition}
-
-\subsubsection{Dekompozice}
-Zaměstnanci jsou rozděleni do několika skupin. Nejprve se sestaví schéma pro směny, jejichž zaplnění je nejtěžší (tzn., že způsobu jejich zaplnění se týkají největší sankce). Na základě toho se vytvoří schéma cyklicky se opakujících bloků (např. schéma pro jeden týden). Vytváření schématu pokračuje i pro další druhy směn a cílem je, aby se co nejvíce směn rozdělovalo cyklicky dle bloků a co nejméně jich bylo třeba rozdělit dodatečně.
-
-\subsubsection{Konstrukce}
-Směny, které nejsou rozděleny dle cyklického schématu v~první fázi, se rozdělí v~druhé fázi. Součástí může být i přesunutí některých už přiřazených směn.
-
-\subsubsection{Následné zpracování}
-V poslední fázi se provede opětovný průzkum prostoru. Sousedící směny se mohou přeházet, pokud se zdá, že toto řešení bude lepší. Výsledkem nemusí být cyklicky se opakující rozvrh.
+% \section{Cyklické rozdělení}
+% \todo{Možná popsat něco jinýho}
+% Hlavní myšlenkou metody cyklického rozdělení je, že směny lze mezi zaměstnance rozdělit na základě opakujících se schémat. Skládá se ze tří fází: dekompozice, konstrukce a následné zpracování. \cite{brucker2005decomposition} Hlavním problémem zde je nalezení schémat, podproblémem jejich sestavení do rozvrhu. \cite{becker2020decomposition}
+%
+% \subsubsection{Dekompozice}
+% Zaměstnanci jsou rozděleni do několika skupin. Nejprve se sestaví schéma pro směny, jejichž zaplnění je nejtěžší (tzn., že způsobu jejich zaplnění se týkají největší sankce). Na základě toho se vytvoří schéma cyklicky se opakujících bloků (např. schéma pro jeden týden). Vytváření schématu pokračuje i pro další druhy směn a cílem je, aby se co nejvíce směn rozdělovalo cyklicky dle bloků a co nejméně jich bylo třeba rozdělit dodatečně.
+%
+% \subsubsection{Konstrukce}
+% Směny, které nejsou rozděleny dle cyklického schématu v~první fázi, se rozdělí v~druhé fázi. Součástí může být i přesunutí některých už přiřazených směn.
+%
+% \subsubsection{Následné zpracování}
+% V poslední fázi se provede opětovný průzkum prostoru. Sousedící směny se mohou přeházet, pokud se zdá, že toto řešení bude lepší. Výsledkem nemusí být cyklicky se opakující rozvrh.
 
 \newpage
 
@@ -1355,11 +1458,11 @@ DOKUD není Employees nebo Shifts prázdné
 				C = ceil (C / 2)
 \end{lstlisting}
 
-\subsubsection{Testování}
+% \subsubsection{Testování}
 
-Základní testování proběhlo na období jednoho týdne (o 7 pracovních dnech), v němž jsou rozepsány 3 směny mezi 8:00 a 22:30 (8hodinové s 30minutovou přestávkou), a to na 5, 10 a 20 zaměstnancích. Zatímco efekt u 20 zaměstnanců byl nepatrný (i v~náhodném řešení se směny mohly rozložit tak, že k porušování nedocházelo), v~případě menšího počtu zaměstnanců (10 a 5) vždy došlo ke snížení sankce, a tedy ke zlepšení oproti náhodnému řešení.
+% Základní testování proběhlo na období jednoho týdne (o 7 pracovních dnech), v němž jsou rozepsány 3 směny mezi 8:00 a 22:30 (8hodinové s 30minutovou přestávkou), a to na 5, 10 a 20 zaměstnancích. Zatímco efekt u 20 zaměstnanců byl nepatrný (i v~náhodném řešení se směny mohly rozložit tak, že k porušování nedocházelo), v~případě menšího počtu zaměstnanců (10 a 5) vždy došlo ke snížení sankce, a tedy ke zlepšení oproti náhodnému řešení.
 
-\todo{Mám tohle rozpracovaný i pro další varianty -- testy mi běžely a výsledky mám}
+% \todo{Mám tohle rozpracovaný i pro další varianty -- testy mi běžely a výsledky mám}
 
 \begin{table}[h!]
 \begin{tabular}{|c|c|c|}
@@ -1435,86 +1538,6 @@ PRO každého E z Employees
 Tento algoritmus tak jednu směnu odstraní (tím vytvoří delší volno), a poté se pokusí umístit další směnu na jiné místo.
 
 \todo{Mám k tomu nakreslenej obrázek, jenom jsem ho zatím nepopsala}
-
-
-\chapter{Výběr technologií}
-Při výběru technologií pro tento projekt hrály kromě samotných požadavků na tuto aplikaci roli i zkušenosti a preference autorky, konkrétní výběr byl tedy zkreslen i subjektivním hlediskem.
-
-\section{Technologie pro uživatelské rozhraní}
-
-\subsection{Webová aplikace}
-Pro použití webové aplikace hovoří fakt, že webové aplikace není třeba žádným způsobem instalovat a stačí prosté zadání adresy do internetového prohlížeče. Aplikace je z~podstaty věci multiplatformní, neboť ji lze zobrazit v libovolném internetovém prohlížeči, tedy jak na počítači, tak na mobilním zařízení (jedná-li se o responzivní aplikaci, může být i použití webové aplikace na mobilním zařízení uživatelsky přívětivé). Nevýhodou tohoto přístupu jsou omezené možnosti při implementace offline režimu a rovněž i to, že z hlediska rychlosti se nativním mobilním aplikacím nevyrovnají.
-
-
-\subsection{Mobilní aplikace}
-
-Oproti responzivnímu webu mají nativní aplikace výhodu, že mohou jednoduše přistupovat k API, které poskytuje zařízení, na kterém jsou nainstalované, tedy mohou mít přístup k fotoaparátu či poloze zařízení. Dále mohou jednoduše přijímat notifikace, i když je aplikace na pozadí. Nativní aplikace lze jednoduše přizpůsobit použití v offline režimu (použitím lokální databáze).
-
-Pro uživatele mají tu nevýhodu, že se musí instalovat na zařízení (s~tím souvisí i o~něco složitější způsob distribuce). V~případě, že je možné zveřejnit aplikaci v~obchodech (Google Play, AppStore), musí projít schvalovacím procesem, což může trvat několik dní a nemusí být vždy úspěšné, pro Google Play např. v~případě, že aplikace obsahuje nevhodný obsah, narušuje ničí autorská práva nebo třeba nevhodným způsobem zpracovává osobní údaje svých uživatelů. Rovněž je třeba uvádět, jaká oprávnění aplikace pro přístup ke mobilním API (SMS, kontakty, poloha, soubory) požaduje. \cite{google2021policy}.
-
-Při výběru konkrétního způsobu implementace mobilní aplikace pak rozhodování sestává z několika kroků:
-
-\subsubsection{Platforma}
-Na trhu s~mobilními zařízeními jsou dvě dominantní platformy, a to Android (podíl na trhu celosvětově 72~\%) a iOS (podíl na trhu 27,5~\%) \cite{statcounter2021mobile}. Aplikace lze připravovat přímo pro danou platformu, případně multiplatformně.
-
-\paragraph{Vývoj pro jednu platformu}
-TODO
-
-
-\paragraph{Multiplatformní vývoj}
-Multiplatformní aplikace mají sdílený kód pro všechny platformy, jádro aplikace tedy není třeba duplikovat. Určitým problémem ovšem je nemožnost použití některých knihoven specifických pro platformu.
-
-\todo{Tohle dopsat + WebView jako další možnost?}
-
-
-\subsubsection{Programovací jazyk}
-Pro nativní vývoj na platformu Android lze vybrat nejméně ze tří možností, a to C/C++, Javy a Kotlinu. Toto rozhodování může probíhat spíše pouze v teoretické rovině, neboť oficiální podporu ze strany Googlu má nejmodernější jazyk Kotlin.
-
-Mezi hlavní výhody Kotlinu oproti jiným variantám patří null-safety (tedy bezpečné volání na objektech, které mohou nabývat hodnotu \texttt{null}), coroutines (odlehčená verze vláken pro asynchronní operace) nebo Kotlin Extensions (knihovny funkcí usnadňující vývoj).
-
-
-\subsection{Shrnutí}
-
-Jako nejvhodnější by se v~případě produkčního nasazení této aplikace jevilo zkombinovat oba přístupy, tedy mít uživatelské rozhraní jak ve formě webové aplikaci, tak mít i podpůrnou mobilní aplikaci. Tento přístup byl také zvolen v případě většiny podobných řešení (viz podkapitolu \ref{sec:existing}). Zde byla implementována pouze jedna část, a to mobilní aplikace, neboť důraz byl kladen především na pohodlí zaměstnanců, kteří chtějí mít svůj rozvrh po ruce co nejrychleji. Pokud by naopak bylo prioritou vytvořit rozhraní přívětivé pro zobrazení přehledu o celkovém rozvrhu všech zaměstnanců, které vyžaduje větší rozlišení obrazovky, dávalo by větší smysl implementovat nejprve webové rozhraní.
-
-
-\section{Backendová technologie}
-
-\subsection{Webový framework}
-
-Webové frameworky, tj. knihovny zdrojových kódů připravené pro tvorbu webů (především jejich serverové strany), se standardně používají pro zjednodušení vývoje a nasazení aplikací. Ať už jsou napsány v~libovolném programovacím jazyce (může jít např.~o~PHP, Java, Ruby nebo Python), standardními součástmi jsou dle \cite{docforge2014web} perzistence dat, autentizace uživatelů, správa session, zabezpečení nebo šablony. Společnou mají rovněž podporu pro  architekturu MVC\footnote{Model-View-Controller}.
-
-Z~množství variant, které se nabízejí, byl zvolen framework Ruby on Rails (v~jazyce Ruby), a to především z~důvodu jeho zásad Don't Repeat Yourself (kód by měl být znovupoužitelný, bez zbytečného opakování) a Convention Over Configuration (webová aplikace je nakonfigurována dle konvencí, a vývojář tak nemusí trávit čas psaním konfiguračních souborů) \cite{rails2020}, které slibují výrazné usnadnění vývoje.
-
-% \subsubsection{Model-View-Controller}
-
-% \paragraph{Model (model)}
-%
-% Model je část aplikace, která reprezentuje business data aplikace a jejich logiku, v~sobě zahrnuje jak perzistentní data, tak operace s~nimi. V Rails jsou modely implementovány jako ActiveRecord, který zde slouží jako ORM\footnote{Object-Relation Mapper} framework, stará se o~validace objektů před jejich uložením do databáze, mapuje asociace mezi objekty a~zprostředkovává databázové operace (není tak třeba psát žádné SQL dotazy -- o vytvoření databáze a~operace s~ní se starají Rails samy).
-%
-% \subsection{View (pohled)}
-%
-% Pohled je zodpovědný za vykreslování uživatelského rozhraní, především za generování HTML kódu stránky (základem jsou šablony, do nichž se doplňují konkrétní data z~modelů).
-%
-% \subsection{Controller (řadič)}
-%
-% Controller je část aplikace, která je zodpovědná za zpracování požadavků -- když přijde na controller požadavek, naleznou se odpovídající data v modelu a view je zobrazí.
-
-
-% \subsubsection{Ruby On Rails}
-
-
-
-\subsection{Aplikační rozhraní}
-
-Pro komunikaci s~dalšími aplikacemi (zde především pro komunikaci klienta se serverem) musí aplikace veřejně poskytnout své aplikační rozhraní, přičemž za tímto účelem existuje několik variant, které jsou vhodné pro různé případy (např.~REST, SOAP, GraphQL, gRPC). Tyto způsoby implementace se mohou od sebe odlišovat formátem přenosu (binární, textový) nebo protokolem (HTTP i~jiné).
-
-Pro účely tohoto projektu se jako optimální varianta jeví použití REST API, a to vzhledem k~velmi dobré podpoře ze strany webového frameworku bez nutnosti rozšiřování o~další knihovny (konkrétně Ruby on Rails podporují vytváření cest na základě konvencí – pokud tak controller definuje metodu \texttt{update}, automaticky se vytvoří endpoint \texttt{PUT/PATCH /resources/:id}, případně lze cesty definovat v~souboru \texttt{config/routes.rb} a provolat tak libovolnou akci v~libovolném controlleru).
-
-V některých případech by bylo vhodnější použít pro komunikaci jiný prostředek (především v~případě volání výpočtů na serveru), např.~RPC (gRPC, XML-RPC, JSON-RPC či jinou konkrétní implementaci), neboť zde nedochází k~přenosu zdrojů (způsob využití REST API, který vyplývá z~definice), ale pouze k~výpočtům na vzdáleném serveru. Toto by ale vytvořilo problémy při nasazení aplikace na PaaS službách (např. Heroku), proto bylo zvoleno řešení, které sice není z~hlediska architektury tou nejlepší volbou, ale je jednodušší na použití.
-
-\subsection{Databáze}
-
 
 
 % \chapter{Backend}
