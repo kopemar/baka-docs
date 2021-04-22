@@ -307,6 +307,30 @@ Podle §~76 zákoníku práce není na základě dohody o pracovní činnosti mo
 
 \chapter{Analýza systému}
 
+Cílem této práce je navrhnout mobilní aplikaci pro plánování lidských zdrojů, obzvláště rozvrhování směn. Bude se tak jednat o aplikaci, která bude sloužit pro zjednodušení interních procesů v~rámci nějaké firmy, půjde o~minimalistický informační systém pro zaměstnance a zaměstnavatele. Pro účely identifikace požadavků bude v~této kapitole vytvořen předpoklad o~cílové skupině organizací, které by mohly tento software nasadit, jaká je jejich současná situace a co by jim mělo toto softwarové řešení poskytnout. Rovněž budou z~uživatelského pohledu popsána již existující řešení, která jsou pro řešení daných problémů určena.
+
+\section{Cílová skupina}
+Pro účely stanovení požadavků byl vytvořen předpoklad o~cílové skupině pro tento systém: menší firma, případně malý tým v~rámci větší firmy o~10 až 20 zaměstnancích podnikající v~nekritickém vícesměnném provozu (tzn.~např.~jedna pobočka řetězce rychlého občerstvení, restaurace nebo obchod), jež zaměstnává jak pracovníky na plný úvazek, tak brigádníky na DPP/DPČ. Z~těchto důvodů řeší problém, jak rozvrhovat směny a stávající způsob je z~pohledu vedení firmy i samotných zaměstnanců neefektivní například z následujících důvodů:
+\begin{itemize}
+	\item brigádníci si musí směny domlouvat osobně,
+	\item rozvrh je pověšen pouze na nástěnce,
+	\item vedoucí pracovník sestavuje rozvrh manuálně,
+	\item nedodržuje se pracovní doba,
+	\item rozvrh je sestaven dle osobních preferencí vedoucího.
+\end{itemize}
+
+
+\section{Požadavky z~pohledu organizace}
+
+Následující požadavky definují, jaké základní funkce by měl tento systém mít, a to především z~pohledu organizace, která by jej využívala (jedná se zde tedy spíše o~požadavky s~vysokou mírou abstrakce). Vychází se z~představy popsané výše, tedy že tento software je určen pro nasazení ve firmě, která momentálně není z~blíže neurčených důvodů schopna efektivně připravovat rozvrhy směn a chtěla by ušetřit čas a zdroje, které k~sestavení rozvrhu vynakládá.
+
+\begin{enumerate}[label=\textbf{F\arabic*.}]
+	\item Systém umožní distribuci rozvrhů směn k~zaměstnancům.
+	\item Systém umožní zápis zaměstnance na~DPP/DPČ na směnu.
+	\item Systém vytvoří rozvrh směn na základě požadavků organizace.
+	\item Systém bude automatizovat dohled nad dodržováním legislativy.
+\end{enumerate}
+
 \section{Analýza existujících řešení}
 \label{sec:existing}
 Následující podkapitola bude věnována popisu již existujících nástrojů pro plánování lidských zdrojů. Jedná se o komerční software, který byl otestován v~demoverzi, vzhledem k~tématu této práce byly hlavními sledovanými aspekty mobilní aplikace pro zaměstnance a~způsob rozvrhování směn.
@@ -330,63 +354,93 @@ Aplikace When I Work\footnote{\url{https://wheniwork.com}} má opět webové i m
 
 \subsection{Shrnutí}
 Všechny aplikace, které byly vyzkoušeny, jsou si v~principu jsou podobné a nabízejí podobné základní prvky (mobilní a webové rozhraní; uživatelské role; komplexní správa mezd, docházky, rozvrhů) svým uživatelům. Společné mají i to, že žádná z~aplikací neimplementuje ani částečný offline režim, což může být pro uživatele v~některých situacích nepříjemné. Liší se však způsobem, jakým rozvrhují směny -- největší automatizaci zde poskytuje aplikace When I Work. Dalším rozdílem je uživatelská přívětivost, její hodnocení by však bylo spíše subjektivní.
-\newpage
-\section{Funkční požadavky}\label{sec:frq}
-Funkční požadavky definují, jaké funkce by měl software mít (a to především z~hlediska koncového uživatele).
 
-\begin{enumerate}[label=\textbf{F\arabic*.}]
-	\item Nepřihlášený uživatel se přihlásí uživatelským jménem a heslem.
-	\item Přihlášený uživatel se ze systému odhlásí.
-	\item Přihlášený uživatel si zobrazí svůj profil.
-	\item Uživatel si zobrazí nápovědu
-	\item Zaměstnanec zobrazí rozvrh svých směn.
-	\item Zaměstnanec zobrazí detail směny.
-	\item Zaměstnanec na dohodu zobrazí seznam volných směn.
-	\item Zaměstnanec na dohodu se zapíše na volnou směnu.
-	\item Zaměstnanec zobrazí historii odpracovaných směn.
-	\item Zaměstnanec zobrazí přehled svých smluv.
-	\item Zaměstnanec zobrazí počet odpracovaných hodin u svých dohod.
-	\item Zaměstnanec na dohodu může filtrovat volné směny dle typu.
-	% \item Zaměstnanec exportuje svůj rozvrh do kalendářové aplikace.
-	\item Vedoucí zobrazí komplexní rozvrh směn.
-	\item Vedoucí vytvoří šablonu směny a stanoví poptávku na tuto směnu.
-	\item Vedoucí přiřadí zaměstnance ke směně.
-	\item Vedoucí zruší zápis zaměstnance na směnu.
-	\item Vedoucí spustí automatické rozvržení směn.
-	\item V~dostatečném předstihu před začátkem pracovního týdne se spustí automatické rozvržení směn.
+% 	\item Nepřihlášený uživatel se přihlásí uživatelským jménem a heslem.
+% 	\item Přihlášený uživatel se ze systému odhlásí.
+% 	\item Přihlášený uživatel si zobrazí svůj profil.
+% %	\item Uživatel si zobrazí nápovědu
+% 	\item Zaměstnanec zobrazí rozvrh svých směn.
+% 	\item Zaměstnanec zobrazí detail směny.
+% 	\item Zaměstnanec na dohodu zobrazí seznam volných směn.
+% 	\item Zaměstnanec na dohodu se zapíše na volnou směnu.
+% 	\item Zaměstnanec zobrazí historii odpracovaných směn.
+% 	\item Zaměstnanec zobrazí přehled svých smluv.
+% 	\item Zaměstnanec zobrazí počet odpracovaných hodin u svých dohod.
+% 	\item Zaměstnanec na dohodu může filtrovat volné směny dle typu.
+% 	% \item Zaměstnanec exportuje svůj rozvrh do kalendářové aplikace.
+% 	\item Vedoucí zobrazí komplexní rozvrh směn.
+% 	\item Vedoucí vytvoří šablonu směny a stanoví poptávku na tuto směnu.
+% 	\item Vedoucí přiřadí zaměstnance ke směně.
+% 	\item Vedoucí zruší zápis zaměstnance na směnu.
+% 	\item Vedoucí spustí automatické rozvržení směn.
+% 	\item V~dostatečném předstihu před začátkem pracovního týdne se spustí automatické rozvržení směn.
+
+
+% \subsection{Požadavky na splnění legislativy}
+% Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~podkapitoly~\ref{section:legislativa} stanoveny následující funkční požadavky:
+
+% \begin{enumerate}[label=\textbf{L\arabic*.}]
+% 	\item Systém umožní uživatelům náhled jejich do rozvrhu nejméně s~dvou\-tý\-den\-ním předstihem.
+% 	\item Systém umožní naplánovat nezletilým zaměstnancům v~jednom dni maximálně 8hodinové směny, že jejich týdenní pracovní doba nepřekročí 40~hodin.
+% 	\item Systém umožní zaměstnancům na dohodu o~provedení práce odpracovat nejvýše 300~hodin v~kalendářním roce.
+% 	\item Systém umožní zaměstnancům na dohodu o~pracovní činnosti odpracovat nejvýše 20~hodin týdně v~průměru kalendářního roku.
+% \end{enumerate}
+
+% \section{Požadavky na kvalitu software}
+% Požadavky na kvalitu software (angl. non-functional requirements) definují atributy systému, jako jsou bezpečnost, spolehlivost nebo udržitelnost.
+%
+% \begin{enumerate}[label=\textbf{N\arabic*.}]
+% 	\item Backend aplikace bude implementován ve webovém frameworku Ruby on Rails.
+% 	\item Backend aplikace bude přistupovat k~databázi Postgres.
+% 	\item Android aplikace bude s~backendem komunikovat přes REST API.
+% 	\item Autentizace uživatelů vůči backendu bude realizována s~pomocí přís\-tu\-po\-vé\-ho tokenu.
+% 	\item Android aplikace bude implementována v~jazyce Kotlin.
+% 	\item Design aplikace bude navrhnut dle pravidel Material Designu.
+% 	\item Android aplikace bude mít anglickou a českou lokalizaci.
+% 	\item Android aplikace bude mít tmavý a světlý mód.
+% 	\item Android aplikace bude přijímat notifikace ze serveru.
+% \end{enumerate}
+
+\section{Požadavky na systém}
+Na základě výše uvedených požadavků organizace a~otestování podobných aplikací byly stanoveny konkrétnější požadavky na funkce nového systému. Tyto požadavky byly rozděleny do několika kategorií podle cílového uživatele. Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován, proto jsou zde rovněž uvedeny požadavky vyplývající z~analýzy legislativy (viz podkapitolu \ref{section:legislativa}).
+
+\subsection{Uživatelé}
+\begin{enumerate}[label=\textbf{U\arabic*.}]
+		\item Systém bude personalizovaný podle potřeb daného uživatele.
 \end{enumerate}
 
-\subsection{Požadavky na splnění legislativy}
-Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů, především těch, které uvádějí konkrétní kvantitativní údaje, automatizován. Proto také byly na základě legislativních podmínek z~podkapitoly~\ref{section:legislativa} stanoveny následující funkční požadavky:
+\subsection{Zaměstnanci}
+\begin{enumerate}[label=\textbf{Z\arabic*.}]
+		\item Systém umožní zaměstnancům náhled do jejich rozvrhu.
+		\item Systém umožní zaměstnancům na DPP/DPČ zápis na směnu.
+\end{enumerate}
 
+\subsection{Organizace}
+\begin{enumerate}[label=\textbf{O\arabic*.}]
+	\item Systém umožní registraci nových organizací.
+	\item Systém umožní přidávání nových zaměstnanců.
+	\item Systém umožní automatické přiřazení směn.
+	\item Systém umožní plánování směn na následující týdny.
+	\item Systém umožní náhled na rozvrh zaměstnanců.
+\end{itemize}
+
+\subsection{Legislativa}
 \begin{enumerate}[label=\textbf{L\arabic*.}]
-	\item Systém umožní uživatelům náhled jejich do rozvrhu nejméně s~dvou\-tý\-den\-ním předstihem.
-	\item Systém umožní naplánovat nezletilým zaměstnancům v~jednom dni maximálně 8hodinové směny, že jejich týdenní pracovní doba nepřekročí 40~hodin.
-	\item Systém umožní zaměstnancům na dohodu o~provedení práce odpracovat nejvýše 300~hodin v~kalendářním roce.
-	\item Systém umožní zaměstnancům na dohodu o~pracovní činnosti odpracovat nejvýše 20~hodin týdně v~průměru kalendářního roku.
+		\item Systém umožní zaměstnancům náhled do rozvrhu nejméně s~dvou\-tý\-den\-ním předstihem.
+		\item Systém umožní naplánovat nezletilým zaměstnancům v~jednom dni maximálně 8hodinové směny tak, že jejich týdenní pracovní doba nepřekročí 40~hodin.
+		\item Systém umožní zaměstnancům na dohodu o~provedení práce odpracovat nejvýše 300~hodin v~kalendářním roce.
+		\item Systém umožní zaměstnancům na dohodu o~pracovní činnosti odpracovat nejvýše 20~hodin týdně v~průměru kalendářního roku.
+		\item Systém rozvrhne směny s~ohledem na 40hodinovou týdenní pracovní dobu a úvazky jednotlivých zaměstnanců.
 \end{enumerate}
 
-\section{Požadavky na kvalitu software}
-Požadavky na kvalitu software (angl. non-functional requirements) definují atributy systému, jako jsou bezpečnost, spolehlivost nebo udržitelnost.
 
-\begin{enumerate}[label=\textbf{N\arabic*.}]
-	\item Backend aplikace bude implementován ve webovém frameworku Ruby on Rails.
-	\item Backend aplikace bude přistupovat k~databázi Postgres.
-	\item Android aplikace bude s~backendem komunikovat přes REST API.
-	\item Autentizace uživatelů vůči backendu bude realizována s~pomocí přís\-tu\-po\-vé\-ho tokenu.
-	\item Android aplikace bude implementována v~jazyce Kotlin.
-	\item Design aplikace bude navrhnut dle pravidel Material Designu.
-	\item Android aplikace bude mít anglickou a českou lokalizaci.
-	\item Android aplikace bude mít tmavý a světlý mód.
-	\item Android aplikace bude přijímat notifikace ze serveru.
-\end{enumerate}
 \newpage
 \section{Aktéři, uživatelské role}
 Jedním z~hlavních cílů celého systému na plánování směn je informovat individuálně zaměstnance o jejich vlastních směnách, proto se jeví být vhodnou jeho personalizace, a to na základě uživatelských účtů. Vstupní operací bude přihlášení -- z~toho vyplývá nezbytnost existence role přihlášeného a nepřihlášeného uživatele.
 
-Pro roli přihlášeného uživatele byla identifikována nutnost dalšího rozšíření, konkrétně na zaměstnance a roli, kterou má v~rámci tohoto systému za\-měst\-na\-va\-tel či jím pověřená osoba (dále jen vedoucí), jež má zodpovědnost za rozvrhování pracovní doby, která by měla mít komplexní přehled o rozpisu i možnost do něj zasáhnout.
+Pro roli přihlášeného uživatele byla identifikována nutnost dalšího rozšíření, konkrétně na zaměstnance a roli, kterou má v~rámci tohoto systému za\-měst\-na\-va\-tel či jím pověřená osoba (vedoucí), jež má zodpovědnost za rozvrhování pracovní doby, která by měla mít komplexní přehled o rozpisu i možnost do něj zasáhnout.
 
-Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, a to především na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti), pro vizualizaci viz obr.~\ref{fig:userroles}. Důvodem pro toto rozšíření je, že někteří aktéři budou moci provádět specifické operace a systém s~nimi bude interagovat odlišně. Specifickým aktérem zde ovšem není zaměstnanec plný nebo zkrácený úvazek, neboť v obou případech platí stejné podmínky, liší se jen týdenní pracovní doba, stejně tak nezáleží na tom, zda je zaměstnanec nezletilý.
+Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, a to především na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti), pro vizualizaci viz obr.~\ref{fig:userroles}. Důvodem pro toto rozšíření je, že někteří aktéři budou moci provádět specifické operace a systém s~nimi bude interagovat odlišně. Rozhodujícím faktorem ovšem není zda má zaměstnanec plný nebo zkrácený úvazek, neboť v obou případech platí stejné podmínky, liší se jen týdenní pracovní doba, stejně tak nezáleží na tom, zda je zaměstnanec nezletilý.
 
 \begin{figure}[h]
 	\input{img/actors.pdf_tex}
@@ -411,24 +465,37 @@ Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, a to před
 % \end{enumerate}
 
 \newpage
-\section{Analýza případů užití}\label{uc-analysis}
-V~této části budou rozebrány případy užití systému, tedy kroky interakce uživatele a systému, které byly vytvořeny na základě funkčních požadavků F1.--F10. (viz podkapitolu \ref{sec:frq}). Základní případy užití aplikace pro zaměstnance byly rozděleny do dvou modulů -- modul uživatelských účtů (obr.~\ref{fig:uc-account}), který zahrnuje základní operace pro přihlášení a odhlášení; a modul směn (obr.~\ref{fig:uc-employee}), který zahrnuje operace, které může dělat obecně jakýkoli zaměstnanec (vždy se jedná o~čtení) a operace, které může dělat dohodář -- v~tom jsou zahrnuty (C)RUD operace s~volnými a zapsanými směnami.
+\section{Uživatelské příběhy}\label{uc-analysis}
 
-Každý z~případů užití má standardně definovaný svůj scénář, často doplněný i~tzv. wireframes, náčrty uživatelského rozhraní. Wi\-re\-fra\-mes se rozdělují dle úrovně detailu (nízká -- ideálně rychlý náčrt na papír; střední -- nejčastěji náčrty v~odstínech šedi, už obsahují větší detail toho, jaké UI kom\-po\-nen\-ty budou použity; vysoká -- jak konkrétně bude uživatelské rozhraní vypadat). Tyto návrhy jsou i součástí příloh této práce.
-\todo{Dodat tu přílohu}
+Pro analýzu systému z~pohledu uživatele a jeho interakce se systémem byl zvolen neformální způsob inspirovaný uživatelskými příběhy (user stories), pro popis se využívá běžný jazyk a jednotlivé příběhy mají podobu připomínající poznámky na samolepicím papíru. Přehled uživatelských příběhu ve zjednodušené podobě je na obr.~\ref{fig:user-stories}, podrobnější podoba je součástí přílohy. Interakci uživatele a systému se rovněž věnuje příloha \ref{sec:ui}, která obsahuje náčrty uživatelského rozhraní a jejich popis. \todo{Příloha}
+% V~této části budou rozebrány případy užití systému, tedy možnosti interakce uživatele a systému, které byly vytvořeny na základě funkčních požadavků. (viz podkapitolu \ref{sec:frq}). Základní případy užití aplikace byly rozděleny do několika modulů -- modul uživatelských účtů (obr.~\ref{fig:uc-account}), který zahrnuje základní operace pro přihlášení a odhlášení; a modul směn (obr.~\ref{fig:uc-employee}), který zahrnuje operace, které může dělat obecně jakýkoli zaměstnanec (vždy se jedná o~čtení) a operace, které může dělat dohodář -- v~tom jsou zahrnuty především CRUD operace s~volnými a zapsanými směnami.
+%
+% Pro jednotlivé případy užití byly připraveny náčrty uživatelského rozhraní ve střední úrovni detailu, tyto návrhy jsou součástí přílohy \ref{sec:ui}.
+
+% Konkrétní scénáře jednotlivých případů užití jsou neformálně popsány v~příloze \ref{sec:ui}.
+
+% Každý z~případů užití má definovaný svůj scénář (posloupnost kroků), často doplněný i o~tzv. wireframes, náčrty uživatelského rozhraní.
+
+% Wi\-re\-fra\-mes se rozdělují dle úrovně detailu (nízká -- ideálně rychlý náčrt na papír; střední -- nejčastěji náčrty v~odstínech šedi, už obsahují větší detail toho, jaké UI kom\-po\-nen\-ty budou použity; vysoká -- jak konkrétně bude uživatelské rozhraní vypadat). Tyto návrhy jsou součástí přílohy \ref{sec:ui}.
 
 \begin{figure}[h!]
-\input{img/accounts-module.pdf_tex}
-
-	\caption{Případy užití pro správu uživatelských účtů}
-	\label{fig:uc-account}
+	\includegraphics[scale=0.8]{user-stories.pdf}
+	\caption{Zjednodušený storyboard}
+	\label{fig:user-stories}
 \end{figure}
 
-\begin{figure}[p!]
-		\input{img/uc-dohoda.pdf_tex}
-		\caption{Případy užití pro dohodáře}
-		\label{fig:uc-employee}
-\end{figure}
+% \begin{figure}[h!]
+% \input{img/accounts-module.pdf_tex}
+%
+% 	\caption{Případy užití pro správu uživatelských účtů}
+% 	\label{fig:uc-account}
+% \end{figure}
+%
+% \begin{figure}[p!]
+% 		\input{img/uc-dohoda.pdf_tex}
+% 		\caption{Případy užití pro dohodáře}
+% 		\label{fig:uc-employee}
+% \end{figure}
 
 
 \newpage
@@ -2109,8 +2176,14 @@ Design aplikace vznikl v souladu se základními pravidly Material Designu. Jako
 
 
 
-\section{Internetové odkazy}
-\subsection{Návrh uživatelského rozhraní}
+\chapter{Internetové odkazy}
+\section{Návrh uživatelského rozhraní}\label{sec:ui}
+
+Wireframes, mapa obrazovek v mobilní aplikaci
+\begin{itemize}
+	\item \url{https://github.com/kopemar/baka-docs/blob/main/design/lfp.pdf}
+\end{itemize}
+
 
 
 % Zde je seznam ikonek, které byly použity v~aplikaci včetně jejich zdroje (fas značí knihovnu Font Awesome 5\footnote{\url{https://fontawesome.com/}}; mdi Material Design Icon\footnote{\url{https://material.io/resources/icons/}})
