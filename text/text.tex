@@ -41,8 +41,6 @@
 \newacronym{crud}{CRUD}{Create, Read, Update, Delete}
 \newacronym{html}{HTML}{Hypertext Markup Language}
 \newacronym{xml}{XML}{Extensible Markup Language}
-\newacronym{bco}{BCO}{Bee Colony Optimization}
-\newacronym{abc}{ABC}{Artificial Bee Colony}
 \newacronym{sql}{SQL}{Structured Query Language}
 \newacronym{orm}{ORM}{Object Relation Mapping}
 \newacronym{id}{ID}{Identifikátor}
@@ -72,7 +70,7 @@
 	otherlanguages = {slovak, english},
 	title-czech = {Mobilní aplikace pro plánování lidských zdrojů},
 	title-english = {Mobile App for Human Resource Planning},
-	doctype = S,
+	doctype = B,
 	faculty = F3,
 	department-czech = {Katedra počítačů},
 	department-english = {Department of Computer Science},
@@ -84,7 +82,7 @@
 	keywords-czech = {slovo, klíč},
 	keywords-english = {word, key},
 	day = 4,
-	month = 1,
+	month = 5,
 	year = 2021,
 	pkg-listings = true,
 }
@@ -135,7 +133,7 @@
 }
 
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
+    backgroundcolor=\color{white},
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
@@ -145,7 +143,6 @@
     breaklines=true,
     captionpos=b,
     keepspaces=true,
-    numbers=left,
     numbersep=5pt,
     showspaces=false,
     showstringspaces=false,
@@ -218,20 +215,37 @@ V Praze, \ctufield{day}.~\monthinlanguage{title}~\ctufield{year}
 \begin{document}
 
 
-%\maketitle
+\maketitle
 
 %
 \chapter*{Úvod}
 
-V~dnešní době neustále stoupá podíl uživatelů, kteří na některé běžné činnosti na síti (vyhledávání informací, chatování, internetové bankovnictví, čtení a psaní e-mailů,~\ldots) nezapínají počítač, a namísto toho používají svůj chytrý telefon. Téměř vše, co aktuálně potřebují, tak mají rychle dostupné na zařízení, které mají neustále s~sebou.
+Řízení lidských zdrojů je jednou z~kritických součástí každé organizace~–~úspěch může stát a~padat~na tom, že má organizace správné lidi na správném místě a ve správném čase. Tato práce si klade za cíl navrhnout uživatelsky přívětivou aplikaci, která by usnadnila jednu část tohoto rozsáhlého procesu~–~konkrétně rozvrhování směn mezi zaměstnance.
 
-Vzhledem k~rozvoji mobilní platformy a trendu růstu její oblíbenosti tedy neexistuje důvod, proč by uživatelé (v~tomto případě tedy zaměstnanci, kteří mají nepravidelný pracovní rozvrh -- ať už se jedná o~pracovníky v~restauracích, obchodech, továrnách nebo např.~o~zdravotníky) nemohli mít na svém zařízení snadno dostupný i~rozpis svých směn, namísto toho, aby ho hledali na nástěnce, v~tabulkovém editoru nebo kdekoli jinde.
+Při psaní této práce se vycházelo ze~zjednodušené představy menší firmy, jejíž interní procesy pro rozvrhování práce jsou nevhodně nastaveny, například v~tom smyslu, že zaměstnavatel rozvrh sestavuje pravidelně jednou týdně a jeho nástroji jsou papír a tužka, a která by je chtěla vylepšit nasazením software, aby ušetřila čas a zdroje a navíc i~rozvrhla směny lépe. Cílem je navrhnout řešení ve formě mobilní aplikace, kterou by měli jak zaměstnanci, tak vedoucí neustále po ruce.
 
-Při psaní této práce se vycházelo ze~zjednodušené představy menší firmy, jejíž interní procesy pro rozvrhování práce jsou nevhodně nastaveny, a to například v~tom smyslu, že zaměstnavatel rozvrh sestavuje pravidelně jednou týdně, přičemž jeho nástroji jsou papír a tužka, a která by je chtěla zlepšit softwarovým řešením, aby ušetřila čas a zdroje a navíc i~rozvrhla směny lépe.
+Předkládanou práci lze rozdělit na dvě části – první se věnuje spíše obecnému popisu problematiky, případně jejímu řešení, druhá samotné aplikaci a způsobu, jakým bude implementována.
 
-Právě proto je cílem této práce analyzovat, navrhnout a im\-ple\-men\-to\-vat uživatelsky přívětivý způsob, jakým by šlo aktuální rozvrh směn dostat do chytrých telefonů, a usnadnit (a snad i zpříjemnit) tak život nejen zaměstnancům, ale i~vedoucím pracovníkům.
+První kapitola bude věnována problematice plánování lidských zdrojů, konkrétně definici základní terminologie a tomu, jaká kritéria jsou při plánování důležitá, a dále platné legislativě v~této oblasti.
 
-V~následující práci bude blíže analyzována problematika plánování pracovních sil z~hlediska manažerského a z~hlediska platné legislativy (druhá kapitola), bude blíže popsána cílová skupina společností a týmů, která se pro účely použití software představeného v~této práci předpokládá a na základě toho budou stanoveny základni požadavky a uživatelské příběhy (třetí kapitola).
+Ve druhé kapitole bude prostor věnován problému rozvrhování směn~a~možnostem automatizace této činnosti, budou představeny některé (především) teoretické metody, jak vytvářet kvalitní rozvrhy směn na základě sady kritérií.
+
+Třetí kapitola se bude týkat analýzy systému z~pohledu organizacem nejprve bude vytvořena hypotéza ohledně aktuálního a cílového budoucího stavu, poté budou představena některá již existující softwarová řešení, která by problém, kterému daná firma čelí, mohla pomoci řešit. Na základě toho budou sestaveny požadavky na nový systém, který by konkrétní potřeby uspokojil lépe, definováni budou uživatelé (aktéři) a jejich interakce se systémem (uživatelské příběhy).
+
+Čtvrtá kapitola bude věnována výběru technologií pro vývoj aplikace a přiblížení různých variant, které by připadaly v~úvahu.
+
+
+% V~dnešní době neustále stoupá podíl uživatelů, kteří na některé běžné činnosti na síti (vyhledávání informací, chatování, internetové bankovnictví, čtení a psaní e-mailů,~\ldots) nezapínají počítač, a namísto toho používají svůj chytrý telefon. Téměř vše, co aktuálně potřebují, tak mají rychle dostupné na zařízení, které mají neustále s~sebou.
+%
+% Vzhledem k~rozvoji mobilní platformy a trendu růstu její oblíbenosti tedy neexistuje důvod, proč by uživatelé (v~tomto případě tedy zaměstnanci, kteří mají nepravidelný pracovní rozvrh -- ať už se jedná o~pracovníky v~restauracích, obchodech, továrnách nebo např.~o~zdravotníky) nemohli mít na svém zařízení snadno dostupný i~rozpis svých směn, namísto toho, aby ho hledali na nástěnce, v~tabulkovém editoru nebo kdekoli jinde.
+%
+%
+%
+% Právě proto je cílem této práce analyzovat, navrhnout a im\-ple\-men\-to\-vat uživatelsky přívětivý způsob, jakým by šlo aktuální rozvrh směn dostat do chytrých telefonů, a usnadnit (a snad i zpříjemnit) tak život nejen zaměstnancům, ale i~vedoucím pracovníkům.
+%
+% V~první, teoretičtější, části práce bude blíže popsána problematika plánování pracovních sil z~hlediska manažerského a z~hlediska platné legislativy (první kapitola), bude blíže popsána cílová skupina společností a týmů, která se pro účely použití software představeného v~této práci předpokládá, bude představen software s~obdobnou funkcionalitou, a na základě toho budou stanoveny základni požadavky a uživatelské příběhy (druhá kapitola). Prostor bude věnován i výběru technologií pro implementaci (třetí kapitola). Budou popsány teoretické předpoklady automatizovaného rozvrhování~–~rozhodující faktory, podmínky a rovněž některé optimalizační metody, které lze používat (čtvrtá kapitola).
+%
+% Ve druhé, praktičtější části, bude představen návrh vlastní metody pro rozvrhování směn (pátá kapitola), bude blíže popsána samotná aplikace (šestá kapitola).
 
 % TODO
 
@@ -241,9 +255,9 @@ V~následující práci bude blíže analyzována problematika plánování prac
 
 \section{Definice a terminologie}
 
-Řízení lidských zdrojů je definováno jako komplexní přístup k~zaměstnávání a rozvoji osob. Pojem v~sobě obecně zahrnuje všechny aspekty toho, jak jsou osoby zaměstnány a řízeny v~rámci organizace. \cite[s.~1]{armstrong2014}
+Řízení lidských zdrojů je definováno jako komplexní přístup k~zaměstnávání a rozvoji osob. Pojem v~sobě obecně zahrnuje všechny aspekty toho, jak jsou osoby zaměstnány a řízeny v~rámci organizace \cite[s.~1]{armstrong2014}~--~může se jednat jak o plánování pracovních sil a nábor nových zaměstnanců, tak i o odměňování, školení nebo interní komunikaci mezi zaměstnanci. \cite[s.~37]{armstrong2014}
 
-Dalším termínem užívaným v~literatuře je pracovní síla a její plánování, jedná se o základní proces řízení lidských zdrojů, jehož cílem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal společnosti dosáhnout jejích cílů. Mezi kroky tohoto procesu dle \cite{cipd2020workforce} patří:
+Z~hlediska této práce jsou důležité především pracovní síly a jejich plánování, tedy základní proces řízení lidských zdrojů, jehož smyslem je zajistit, aby správný počet lidí se správnými schopnostmi, na správném místě, ve správném čase, za správnou cenu a~ve správném pracovněprávním poměru pomáhal společnosti dosáhnout jejích cílů. Mezi kroky tohoto procesu dle \cite{cipd2020workforce} patří:
 \begin{itemize}
 	\item analýza aktuální personální situace;
 	\item stanovení budoucích potřeb;
@@ -253,18 +267,17 @@ Dalším termínem užívaným v~literatuře je pracovní síla a její plánov�
 \end{itemize}
 % \todo{Kde si v~tom stojí rozvrhování?}
 
-\section{Rozhodující faktory při plánování}
+\section{Rozhodující kritéria při plánování}
 % PESTLE analyza
 
 \subsection{Pracovní síly}
-V~rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~podkapitole \ref{section:legislativa}. Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi.
-% Dalším hlediskem, které je vhodné brát v~úvahu, je i spokojenost zaměstnanců, jejich časové možnosti a preference.
+V~rámci organizace mohou existovat rozdíly mezi jednotlivými pracovníky. Jen část zaměstnanců tak bude pracovat na plný úvazek, jiní mohou pracovat méně hodin, například pouze v nejvytíženějších dnech \cite{lin2015}. V případě těchto zaměstnanců, kteří pracují méně hodin (a ne vždy pravidelně), je třeba zohlednit různé typy pracovněprávních vztahů, čemuž bude věnován prostor dále v~podkapitole \ref{section:legislativa}. Individualitu zaměstnanců je třeba zohlednit i z~důvodu rozdílů mezi jejich schopnostmi, případně i~z~důvodu odlišných preferencí.
 
 \subsection{Směny}
 \label{sub:smeny}
 Jednotlivé organizace se od sebe mohou lišit způsobem, jakým vypisují směny. Existují tak podniky, kde je rozvrh práce pravidelný a stejný pro všechny zaměstnance, ale i ty, kde je provoz dvou- nebo i třísměnný, rozvrh směn je sestavován cyklicky a začátek směn daného zaměstnance se v~jed\-not\-li\-vý\-ch dnech liší (existují ranní nebo noční směny).
 
-Mezi organizace s~cyklicky sestavovaným rozvhem se nejčastěji řadí provozy, které fungují v~režimu 24/7 (nemocnice, vězení, policie) nebo také restaurace a pobočky řetězců rychlého občerstvení \cite{bechtold1981work}.
+Mezi organizace s~cyklicky sestavovaným rozvhem se nejčastěji řadí provozy, které fungují v~režimu 24/7 (nemocnice, vězení, policejní služebny) nebo také obchody, restaurace a pobočky řetězců rychlého občerstvení \cite{bechtold1981work}.
 
 Nepravidelný rozvrh směn může mít pro zaměstnance nežádoucí zdravotní účinky, např.~\cite{flo2013shift} uvádí, že zaměstnanci ve vícesměnném provozu trpí nespavostí více než zbytek populace, a to především v~případě, že je mezi směnami kratší než 11hodinová přestávka.
 
@@ -275,17 +288,17 @@ Zaměstnanci musí plnit úkoly podle toho, jaké události nastanou. Tyto udál
 Příkladem může být prodejce hraček, který na základě historických dat ví, že nejvíce zákazníků přichází před Vánoci a předpokládá, že tomu tak bude i v~následujícím roce. Na tuto událost bude reagovat tím, že se rozhodne rozšířit otevírací dobu. Tím celkově zvýší poptávku po personálu v~daném období.
 
 \subsection{Cena}
-Dalším důležitým faktorem při plánování pracovních sil je celková cena lidské práce a otázka její optimalizace při naplnění poptávky.
+Dalším důležitým kritériem při plánování pracovních sil je celková cena lidské práce a otázka její minimalizace při naplnění poptávky.
 
 
 \section{Legislativní podmínky}
 \label{section:legislativa}
-Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákoník práce, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy \cite{zakonik06-262}.
+Hlavním právním předpisem, který se upravuje problematiku pracovních sil, je v~českém prostředí zákon č.~262/2006 Sb., zákoník práce, který upravuje vztahy vznikající při výkonu závislé práce mezi zaměstnanci a~zaměstnavateli, tedy pracovněprávní vztahy \cite{zakonik06-262}.
 
 Zaměstnavatel je dle §~38 zákoníku práce povinen přidělovat zaměstnanci práci podle pracovní smlouvy. Zaměstnanec je pak povinen podle pokynů zaměstnavatele konat osobně práci v~rozvržené týdenní pracovní době.
 
 \subsection{Pracovní doba}
-Pracovní dobou se rozumí doba, v~níž je zaměstnanec povinen vykonávat práci pro zaměstnavatele nebo je k tomu na pracovišti připraven. Doba odpočinku není součástí pracovní doby. (§ 78 zákoníku práce)
+Pracovní dobou se rozumí doba, v~níž je zaměstnanec povinen vykonávat práci pro zaměstnavatele nebo je k tomu na pracovišti připraven. Doba odpočinku není součástí pracovní doby (§~78).
 
 Stanovená týdenní pracovní doba činí mimo výjimky 40~hodin (§~79). Pracovní dobu rozvrhuje zaměstnavatel, který určuje začátek a konec směn, a to zpravidla do pětidenního pracovního týdne (§ 81). Délka směny nesmí přesáhnout 12~hodin. U nezletilých zaměstnanců pak nesmí délka směny v~jednotlivém dni překročit 8~hodin a v~jednom týdnu 40~hodin. Mezi zaměstnancem a~zaměstnavatelem může být sjednána kratší pracovní doba (§~80).
 
@@ -293,255 +306,17 @@ Stanovená týdenní pracovní doba činí mimo výjimky 40~hodin (§~79). Praco
 Zaměstnavatel je dle §~84 zákoníku práce povinen vypracovat rozvrh týdenní pracovní doby a seznámit s~ním nebo jeho změnou zaměstnance nejpozději 2~týdny předem (mimo výjimky stanovené zákonem nebo v~případě existence jiné dohody mezi zaměstnancem a zaměstnavatelem). Tento rozvrh musí být v~písemné formě. Pracovní dobu je podle §~90 třeba rozvrhovat s ohledem na nepřetržitý odpočinek mezi koncem jedné směny a začátkem následující (pro zletilé zaměstnance alespoň 11 hodin, pro nezletilé zaměstnance alespoň 12 hodin, v~zákonem stanovených výjimkách lze za určitých podmínek odpočinek zkrátit).
 
 \subsection{Směna, směnný provoz}
-Směnou se dle §~78, písm. c) zákoníku práce rozumí část týdenní pracovní doby bez práce přesčas, kterou je zaměstnanec povinen na základě předem stanoveného rozvrhu pracovních směn odpracovat.
+Směnou se dle §~78 písm. c) zákoníku práce rozumí část týdenní pracovní doby bez práce přesčas, kterou je zaměstnanec povinen na základě předem stanoveného rozvrhu pracovních směn odpracovat.
 
 \subsection{Pracovní poměr}
-Pracovní poměr mezi zaměstnancem a zaměstnavatelem se podle §~33, odst.~1 zákoníku práce zakládá pracovní smlouvou. Zaměstnavatel má zajišťovat plnění svých úkolů především zaměstnanci v pracovním poměru (§~74, odst.~1).
+Pracovní poměr mezi zaměstnancem a zaměstnavatelem se podle §~33 odst.~1 zákoníku práce zakládá pracovní smlouvou, není-li v~tomto zákoně stanoveno jinak. Zaměstnavatel má zajišťovat plnění svých úkolů především zaměstnanci v pracovním poměru (§~74 odst.~1).
 
 \subsection{Dohody o pracích konaných mimo pracovní poměr}
-Mezi zaměstnancem a zaměstnavatelem mohou být uzavřeny dohody o pracích konaných mimo pracovní poměr (dohoda o provedení práce, dohoda o pracovní činnosti), §~77 zákoníku práce stanovuje, že na práci konanou na základě dohod se vztahuje úprava pro výkon práce v~pracovním poměru, mimo výjimky uvedené v odst.~2 tohoto paragrafu (např.~pracovní dobu a~dobu odpočinku nebo dovolenou). Podle §~74 přitom zaměstavatel není zaměstnancům na dohody povinen rozvrhnout pracovní dobu.
+Mimo závislou práci na~základě pracovní smlouvy mohou být mezi zaměstnancem a zaměstnavatelem uzavřeny dohody o~pracích konaných mimo pracovní poměr (dohoda o~provedení práce, dohoda o~pracovní činnosti), §~77 zákoníku práce stanoví, že na práci konanou na základě dohod se vztahuje úprava pro výkon práce v~pracovním poměru, nestanoví-li zákon jinak (dle odst. 2 tohoto paragrafu jde např.~o~pracovní dobu a~dobu odpočinku nebo dovolenou). Podle §~74 přitom zaměstavatel není zaměstnancům na dohody povinen rozvrhnout pracovní dobu.
 
 Dohoda o provedení práce se dle §~75 uzavírá nejvýše na 300~hodin v~kalendářním roce, doba se u jednoho zaměstnavatele sčítá v~případě, že je dohod uzavřeno více.
 
 Práci na základě dohody o pracovní činnosti není možné vykonávat v~rozsahu překračujícím v~průměru polovinu stanovené týdenní pracovní doby za celou dobu, po niž je uzavřena, nejdéle však za 52 týdnů. Musí být sjednán rozsah pracovní doby a doba, na niž se sjednává (§~76).
-
-\chapter{Business analýza}
-
-%Cílem této práce je navrhnout mobilní aplikaci pro plánování lidských zdrojů, obzvláště rozvrhování směn. Bude se tak jednat o aplikaci, která bude sloužit pro zjednodušení interních procesů v~rámci nějaké firmy, půjde o~minimalistický informační systém pro zaměstnance a zaměstnavatele. Pro účely identifikace požadavků bude v~této kapitole vytvořen předpoklad o~cílové skupině organizací, které by mohly tento software nasadit, jaká je jejich současná situace a co by jim mělo toto softwarové řešení poskytnout. Rovněž budou z~uživatelského pohledu popsána již existující softwarová řešení, která jsou pro dané situace určena.
-
-\section{Cílová skupina}
-Aby bylo možné stanovit požadavky na aplikaci, byl vytvořen předpoklad o~cílové skupině pro tento systém. Jedná se o~menší firmu (případně malý tým v~rámci větší firmy) o~10 až 20 zaměstnancích, která podniká v~nekritickém vícesměnném provozu (např.~jedna pobočka řetězce rychlého občerstvení, restaurace nebo obchod). Firma zaměstnává jak pracovníky s~pracovní smlouvou, tak brigádníky na DPP/DPČ. Vzhledem k~tomu řeší problém, jak rozvrhovat směny, stávající způsob je z~pohledu vedení firmy i samotných zaměstnanců neefektivní například z následujících důvodů:
-\begin{itemize}
-	\item brigádníci si musí směny domlouvat osobně,
-	\item rozvrh je pověšen pouze na nástěnce,
-	\item rozvrh se sestavuje manuálně,
-	\item nedodržuje se týdenní pracovní doba,
-	\item rozvrh je sestaven dle osobních preferencí vedoucího.
-\end{itemize}
-
-
-\section{Požadavky z~pohledu organizace}
-
-Následující požadavky definují, jaké základní funkce by měl tento systém mít, a to především z~pohledu organizace, která by jej využívala (jedná se o~požadavky s~vysokou mírou abstrakce). Vychází se z~představy popsané výše, tedy že tento software je určen pro nasazení ve firmě, která momentálně není schopna efektivně připravovat rozvrhy směn a chtěla by ušetřit čas a zdroje, které na sestavení rozvrhu vynakládá.
-
-\begin{enumerate}[label=\textbf{B\arabic*.}]
-	\item Systém umožní distribuci rozvrhů směn k~zaměstnancům.
-	\item Systém umožní zápis zaměstnance na~DPP/DPČ na směnu.
-	\item Systém vytvoří rozvrh směn na základě požadavků organizace.
-	\item Systém bude automatizovat dohled nad dodržováním legislativy.
-\end{enumerate}
-
-\section{Doménový model}
-
-V diagramu \ref{fig:domainmodel} je zadefinován předpokládaný doménový model firem cílové skupiny, jde o~znázornění skutečnosti, že ve firmě pracují zaměstnanci, kteří mají smlouvy a kterým jsou do jejich rozvrhu přiřazeny směny.
-
-\begin{figure}[h]
-	\includegraphics[scale=0.7]{img/domain-model.pdf}
-	\caption{Doménový model}
-	\label{fig:domainmodel}
-\end{figure}
-
-\section{Analýza existujících řešení}
-\label{sec:existing}
-Tato podkapitola bude věnována popisu již existujících nástrojů pro plánování lidských zdrojů. Jedná se o komerční software, který byl otestován v~demoverzi, vzhledem k~tématu této práce byly hlavními sledovanými aspekty mobilní aplikace pro zaměstnance a~způsob rozvrhování směn.
-
-Byly vybrány informační systémy pro plánování lidských zdrojů, které alespoň částečně odpovídají uvedeným požadavkům z~pohledu organizací.
-
-\subsection{Tamigo}
-Aplikace Tamigo\footnote{\url{https://www.tamigo.cz/}} je komplexní aplikace pro plánování lidských zdrojů, je určena pro použití v~pohostinství, maloobchodě, zdravotnictví aj. \cite{tamigo2020reseni}
-
-Aplikace je organizacím nabízena v~několika variantách, které jsou zpop\-lat\-ně\-ny podle množství podporovaných funkcí (jedná se např. o~rozpisy směn všech zaměstnanců, výkazy práce, správu absencí, správu mezd smluv zaměstnanců, evidenci příchodů a odchodů) a počtu zapojených zaměstnanců. Mezi součásti tohoto produktu patří webové rozhraní i mobilní aplikace (přestože jde o nativní aplikaci, v~testované verzi funguje pouze v~případě, že je uživatel online, jinak padá). Uživatelské role jsou v~tomto systému Administrátor, Manažer a Zaměstnanec.
-
-Systém umožňuje manažerům vytvářet rozvrh, částečně je tento proces manuální, částečně lze rozvrh vygenerovat na základě šablon, které si uživatel předem připraví (např. obvyklá pracovní doba pro jednotlivé zaměstnance).
-
-Za\-měst\-na\-nec si může aktualizovat osobní data, zobrazit osobní rozvrh směn, žádat o dovolenou a sledovat stav jejího čerpání, zobrazit výkaz práce pro výplatní období, aj.
-
-\subsection{Tanda}
-Na podobném principu jako aplikace Tamigo pracuje i~aplikace Tanda\footnote{\url{https://www.tanda.co/}}. Automatické rozvrhování funguje na principu šablon -- rozvrh se tedy vytvoří jednou a následně se opětovně používá \cite{tanda2020rosters}.
-
-I tento systém má jak webové, tak mobilní rozhraní, obojí pro zaměstnance i vedoucí. Mobilní rozhraní opět nepodporuje ani čtení dat v~případě, že je uživatel offline.
-
-\subsection{When I Work}
-Aplikace When I Work\footnote{\url{https://wheniwork.com}} má opět webové i mobilní rozhraní. Rozvrhování zde opět funguje manuálně nebo na základě šablon, aplikace v~placené Pro verzi \cite{wheinwork2020pricing} však podporuje i automatické přiřazení volných směn k~vhodným zaměstnancům (v~potaz při rozvrhování bere pracovní pozici, již existující směny, požadavky na volno a další filtry). \cite{wheinwork2020employee} Mobilní aplikace umožňuje zaměstnancům zadat, jakou pracovní dobu preferují nebo kdy jsou naopak nedostupní. Ani tato aplikace nefunguje v~offline režimu.
-
-\subsection{Shrnutí}
-Vyzkoušené informační systémy se v~principu příliš neliší a nabízejí podobné základní prvky (mobilní a webové rozhraní; uživatelské role; komplexní správa mezd, docházky, rozvrhů). Společné mají i to, že žádná z~aplikací neimplementuje ani částečný offline režim, což může být pro uživatele v~některých situacích nepříjemné. Liší se však způsobem, jakým rozvrhují směny -- největší automatizaci zde poskytuje aplikace When I Work. Dalším rozdílem je uživatelská přívětivost, její hodnocení by však bylo spíše subjektivní.
-
-Alternativou systémů, které přímo odpovídají požadavkům, mohou být komplexnější ERP systémy a jejich modul pro plánování lidských zdrojů.
-
-\section{Požadavky na systém}
-Na základě požadavků ze strany organizace a~po otestování podobných aplikací byly stanoveny požadavky na funkce nového systému, které byly rozděleny do několika kategorií podle cílového uživatele. Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů (především těch, které uvádějí kvantitativní údaje), automatizován, proto jsou rovněž uvedeny požadavky vyplývající z~analýzy legislativy (viz podkapitolu \ref{section:legislativa}).
-
-\subsection{Uživatelé}
-\begin{enumerate}[label=\textbf{U\arabic*.}]
-		\item Systém bude personalizovaný podle potřeb daného uživatele.
-\end{enumerate}
-
-\subsection{Zaměstnanci}
-\begin{enumerate}[label=\textbf{Z\arabic*.}]
-		\item Systém umožní zaměstnancům náhled do jejich rozvrhu.
-		\item Systém umožní zaměstnancům na DPP/DPČ zápis na směnu.
-\end{enumerate}
-
-\subsection{Organizace}
-\begin{enumerate}[label=\textbf{O\arabic*.}]
-	\item Systém umožní registraci nových organizací.
-	\item Systém umožní přidávání nových zaměstnanců.
-	\item Systém umožní automatické přiřazení směn.
-	\item Systém umožní plánování směn na následující týdny.
-	\item Systém umožní náhled na rozvrh zaměstnanců.
-\end{enumerate}
-
-\subsection{Legislativa}
-\begin{enumerate}[label=\textbf{L\arabic*.}]
-		\item Systém umožní náhled do osobního rozvrhu nejméně 2 týdny předem.
-		\item Systém umožní zaměstnancům na dohodu o~provedení práce odpracovat nejvýše 300~hodin v~kalendářním roce.
-		\item Systém umožní zaměstnancům na dohodu o~pracovní činnosti odpracovat nejvýše 20~hodin týdně v~průměru 52 týdnů.
-		\item Systém rozvrhne směny s~ohledem na 40hodinovou týdenní pracovní dobu a úvazky jednotlivých zaměstnanců.
-\end{enumerate}
-
-\section{Aktéři, uživatelské role}
-Jedním z~hlavních cílů systému na plánování směn je informovat každého zaměstnance o jeho směnách, proto se jeví vhodnou personalizace, které se docílí s~pomocí uživatelských účtů. Vstupní operací bude přihlášení -- z~toho vyplývá nezbytnost existence role přihlášeného a nepřihlášeného uživatele.
-
-Pro roli přihlášeného uživatele je nutné další rozšíření, konkrétně na zaměstnance a roli, kterou má v~rámci tohoto systému za\-měst\-na\-va\-tel či jím pověřená osoba (vedoucí), která má zodpovědnost za rozvrhování pracovní doby a která by měla mít komplexní přehled o rozpisu i možnost do něj zasáhnout.
-
-Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, především na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti), viz obr.~\ref{fig:userroles}. Důvodem je, že aktéři budou moci provádět specifické operace a systém s~nimi bude interagovat odlišně. Rozhodujícím faktorem není to, zda má zaměstnanec plný nebo zkrácený úvazek, v obou případech platí stejné podmínky a liší se jen týdenní pracovní doba, stejně tak nezáleží na tom, zda je zaměstnanec nezletilý.
-
-\begin{figure}[h]
-	\input{img/actors.pdf_tex}
-	\caption{Diagram aktérů}
-	\label{fig:userroles}
-\end{figure}
-
-\newpage
-\section{Uživatelské příběhy}\label{uc-analysis}
-
-Pro analýzu systému z~pohledu uživatelské interakce byl zvolen neformální způsob inspirovaný uživatelskými příběhy (user stories), hlavní výhodou je využití běžného jazyka. Přehled uživatelských příběhu ve zjednodušené podobě je na obr.~\ref{fig:user-stories}, jejich podrobnější mapa je součástí přílohy \ref{sec:user-story}. Interakci uživatele a systému se rovněž věnuje příloha \ref{sec:ui}, která obsahuje náčrty uživatelského rozhraní a jejich popis.
-
-\begin{figure}[h!]
-	\includegraphics[scale=0.7]{user-stories.pdf}
-	\caption{Zjednodušený storyboard}
-	\label{fig:user-stories}
-\end{figure}
-
-\newpage
-
-\chapter{Výběr technologií}
-%Při výběru technologií pro tento projekt hrály kromě samotných požadavků na tuto aplikaci roli i zkušenosti a preference autorky, konkrétní výběr byl tedy zkreslen i subjektivním hlediskem.
-
-\section{Technologie pro uživatelské rozhraní}
-
-V~případě, že by byla aplikace určena k~nasazení v~produkčním prostředí, připadaly by v~úvahu nejméně dva přístupy -- mobilní nebo webová aplikace.
-
-\begin{figure}[h!]
-	\includegraphics[scale=0.7]{img/app-decision-tree.pdf}
-	\caption{Rozhodovací strom pro vývoj na mobilní zařízení}
-	\label{appdecisiontree}
-\end{figure}
-
-\subsection{Webová aplikace}
-Pro použití webové aplikace hovoří fakt, že je není třeba žádným způsobem instalovat a stačí prosté zadání adresy do internetového prohlížeče, z~podstaty věci je multiplatformní, lze ji zobrazit jak na počítači, tak na mobilním zařízení (jedná-li se o responzivní aplikaci, může být i její použití na mobilním zařízení uživatelsky přívětivé). Nevýhodami jsou omezené možnosti při implementace offline režimu, i to, že z hlediska rychlosti se nativním mobilním aplikacím nevyrovnají. \cite{stevens2018what}
-
-\subsection{Mobilní aplikace}
-
-Vyplývá-li podpora mobilní platformy z~požadavků, ilustruje další rozhodování o~způsobu implementace strom na obrázku \ref{appdecisiontree} (vychází z~\cite{matyunina2020native}), především ale záleží na prioritách toho, kdo danou aplikaci chce uvádět na trh.
-
-Oproti responzivnímu webu mají nativní aplikace výhodu, že mohou jednoduše přistupovat k API, které poskytuje zařízení, na kterém jsou nainstalované, tedy mohou snadno získat přístup k fotoaparátu či poloze zařízení. Dále lze na zařízení jednoduše přijímat notifikace, i když je aplikace na pozadí. Nativní aplikace mohou být vhodné i pro použití v offline režimu, aplikace může mít lokální databázi.
-
-Nevýhodou pro uživatele je, že se musí instalovat na zařízení. S~tím souvisí i o~něco složitější způsob distribuce -- v~případě, že je možné zveřejnit aplikaci v~obchodech (Google Play, AppStore), musí projít schvalovacím procesem, což může trvat několik dní a nemusí být vždy úspěšné, pro Google Play např. v~případě, že aplikace obsahuje nevhodný obsah, narušuje něčí autorská práva nebo nevhodným způsobem zpracovává osobní údaje uživatelů. Je třeba uvádět, jaká oprávnění aplikace pro přístup ke mobilním API (SMS, kontakty, poloha, soubory, aj.) požaduje. \cite{google2021policy}.
-
-Při výběru konkrétního způsobu implementace mobilní aplikace pak existuje několik dalších rozhodovacích situací, především~výběr podporované platformy (iOS, Android).
-
-\subsubsection{Platforma}
-Na trhu s~chytrými mobilními zařízeními jsou dvě dominantní platformy, Android (podíl na trhu celosvětově 72~\%) a iOS (podíl na trhu 27,5~\%) \cite{statcounter2021mobile}. Nevýhodou rozšířenějšího Androidu oproti iOS je fragmentace, tzn. existence velké řady různých zařízení, která je třeba podporovat. Pro účely této práce bude podporována pouze platforma Android.
-
-
-\subsubsection{Způsob vývoje}
-
-Je-li nezbytné podporovat více platforem, je možné vyvinout aplikaci multiplatformně, hybridně, případně vyvinout aplikaci pro každou platformu zvlášť.
-
-\paragraph{Multiplatformní vývoj}
-Multiplatformní vývoj umožňuje nasazení jedné aplikace na více platformách, kód pro všechny platformy je sdílený, jádro aplikace tedy není třeba duplikovat, což je jejich nespornou výhodou, navíc to může i snížit náklady na vývoj.
-
-Problémem je přístup k~aplikačnímu rozhraní a hardwaru daného zařízení, omezené možnosti při používání knihoven specifických pro platformu nebo složitější vývoj uživatelského rozhraní tak, aby odpovídalo konvencím pro všechny platformy. \cite{manchanda2020where}   Používají se frameworky jako Flutter (jazyk Dart), React Native (JavaScript) nebo Xamarin (C\#).
-
-\paragraph{Vývoj pro danou platformu}
-V~případě vývoje na jednu platformu je možné používat všechny součásti zařízení naplno. Co se přístupu k hardwaru, výkonu a uživatelské přívětivosti týče, mají nativní aplikace nad multiplatformními jasnou převahu, jejich vývoj je však dražší. \cite{dennis2018native}
-
-\paragraph{Hybridní vývoj}
-Hybridní aplikace jsou kombinací webu a nativní mobilní aplikace – použijí se standardní technologie pro vývoj webu (HTML + CSS + JavaScript), toto se obalí do nativní aplikace, v~níž běží webový prohlížeč. Jejich největší výhodou je cena, rychlost vývoje a jednodušší správa. Stinnou stránkou tohoto přístupu je menší uživatelská přívětivost, omezený přístup k~API zařízení nebo nižší výkon v~porovnání s~plně nativní aplikací. \cite{design2020ultimate}
-
-
-\subsubsection{Programovací jazyk}
-Pro nativní vývoj na platformu Android lze vybrat nejméně ze tří možností, a to C/C++, Javy a Kotlinu. Toto rozhodování může v~této době u~nových projektů probíhat spíše pouze v teoretické rovině, neboť oficiální podporu ze strany Googlu má nejmodernější jazyk Kotlin.
-
-Mezi hlavní výhody Kotlinu oproti jiným variantám patří null-safety (bezpečné volání na objektech, které mohou nabývat hodnotu \texttt{null}), coroutines (odlehčená verze vláken pro asynchronní operace) nebo Kotlin Extensions (knihovny nejrůznějších funkcí usnadňující vývoj obecně i specificky pro Android). \cite{android2021kotlin}
-
-Obdobné rozhodování může probíhat i~v~případě platformy iOS, pro kterou se nabízí použití Swiftu nebo starého jazyka Objective-C. Ze strany Applu je doporučena modernější varianta (Swift), protože aplikace jsou rychlejší a vývoj snazší.
-
-\subsubsection{Architektonický vzor}
-Standardním architektonickým vzorem při vývoji Android aplikací je MVVM. \cite{android2020guide}. Aplikace má tři vrstvy, které spolu komunikují způsobem naznačeným na obr.~\ref{fig:mvvm}. Hlavním cílem je oddělit prezentační vrstvu od business logiky.  \cite{shekhar2020mvvm}
-
-\begin{figure}[h!]
-	\includegraphics[scale=0.7]{img/mvvm-architecture.pdf}
-	\caption{Komunikace mezi vrstvami v~MVVM}
-	\label{fig:mvvm}
-\end{figure}
-
-MVVM vychází ze staršího architektonického vzoru MVP\footnote{Model-View-Presenter}, Presenter je podobný jako ViewModel, hlavním rozdílem je, že Presenter si drží referenci na View (relace mezi View a Presenterem je 1:1) a řídí, kdy se má View aktualizovat, kdežto ViewModel neví, jaký View ho pozoruje a relace mezi View a ViewModelem je 1:$n$. \cite{vogel2017android} Nadstavbou nad MVVM je tzv.~Clean Architecture, která zaručuje ještě větší oddělení prezentační vrstvy a business logiky (Android aplikace se rozděluje do více modulů, nejčastěji nazvaných Presentation, Domain a Data). \cite{jain2019kotlin}
-
-% \begin{figure}[h!]
-% 	\includegraphics[scale=0.7]{img/clean-architecture.pdf}
-% 	\caption{Clean Architecture}
-% 	\label{fig:clean-architecture}
-% \end{figure}
-
-Vzhledem k~předpokládané velikosti projektu byl zvolen doporučený architektonický vzor MVVM.
-
-\subsection{Shrnutí}
-
-Jako nejvhodnější by se v~případě produkčního nasazení této aplikace jevilo zkombinovat oba přístupy, tedy mít uživatelské rozhraní jak ve formě webové aplikaci, tak mít i podpůrnou mobilní aplikaci. Tento přístup byl také zvolen v případě většiny podobných řešení (viz podkapitolu \ref{sec:existing}). Zde byla implementována pouze jedna část, a to mobilní aplikace, neboť důraz byl kladen především na pohodlí zaměstnanců, kteří chtějí mít svůj rozvrh po ruce co nejrychleji. Pokud by naopak bylo prioritou vytvořit rozhraní přívětivé pro zobrazení přehledu o celkovém rozvrhu všech zaměstnanců, které vyžaduje větší rozlišení obrazovky, dávalo by větší smysl implementovat nejprve webové rozhraní.
-
-Mobilní aplikace bude vyvinuta jako nativní Android aplikace, tento výběr je zkreslen zkušenostmi autorky, v~produkčním prostředí by bylo žádoucí uživatele iOS nediskriminovat a aplikaci jim také nabídnout, z~tohoto důvodu by bylo vhodné zvážit použití nějakého multiplatformního frameworku, rozhodující by byly plány na budoucí vývoj, případně i~finance. Pro vývoj se použije programovací jazyk Kotlin, protože se jedná o moderní programovací jazyk, který je pro vývoj na danou platformu nejvhodnější. Aplikace bude navržena dle zásad architektonického vzoru Model-View-ViewModel.
-
-
-\section{Backendová technologie}
-
-\subsection{Webový framework}
-
-Webové frameworky, tj. knihovny zdrojových kódů připravené pro tvorbu webů (především jejich serverové strany), se standardně používají pro zjednodušení vývoje a nasazení aplikací. Ať už jsou napsány v~libovolném programovacím jazyce (může jít např.~o~PHP, Javu, Ruby nebo Python), standardními součástmi jsou perzistence dat, autentizace uživatelů, správa session nebo šablony pro uživatelské rozhraní. Společnou mají také podporu pro architektonický vzor MVC. \cite{docforge2014web}
-
-Z~množství variant, které se nabízejí, byl zvolen framework Ruby on Rails (v~jazyce Ruby), a to především z~důvodu jeho filosofie Don't Repeat Yourself (kód by měl být znovupoužitelný, bez zbytečného opakování) a Convention Over Configuration (webová aplikace je nakonfigurována dle konvencí, a vývojář tak nemusí trávit čas psaním konfiguračních souborů) \cite{rails2020}, která slibuje výrazné usnadnění vývoje.
-
-\subsection{Aplikační rozhraní}
-
-Pro komunikaci s~dalšími aplikacemi (zde především pro komunikaci klienta se serverem) musí aplikace vnějšku poskytnout své aplikační rozhraní. Za tímto účelem existuje několik možností, které jsou vhodné pro různé případy (např.~REST, SOAP, GraphQL, gRPC). Tyto způsoby implementace se mohou od sebe odlišovat formátem přenosu (binární, textový) nebo protokolem (HTTP i~jiné).
-
-Pro účely tohoto projektu se jako optimální varianta jeví použití REST API, a to vzhledem k~velmi dobré podpoře ze strany webového frameworku bez nutnosti rozšiřování o~další knihovny (konkrétně Ruby on Rails podporují vytváření cest na základě konvencí – pokud tak controller definuje metodu \texttt{update}, automaticky se vytvoří endpoint \texttt{PUT/PATCH /resources/:id}, případně lze cesty definovat v~souboru \texttt{config/routes.rb} a provolat tak libovolnou akci v~libovolném controlleru).
-
-V některých případech by bylo vhodnější použít pro komunikaci jiný prostředek (především v~případě volání výpočtů na serveru), např.~RPC (gRPC, XML-RPC, JSON-RPC či jinou konkrétní implementaci), neboť zde nedochází k~přenosu zdrojů (hlavní způsob využití REST API, který vyplývá z~definice), ale pouze k~výpočtům na vzdáleném serveru (provolávání akcí). \cite{sturgeon2016understanding} Toto by ale vytvořilo problémy při nasazení aplikace na PaaS službách (např. Heroku) \cite{lisitsky2018does}, proto bylo zvoleno řešení, které sice není z~hlediska architektury tou nejlepší volbou, ale je jednodušší na použití.
-
-\subsection{Databáze}
-
-Rozhodování ohledně použité databáze se může týkat způsobu uložení dat (relační nebo NoSQL) a samotného DBMS (systém správy báze dat). Je třeba se rozhodnout, zda v~projektu bude použita relační či NoSQL databáze. Relační databáze přitom jsou vhodné na ukládání dat se statickou strukturou, NoSQL databáze mohou být flexibilnější, co se ukládání dat týče.  \cite{geeks2020difference}
-
-Pro účely tohoto projektu byla zvolena relační databáze, a to z~důvodu předem určené struktury dat a taktéž proto, že jde o technologii, která má dobrou podporu, a to i ze strany webových frameworků. Upřednostněna tedy byla známá technologie. Jako konkrétní DBMS byl zvolen Postgres.
-
-
-\subsection{Shrnutí}
-
-Aplikace bude vyvinuta ve webovém frameworku Ruby on Rails, a to vzhledem k~tomu, že jde o~rozšířený framework, který slibuje jednoduchou konfiguraci. Z~volby frameworku vyplývá použit architektonického vzoru MVC. S~vnějškem bude tato aplikace komunikovat prostřednictvím REST API vzhledem k~jednoduché implementaci a silné podpoře pro jeho využití. Použita bude relační databáze, konkrétně Postgres.
-
-\section{Požadavky na kvalitu software}
-
-Z~rozhodování v~této kapitole vyplynuly následující požadavky na kvalitu software:
-
-\begin{enumerate}[label=\textbf{S\arabic*.}]
-	\item Bude vyvinuta nativní Android aplikace v~jazyce Kotlin.
-	\item Backend bude vyvinut ve webovém frameworku Ruby on Rails.
-	\item Mobilní aplikace bude se serverem komunikovat přes jeho REST API.
-	\item Bude použita databáze Postgres.
-\end{enumerate}
 
 \chapter{Rozvrhování směn}
 \section{Problém rozvrhování směn}
@@ -605,6 +380,16 @@ Podmínky se mohou týkat například sekvence činností (např. po náročné 
 	\label{fig:constraints}
 \end{figure}
 
+\section{Cílová funkce}
+\label{sec:objective}
+Cílová funkce je taková funkce, jejíž hodnotu je cílem optimalizovat (minimalizovat nebo maximalizovat). V~případě rozvrhování směn se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
+
+Například v~případě optimalizace na základě vážených podmínek ji lze formulovat jako rov.~\ref{eq:objective}. Sankce za porušení nemusí být lineární, může jít i~o~konstantu, kvadratickou nebo libovolnou jinou funkci. \cite{kletzander2020solving}
+\coloredeq{eq:objective}{
+	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
+}
+kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
+
 \section{Matematická interpretace řešení}
 Řešení tohoto problému lze interpretovat jako trojrozměrnou binární matici $\boldsymbol{R}$, jejímiž parametry jsou zaměstnanec ($\forall i \in E$), den ($\forall j \in T$) a vypsaná směna ($\forall k \in S$), jednotlivé hodnoty $R_{ijk}$ jsou určeny funkcí \ref{eq:3dmatrix}. \cite{vaclavik2016roster} Takto má smysl řešení interpretovat pouze v~případě, že se obsazují striktně určené sloty pro směny.
 
@@ -624,15 +409,6 @@ Příklad toho, jak lze řešení popsané ve funkci~\ref{eq:3dmatrix} interpret
 	\label{tab:interpretation}
 \end{table}
 
-\section{Cílová funkce}
-\label{sec:objective}
-Cílová nebo také účelová funkce je taková funkce, jejíž hodnotu je cílem optimalizovat (minimalizovat nebo maximalizovat). V~případě rozvrhování směn se může jednat o funkce vyjadřující rovnoměrnost obsazení směn, cenu, porušené zbytné podmínky \cite{blochliger2004modeling} či počet kontaktů mezi zaměstnanci (důležitý např. v~případě epidemie) \cite{zucchi2020personnel}.
-
-Například v~případě optimalizace na základě vážených podmínek ji lze formulovat jako rov.~\ref{eq:objective}. Sankce za porušení nemusí být lineární, může jít i~o~konstantu, kvadratickou nebo libovolnou jinou funkci. \cite{kletzander2020solving}
-\coloredeq{eq:objective}{
-	f(\boldsymbol{x}) = \sum_{s = 1}^n c_s \cdot g_s(\boldsymbol{x}),
-}
-kde $\boldsymbol{x}$ je dané řešení, $n$ je počet zbytných podmínek, $c_s$ je váha~$s$-té~podmínky (také lze tento údaj chápat jako sankci za její porušení) a $g_s(\boldsymbol{x})$ je počet porušení $s$-té~podmínky v~řešení~$\boldsymbol{x}$. \cite{awadallah2015hybrid}
 
 % \section{Rozvrhovací úloha}
 % Organizace má množinu zaměstnanců $M$, z~nichž každý zaměstnanec $m \in M$ má určenou množinu činností $Q_m$, které je kvalifikován vykonávat; podmnožině zaměstnanců $E \subseteq M$, $E = \{ 1, 2,~\ldots, e \}$ v~daném období může být rozvrhnuta směna.
@@ -700,47 +476,17 @@ Pro nalezení optimálního řešení mezi všemi možnostmi existuje celá řad
 
 Celočíselné lineární programování je pro rozvrhování směn vhodné v jed\-no\-du\-chých případech, např.~když jsou pro všechny zaměstnance stanoveny stejné počty po sobě jdoucích pracovních dnů a volna a pro každý den je navíc stanoven minimální počet personálu a cílem je optimalizovat počet zaměstnanců tak, aby byla naplněna poptávka. \cite{satheeshkumar2014linear}
 
-% V~případě týdne, v~němž mají zaměstnanci 5 po sobě jdoucích pracovních dnů a 2 po sobě jdoucí dny volna, je rozdělení ilustrováno na obr. \ref{fig:linear}. Příklad minimální poptávky po personálu je uveden v~tab.~\ref{tab:linear}.
-%
-% \begin{figure}[h]
-% 	\input{img/linear-programming-days.pdf_tex}
-% 	\caption{Rozdělení pěti po sobě následujích dní}
-% 	\label{fig:linear}
-% \end{figure}
-%
-% \begin{table}[h]
-% 	\input{tables/linear-programming-demand.tex}
-% 	\caption{Příklad minimální poptávky po personálu}
-% 	\label{tab:linear}
-% \end{table}
-%
-% Cílem je na základě těchto údajů zjistit, jaký počet zaměstnanců $z$ je třeba povolat, aby $z = \sum_{i=1}^{7} x_i$, kde $x_i$ je počet zaměstnanců, jejichž pracovní týden začíná v $i$-tém dni, bylo co nejmenší.
-%
-% Na základě~tab.~\ref{tab:linear} a~s~pomocí obr.~\ref{fig:linear} lze přitom sestavit několik podmínek (viz rov.~\ref{eq:linear}), s~jejichž pomocí lze $z$ vypočítat, například použitím vhodného software.
-% \begin{center}
-% 	\begin{equation}
-% 		\label{eq:linear}
-% 		\begin{tabular}{rl}
-% 			$\forall x_i: x_i \geq 0;$ & $x_1 + x_4 + x_5 + x_6 + x_7 \geq 200;$ \\
-% 			$x_1 + x_2 + x_5 + x_6 + x_7 \geq 150$; & $x_1 + x_2 + x_3 + x_6 + x_7 \geq 250$;\\
-% 			$x_1 + x_2 + x_3 + x_4 + x_7 \geq 90$; & $x_1 + x_2 + x_3 + x_4 + x_5 \geq 160$; \\
-% 			$x_2 + x_3 + x_4 + x_5 + x_6 \geq 300$; & $x_3 + x_4 + x_5 + x_6 + x_7 \geq 100$.
-% 		\end{tabular}
-% 	\end{equation}
-% \end{center}
-
 \subsection{Omezení deterministických optimalizačních metod}
 Tyto metody obecně můhou přinést optimální výsledky, avšak pro reálné použití je jejich model příliš jednoduchý \cite{burke2004state}, případně špatně škálovatelný.
 
-
 \section{Heuristika}
 
-Většina metod vyskytujících se v~literatuře je rozšířením tzv.~metaheuristik, abstraktních metod pro řešení optimalizačních problémů, upravených na problém rozvrhování směn. Narozdíl od deterministických metod řešení není zaručeno, že bude nalezeno optimální řešení, cílem je získat výstup, který je dost dobrý, a to v~dostatečně krátkém čase (co konkrétně to znamená závisí na požadavcích). Neprobíhá tak vyčerpávající prohledávání všech kombinací. \cite{glover2015metaheuristics}
+Většina stochastických metod vyskytujících se v~literatuře je rozšířením tzv.~metaheuristik, abstraktních metod pro řešení optimalizačních problémů, upravených na problém rozvrhování směn. Narozdíl od deterministických metod řešení není zaručeno, že bude nalezeno optimální řešení, cílem je získat výstup, který je dost dobrý, a to v~dostatečně krátkém čase (co konkrétně to znamená závisí na požadavcích). Neprobíhá tak vyčerpávající prohledávání všech kombinací. \cite{glover2015metaheuristics}
 
 Metody se dají rozdělit do dvou základních skupin -- jedny iterativně rozšiřují částečné řešení, dokud není kompletně dokončeno (lokální vyhledávání), druhé pracují s~platným řešením, které iterativně vylepšují (vylepšovací metaheuristiky). \cite{van2013personnel}
 
 \subsection{Výměna sousedících struktur}
-Za účelem vytvoření nebo vylepšení rozvrhu je možné provádět řadu změn, dle \cite{kletzander2020solving} jde například~o matematické programování
+Za účelem vytvoření nebo vylepšení rozvrhu je možné provádět řadu změn, dle \cite{kletzander2020solving} jde například~o:
 \begin{itemize}
 	\item přidání či odebrání směny,
 	\item výměnu směny za jinou,
@@ -774,12 +520,254 @@ Základem tabu search je existence dvou druhů paměti – krátkodobé (obsahuj
 
 \subsection{Genetický algoritmus}
 
-Genetický algoritmus je metaheuristika inspirovaná genetikou~--~používají se operace nazvané selekce, křížení a mutace. Narozdíl od tabu search se v~genetickém algoritmu prohledává větší množina řešení.
+Genetický algoritmus je metaheuristika inspirovaná genetikou~--~používají se operace nazvané selekce chromozomů, křížení a mutace.
+
+Narozdíl od tabu search se v~genetickém algoritmu prohledává větší množina řešení~–~začíná se s~počáteční populací řešení, v~níž se selektují nejlepší řešení, která se dále mezi sebou kříží~(kombinace náhodných částí), případně nahodile mutují. Algoritmus končí, pokud řešení konverguje~–~už se dlouhou dobu nepodařilo ho vylepšit. \cite{mallawaarachchi2017introduction}
+
+Tento přístup lze aplikovat na rozvrhování směn například tak, že se jako chromozom kóduje kombinace dne, směny a zaměstnance. \cite{maenhout2011evolutionary}
 
 
+\chapter{Analýza systému}
 
+%Cílem této práce je navrhnout mobilní aplikaci pro plánování lidských zdrojů, obzvláště rozvrhování směn. Bude se tak jednat o aplikaci, která bude sloužit pro zjednodušení interních procesů v~rámci nějaké firmy, půjde o~minimalistický informační systém pro zaměstnance a zaměstnavatele. Pro účely identifikace požadavků bude v~této kapitole vytvořen předpoklad o~cílové skupině organizací, které by mohly tento software nasadit, jaká je jejich současná situace a co by jim mělo toto softwarové řešení poskytnout. Rovněž budou z~uživatelského pohledu popsána již existující softwarová řešení, která jsou pro dané situace určena.
+
+\section{Cílová skupina}
+Aby bylo možné stanovit požadavky na aplikaci, byl vytvořen předpoklad o~cílové skupině pro tento systém. Jedná se o~menší firmu (případně malý tým v~rámci větší firmy) o~10 až 20 zaměstnancích, která podniká v~nekritickém vícesměnném provozu (např.~jedna pobočka řetězce rychlého občerstvení, restaurace nebo obchod). Firma zaměstnává jak pracovníky s~pracovní smlouvou, tak brigádníky na DPP/DPČ. Vzhledem k~tomu řeší problém, jak rozvrhovat směny, stávající způsob je z~pohledu vedení firmy i samotných zaměstnanců neefektivní například z následujících důvodů:
+\begin{itemize}
+	\item brigádníci si musí směny domlouvat osobně,
+	\item rozvrh je pověšen pouze na nástěnce,
+	\item rozvrh se sestavuje manuálně,
+	\item nedodržuje se týdenní pracovní doba,
+	\item rozvrh je sestaven dle osobních preferencí vedoucího.
+\end{itemize}
+
+
+\section{Požadavky z~pohledu organizace}
+
+Následující požadavky definují, jaké základní funkce by měl tento systém mít, a to především z~pohledu organizace, která by jej využívala (jedná se o~požadavky s~vysokou mírou abstrakce). Vychází se z~představy popsané výše, tedy že tento software je určen pro nasazení ve firmě, která momentálně není schopna efektivně připravovat rozvrhy směn a chtěla by ušetřit čas a zdroje, které na sestavení rozvrhu vynakládá.
+
+\begin{enumerate}[label=\textbf{B\arabic*.}]
+	\item Systém umožní distribuci rozvrhů směn k~zaměstnancům.
+	\item Systém umožní zápis zaměstnance na~DPP/DPČ na směnu.
+	\item Systém vytvoří rozvrh směn na základě požadavků organizace.
+	\item Systém bude automatizovat dohled nad dodržováním legislativy.
+\end{enumerate}
+
+\section{Doménový model}
+
+V diagramu \ref{fig:domainmodel} je zadefinován předpokládaný doménový model firem cílové skupiny, jde o~znázornění skutečnosti, že ve firmě pracují zaměstnanci, kteří mají smlouvy a kterým jsou do jejich rozvrhu přiřazeny směny.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.7]{img/domain-model.pdf}
+	\caption{Doménový model}
+	\label{fig:domainmodel}
+\end{figure}
+
+\section{Analýza existujících řešení}
+\label{sec:existing}
+Tato podkapitola bude věnována popisu již existujících nástrojů pro plánování lidských zdrojů. Jedná se o komerční software, který byl otestován v~demoverzi, vzhledem k~tématu této práce byly hlavními sledovanými aspekty mobilní aplikace pro zaměstnance a~způsob rozvrhování směn.
+
+Tyto systémy lze zařadit do kategorie tzv.~informačních systémů pro řízení lidských zdrojů, jejichž úkolem je obecně jak automatizovat, tak podporovat strategické rozhodování na základě dat. \cite{kovach2002administrative}
+
+Byly vybrány informační systémy pro plánování lidských zdrojů, které alespoň částečně odpovídají uvedeným požadavkům z~pohledu organizací~–~podporují samoobslužné sestavování rozvrhů a případně i~tvorbu rozvrhů nějakým způsobem automatizují.
+
+\subsection{Tamigo}
+Aplikace Tamigo\footnote{\url{https://www.tamigo.cz/}} je komplexní aplikace pro plánování lidských zdrojů, je určena pro použití v~pohostinství, maloobchodě, zdravotnictví aj. \cite{tamigo2020reseni}
+
+Aplikace je organizacím nabízena v~několika variantách, které jsou zpop\-lat\-ně\-ny podle množství podporovaných funkcí (jedná se např. o~rozpisy směn všech zaměstnanců, výkazy práce, správu absencí, správu mezd smluv zaměstnanců, evidenci příchodů a odchodů) a počtu zapojených zaměstnanců. Mezi součásti tohoto produktu patří webové rozhraní i mobilní aplikace (přestože jde o nativní aplikaci, v~testované verzi funguje pouze v~případě, že je uživatel online, jinak padá). Uživatelské role jsou v~tomto systému Administrátor, Manažer a Zaměstnanec.
+
+Systém umožňuje manažerům vytvářet rozvrh, částečně je tento proces manuální, částečně lze rozvrh vygenerovat na základě šablon, které si uživatel předem připraví (např. obvyklá pracovní doba pro jednotlivé zaměstnance).
+
+Za\-měst\-na\-nec si může aktualizovat osobní data, zobrazit osobní rozvrh směn, žádat o dovolenou a sledovat stav jejího čerpání, zobrazit výkaz práce pro výplatní období, aj.
+
+\subsection{Tanda}
+Na podobném principu jako aplikace Tamigo pracuje i~aplikace Tanda\footnote{\url{https://www.tanda.co/}}. Automatické rozvrhování funguje na principu šablon -- rozvrh se tedy vytvoří jednou a následně se opětovně používá \cite{tanda2020rosters}.
+
+I tento systém má jak webové, tak mobilní rozhraní, obojí pro zaměstnance i vedoucí. Mobilní rozhraní opět nepodporuje ani čtení dat v~případě, že je uživatel offline.
+
+\subsection{When I Work}
+Aplikace When I Work\footnote{\url{https://wheniwork.com}} má opět webové i mobilní rozhraní. Rozvrhování zde opět funguje manuálně nebo na základě šablon, aplikace v~placené Pro verzi \cite{wheinwork2020pricing} však podporuje i automatické přiřazení volných směn k~vhodným zaměstnancům (v~potaz při rozvrhování bere pracovní pozici, již existující směny, požadavky na volno a další filtry). \cite{wheinwork2020employee} Mobilní aplikace umožňuje zaměstnancům zadat, jakou pracovní dobu preferují nebo kdy jsou naopak nedostupní. Ani tato aplikace nefunguje v~offline režimu.
+
+\subsection{Shrnutí}
+Vyzkoušené informační systémy se v~principu příliš neliší a nabízejí podobné základní prvky (mobilní a webové rozhraní; uživatelské role; komplexní správa mezd, docházky, rozvrhů). Společné mají i to, že žádná z~aplikací neimplementuje ani částečný offline režim, což může být pro uživatele v~některých situacích nepříjemné (lze ale předpokládat, že mobilní aplikace nebyla tvůrci považována za prioritní v~porovnání s~webovým rozhraním). Liší se však způsobem, jakým rozvrhují směny -- největší automatizaci zde poskytuje aplikace When I Work. Dalším rozdílem je uživatelská přívětivost, její hodnocení by však bylo spíše subjektivní.
+
+Alternativou systémů, které přímo odpovídají požadavkům, mohou být komplexnější ERP systémy a jejich modul pro plánování lidských zdrojů.
+
+\section{Požadavky na systém}
+Na základě požadavků ze strany organizace a~po otestování podobných aplikací byly stanoveny požadavky na funkce nového systému, které byly rozděleny do několika kategorií podle cílového uživatele. Při implementaci systému na plánování směn je žádoucí, aby byl dohled nad dodržováním pracovněprávních předpisů (především těch, které uvádějí kvantitativní údaje), automatizován, proto jsou rovněž uvedeny požadavky vyplývající z~analýzy legislativy (viz podkapitolu \ref{section:legislativa}).
+
+\subsection{Uživatelé}
+\begin{enumerate}[label=\textbf{U\arabic*.}]
+		\item Systém bude personalizovaný podle potřeb daného uživatele.
+\end{enumerate}
+
+\subsection{Zaměstnanci}
+\begin{enumerate}[label=\textbf{Z\arabic*.}]
+		\item Systém umožní zaměstnancům náhled do jejich rozvrhu.
+		\item Systém umožní zaměstnancům na DPP/DPČ zápis na směnu.
+\end{enumerate}
+
+\subsection{Organizace}
+\begin{enumerate}[label=\textbf{O\arabic*.}]
+	\item Systém umožní registraci nových organizací.
+	\item Systém umožní přidávání nových zaměstnanců.
+	\item Systém umožní automatické přiřazení směn.
+	\item Systém umožní plánování směn na následující týdny.
+	\item Systém umožní náhled na rozvrh zaměstnanců.
+\end{enumerate}
+
+\subsection{Legislativa}
+\begin{enumerate}[label=\textbf{L\arabic*.}]
+		\item Systém umožní náhled do osobního rozvrhu nejméně 2 týdny předem.
+		\item Systém umožní zaměstnancům na dohodu o~provedení práce odpracovat nejvýše 300~hodin v~kalendářním roce.
+		\item Systém umožní zaměstnancům na dohodu o~pracovní činnosti odpracovat nejvýše 20~hodin týdně v~průměru 52 týdnů.
+		\item Systém rozvrhne směny s~ohledem na 40hodinovou týdenní pracovní dobu a úvazky jednotlivých zaměstnanců.
+\end{enumerate}
+
+\section{Aktéři, uživatelské role}
+Jedním z~hlavních cílů systému na plánování směn je informovat každého zaměstnance o jeho směnách, proto se jeví vhodnou personalizace, které se docílí s~pomocí uživatelských účtů. Vstupní operací bude přihlášení -- z~toho vyplývá nezbytnost existence role přihlášeného a nepřihlášeného uživatele.
+
+Pro roli přihlášeného uživatele je nutné další rozšíření, konkrétně na zaměstnance a roli, kterou má v~rámci tohoto systému za\-měst\-na\-va\-tel či jím pověřená osoba (vedoucí), která má zodpovědnost za rozvrhování pracovní doby a která by měla mít komplexní přehled o rozpisu i možnost do něj zasáhnout.
+
+Jednotliví zaměstnanci pak v~systému mohou být různými aktéry, především na základě pracovněprávního vztahu (tj. zaměstnanec v pracovním poměru, zaměstnanec na dohodu o provedení práce a zaměstnanec na dohodu o pracovní činnosti), viz obr.~\ref{fig:userroles}. Důvodem je, že aktéři budou moci provádět specifické operace a systém s~nimi bude interagovat odlišně. Rozhodujícím faktorem není to, zda má zaměstnanec plný nebo zkrácený úvazek, v obou případech platí stejné podmínky a liší se jen týdenní pracovní doba, stejně tak nezáleží na tom, zda je zaměstnanec nezletilý.
+
+\begin{figure}[h]
+	\input{img/actors.pdf_tex}
+	\caption{Diagram aktérů}
+	\label{fig:userroles}
+\end{figure}
+
+\newpage
+\section{Uživatelské příběhy}\label{uc-analysis}
+
+Pro analýzu systému z~pohledu uživatelské interakce byl zvolen neformální způsob inspirovaný uživatelskými příběhy (user stories), hlavní výhodou je využití běžného jazyka. Přehled uživatelských příběhu ve zjednodušené podobě je na obr.~\ref{fig:user-stories}, jejich podrobnější mapa je součástí přílohy \ref{sec:user-story}. Interakci uživatele a systému se rovněž věnuje příloha \ref{sec:ui}, která obsahuje náčrty uživatelského rozhraní a jejich popis.
+
+\begin{figure}[h!]
+	\includegraphics[scale=0.7]{user-stories.pdf}
+	\caption{Zjednodušený storyboard}
+	\label{fig:user-stories}
+\end{figure}
+
+\newpage
 
 \part{Praktická část, implementace}
+
+\chapter{Výběr technologií}
+%Při výběru technologií pro tento projekt hrály kromě samotných požadavků na tuto aplikaci roli i zkušenosti a preference autorky, konkrétní výběr byl tedy zkreslen i subjektivním hlediskem.
+
+\section{Technologie pro uživatelské rozhraní}
+
+V~případě, že by byla aplikace určena k~nasazení v~produkčním prostředí, připadaly by v~úvahu nejméně dva přístupy -- mobilní nebo webová aplikace.
+
+\begin{figure}[h!]
+	\includegraphics[scale=0.7]{img/app-decision-tree.pdf}
+	\caption{Rozhodovací strom pro vývoj na mobilní zařízení}
+	\label{appdecisiontree}
+\end{figure}
+
+\subsection{Webová aplikace}
+Pro použití webové aplikace hovoří fakt, že je není třeba žádným způsobem instalovat a stačí prosté zadání adresy do internetového prohlížeče, z~podstaty věci je multiplatformní, lze ji zobrazit jak na počítači, tak na mobilním zařízení, jedná-li se o responzivní aplikaci, může být i~její použití na mobilním zařízení uživatelsky přívětivé. Nevýhodami jsou omezené možnosti při implementace offline režimu, i to, že z hlediska rychlosti se nativním mobilním aplikacím nevyrovnají. \cite{stevens2018what}
+
+\subsection{Mobilní aplikace}
+
+Vyplývá-li podpora mobilní platformy z~požadavků, ilustruje další rozhodování o~způsobu implementace strom na obrázku \ref{appdecisiontree} (vychází z~\cite{matyunina2020native}), především ale záleží na prioritách toho, kdo danou aplikaci chce uvádět na trh.
+
+Oproti responzivnímu webu mají nativní aplikace výhodu, že mohou jednoduše přistupovat k API, které poskytuje zařízení, na kterém jsou nainstalované, tedy mohou snadno získat přístup k fotoaparátu či poloze zařízení; také lze na zařízení jednoduše přijímat notifikace, i když je aplikace na pozadí. Nativní aplikace mohou být vhodné i pro použití v offline režimu, aplikace může mít lokální databázi.
+
+Nevýhodou pro uživatele je, že se musí instalovat na zařízení. S~tím souvisí i o~něco složitější způsob distribuce -- v~případě, že je možné zveřejnit aplikaci v~obchodech (Google Play, AppStore), musí projít schvalovacím procesem, což může trvat několik dní a nemusí být vždy úspěšné, např. v~případě, že aplikace obsahuje nevhodný obsah, narušuje něčí autorská práva nebo nevhodným způsobem zpracovává osobní údaje uživatelů. Je třeba uvádět, jaká oprávnění pro přístup ke mobilním API (SMS, kontakty, poloha, soubory, aj.) aplikace požaduje. \cite{google2021policy}.
+
+Při výběru konkrétního způsobu implementace mobilní aplikace pak existuje několik dalších rozhodovacích situací, především~výběr podporované platformy.
+
+\subsubsection{Platforma}
+Na trhu s~chytrými mobilními zařízeními jsou dvě dominantní platformy, Android (podíl na trhu celosvětově 72~\%) a iOS (podíl na trhu 27,5~\%) \cite{statcounter2021mobile}. Nevýhodou rozšířenějšího Androidu oproti iOS je fragmentace, tzn. existence velké řady různých zařízení, která je třeba podporovat. Pro účely této práce bude podporována pouze platforma Android.
+
+
+\subsubsection{Způsob vývoje}
+
+Je-li nezbytné podporovat více platforem, je možné vyvinout aplikaci multiplatformně, hybridně, případně pro každou platformu zvlášť.
+
+\paragraph{Multiplatformní vývoj}
+Multiplatformní vývoj umožňuje nasazení jedné aplikace na více platformách, kód pro všechny platformy je sdílený, jádro aplikace tedy není třeba duplikovat, což je jejich nespornou výhodou, navíc to může i snížit náklady na vývoj.
+
+Problémem je přístup k~aplikačnímu rozhraní a hardwaru daného zařízení, omezené možnosti při používání knihoven specifických pro platformu nebo složitější vývoj uživatelského rozhraní tak, aby odpovídalo konvencím pro všechny platformy. \cite{manchanda2020where}   Používají se frameworky jako Flutter (jazyk Dart), React Native (JavaScript) nebo Xamarin (C\#).
+
+\paragraph{Vývoj pro danou platformu}
+V~případě vývoje na jednu platformu je možné používat všechny součásti zařízení naplno. Co se přístupu k hardwaru, výkonu a uživatelské přívětivosti týče, mají nativní aplikace nad multiplatformními jasnou převahu, jejich vývoj je však dražší. \cite{dennis2018native}
+
+\paragraph{Hybridní vývoj}
+Hybridní aplikace jsou kombinací webu a nativní mobilní aplikace – použijí se standardní technologie pro vývoj webu (HTML + CSS + JavaScript), toto se obalí do nativní aplikace, v~níž běží webový prohlížeč. Jejich největší výhodou je cena, rychlost vývoje a jednodušší správa. Stinnou stránkou tohoto přístupu je menší uživatelská přívětivost, omezený přístup k~API zařízení nebo nižší výkon v~porovnání s~plně nativní aplikací. \cite{design2020ultimate}
+
+
+\subsubsection{Programovací jazyk}
+Pro nativní vývoj na platformu Android lze vybrat nejméně ze tří možností, a to C/C++, Javy a Kotlinu. Toto rozhodování může v~této době u~nových projektů probíhat spíše pouze v teoretické rovině, neboť oficiální podporu ze strany Googlu má nejmodernější jazyk Kotlin.
+
+Mezi hlavní výhody Kotlinu oproti jiným variantám patří null-safety (bezpečné volání na objektech, které mohou nabývat hodnotu \texttt{null}), coroutines (odlehčená verze vláken pro asynchronní operace) nebo Kotlin Extensions (knihovny nejrůznějších funkcí usnadňující vývoj obecně i specificky pro Android). \cite{android2021kotlin}
+
+Obdobné rozhodování může probíhat i~v~případě platformy iOS, pro kterou se nabízí použití Swiftu nebo starého jazyka Objective-C. Ze strany Applu je doporučena modernější varianta (Swift), protože aplikace jsou rychlejší a vývoj snazší.
+
+\subsubsection{Architektonický vzor}
+Standardním architektonickým vzorem používaným při vývoji Android aplikací je MVVM. \cite{android2020guide}. Aplikace má tři vrstvy, které spolu komunikují způsobem naznačeným na obr.~\ref{fig:mvvm}. Hlavním cílem je oddělit prezentační vrstvu od business logiky.  \cite{shekhar2020mvvm}
+
+\begin{figure}[h!]
+	\includegraphics[scale=0.7]{img/mvvm-architecture.pdf}
+	\caption{Komunikace mezi vrstvami v~MVVM}
+	\label{fig:mvvm}
+\end{figure}
+
+MVVM vychází ze staršího architektonického vzoru MVP\footnote{Model-View-Presenter}, Presenter je podobný jako ViewModel, hlavním rozdílem je, že Presenter si drží referenci na View (relace mezi View a Presenterem je 1:1) a řídí, kdy se má View aktualizovat, kdežto ViewModel neví, jaký View ho pozoruje a relace mezi View a ViewModelem je 1:$n$. \cite{vogel2017android} Nadstavbou nad MVVM je tzv.~Clean Architecture, která zaručuje ještě větší oddělení prezentační vrstvy a business logiky (Android aplikace se rozděluje do více modulů, nejčastěji nazvaných Presentation, Domain a Data). \cite{jain2019kotlin}
+
+% \begin{figure}[h!]
+% 	\includegraphics[scale=0.7]{img/clean-architecture.pdf}
+% 	\caption{Clean Architecture}
+% 	\label{fig:clean-architecture}
+% \end{figure}
+
+Vzhledem k~předpokládané velikosti projektu byl zvolen doporučený architektonický vzor MVVM.
+
+\subsection{Shrnutí}
+
+Jako nejvhodnější by se v~případě produkčního nasazení této aplikace jevilo zkombinovat oba přístupy, tedy mít uživatelské rozhraní jak ve formě webové aplikaci, tak mít i podpůrnou mobilní aplikaci. Tento přístup byl také zvolen v případě většiny podobných řešení (viz podkapitolu \ref{sec:existing}). Zde byla implementována pouze jedna část, a to mobilní aplikace, neboť důraz byl kladen především na pohodlí zaměstnanců, kteří chtějí mít svůj rozvrh po ruce co nejrychleji. %Pokud by naopak bylo prioritou vytvořit rozhraní přívětivé pro zobrazení přehledu o celkovém rozvrhu všech zaměstnanců, které vyžaduje větší rozlišení obrazovky, dávalo by větší smysl implementovat nejprve webové rozhraní.
+
+Mobilní aplikace bude vyvinuta jako nativní Android aplikace, tento výběr je zkreslen zkušenostmi autorky, v~produkčním prostředí by bylo žádoucí uživatele iOS nediskriminovat a aplikaci jim také nabídnout, z~tohoto důvodu by bylo vhodné zvážit použití nějakého multiplatformního frameworku, rozhodující by byly plány na budoucí vývoj, případně i~finance. Pro vývoj se použije programovací jazyk Kotlin, protože se jedná o moderní programovací jazyk, který je pro vývoj na danou platformu nejvhodnější. Aplikace bude navržena dle zásad architektonického vzoru Model-View-ViewModel.
+
+
+\section{Backendová technologie}
+
+\subsection{Webový framework}
+
+Webové frameworky, tj. knihovny zdrojových kódů připravené pro tvorbu webů (především jejich serverové strany), se standardně používají pro zjednodušení vývoje a nasazení aplikací. Ať už jsou napsány v~libovolném programovacím jazyce (může jít např.~o~PHP, Javu, Ruby nebo Python), standardními součástmi jsou perzistence dat, autentizace uživatelů, správa session nebo šablony pro uživatelské rozhraní. Společnou mají také podporu pro architektonický vzor MVC. \cite{docforge2014web}
+
+Z~množství variant, které se nabízejí, byl zvolen framework Ruby on Rails (v~jazyce Ruby), a to především z~důvodu jeho filosofie Don't Repeat Yourself (kód by měl být znovupoužitelný, bez zbytečného opakování) a Convention Over Configuration (webová aplikace je nakonfigurována dle konvencí, a vývojář tak nemusí trávit čas psaním konfiguračních souborů) \cite{rails2020}, která slibuje výrazné usnadnění vývoje.
+
+\subsection{Aplikační rozhraní}
+
+Pro komunikaci s~dalšími aplikacemi (zde především pro komunikaci klienta se serverem) musí aplikace vnějšku poskytnout své aplikační rozhraní. Za tímto účelem existuje několik možností, které jsou vhodné pro různé případy (např.~REST, SOAP, GraphQL, gRPC). Tyto způsoby implementace se mohou od sebe odlišovat formátem přenosu (binární, textový) nebo protokolem (HTTP i~jiné).
+
+Pro účely tohoto projektu se jako optimální varianta jeví použití REST API, a to vzhledem k~velmi dobré podpoře ze strany webového frameworku bez nutnosti rozšiřování o~další knihovny (konkrétně Ruby on Rails podporují vytváření cest na základě konvencí – pokud tak controller definuje metodu \texttt{update}, automaticky se vytvoří endpoint \texttt{PUT/PATCH /resources/:id}, případně lze cesty definovat v~souboru \texttt{config/routes.rb} a provolat tak libovolnou akci v~libovolném controlleru).
+
+V některých případech by bylo vhodnější použít pro komunikaci jiný prostředek (především v~případě volání výpočtů na serveru), např.~RPC (gRPC, XML-RPC, JSON-RPC či jinou konkrétní implementaci), neboť zde nedochází k~přenosu zdrojů, ale pouze k~výpočtům na vzdáleném serveru (provolávání akcí). \cite{sturgeon2016understanding} Toto by ale vytvořilo problémy při nasazení aplikace na PaaS službách (např. Heroku) \cite{lisitsky2018does}, proto bylo zvoleno řešení, které sice není z~hlediska architektury tou nejlepší volbou, ale jeho  použití je flexibilnější.
+
+\subsection{Databáze}
+
+Rozhodování ohledně použité databáze se může týkat způsobu uložení dat (relační nebo NoSQL) a samotného DBMS (systém správy báze dat). Je třeba se rozhodnout, zda v~projektu bude použita relační či NoSQL databáze. Relační databáze přitom jsou vhodné na ukládání dat se statickou strukturou, NoSQL databáze mohou být flexibilnější, co se ukládání dat týče.  \cite{geeks2020difference}
+
+Pro účely tohoto projektu byla zvolena relační databáze, a to z~důvodu předem určené struktury dat a taktéž proto, že jde o technologii, která má dobrou podporu, a to i ze strany webových frameworků. Upřednostněna tedy byla známá technologie. Jako konkrétní DBMS byl zvolen Postgres.
+
+
+\subsection{Shrnutí}
+
+Aplikace bude vyvinuta ve webovém frameworku Ruby on Rails, a to vzhledem k~tomu, že jde o~rozšířený framework, který slibuje jednoduchou konfiguraci. Z~volby frameworku vyplývá použit architektonického vzoru MVC. S~vnějškem bude tato aplikace komunikovat prostřednictvím REST API vzhledem k~jednoduché implementaci a silné podpoře pro jeho využití. Použita bude relační databáze, konkrétně Postgres.
+
+\section{Požadavky na kvalitu software}
+
+Z~rozhodování v~této kapitole vyplynuly následující požadavky na kvalitu software:
+
+\begin{enumerate}[label=\textbf{S\arabic*.}]
+	\item Bude vyvinuta nativní Android aplikace v~jazyce Kotlin.
+	\item Backend bude vyvinut ve webovém frameworku Ruby on Rails.
+	\item Mobilní aplikace bude se serverem komunikovat přes jeho REST API.
+	\item Bude použita databáze Postgres.
+\end{enumerate}
 
 \chapter{Návrh vlastního algoritmu}
 
@@ -797,7 +785,7 @@ Konkrétní požadavky byly stanoveny následovně:
 \end{enumerate}
 
 \section{Tvorba směn a poptávky}\label{sub:demand}
-Při rozvrhování se pro zjednodušení předpokládá, že v každém týdnu budou vypsány směny pravidelným způsobem, to znamená, že všechny budou stejně dlouhé a budou každý den v~týdnu začínat ve stejnou dobu, a budou v rámci jednoho pracovního dne rozloženy pravidelně dle počtu směn (pro realističtější modelování situace existuje možnost některé směny z rozvrhu vyjmout). Půjde tak flexibilně stanovit parametry rozvrhování, konkrétně celkovou pracovní dobu, délku jedné směny, délku přestávky a počet směn v jednom dni. Bude také možné naplánovat směny probíhající přes noc, případně i~24hodinový provoz (pak bude třeba stanovit začátek jedné ze směn, aby bylo možné jejich rovnoměrné rozdělení do 24 hodin). Pro každou jednotlivou směnu lze dále určit její prioritu.
+Při rozvrhování se pro zjednodušení předpokládá, že v každém týdnu budou vypsány směny pravidelným způsobem, to znamená, že všechny budou stejně dlouhé a budou každý den v~týdnu začínat ve stejnou dobu, a budou v rámci jednoho pracovního dne rozloženy pravidelně dle počtu směn (pro realističtější modelování situace existuje možnost některé směny z rozvrhu vyjmout). Půjde tak flexibilně stanovit parametry rozvrhování, konkrétně celkovou pracovní dobu, délku jedné směny, délku přestávky a počet směn v jednom dni. Bude také možné naplánovat směny probíhající přes noc, případně i~24hodinový provoz (pak bude třeba stanovit začátek jedné ze směn, aby bylo možné jejich rovnoměrné rozdělení). Pro každou jednotlivou směnu lze dále určit její prioritu (číslo mezi 0~a~5).
 
 \section{Podmínky}
 Obdobně jako v~podkapitole \ref{sec:constraints} se podmínky dají rozdělit do dvou skupin (nezbytné a zbytné).
@@ -816,27 +804,21 @@ Konkrétně se jedná o následující podmínky:
 	\item Zaměstnanec může být v jednu chvíli pouze na jedné směně, směny se nesmějí překrývat.
 \end{enumerate}
 
-\subsection{Zbytné podmínky}
-Byly zvoleny čtyři zbytné podmínky. Pro každou z nich byl zvolen způsob, jak se bude počítat cílová funkce, dále byl stanoven pokud možno co nejjednodušším způsob, jak optimalizovat hodnotu cílové funkce. %(ideálně tedy ne vyčerpávajícím prohledáváním všech variant, ale cíleným zlepšováním daných podmínek). %Konkrétně jsou v~této práci vyhodnocovány čtyři zbytné podmínky.
+\subsection{Zbytné podmínky a cílová funkce}
+Byly zvoleny čtyři zbytné podmínky (obsazení všech směn, obsazení směn úměrně poptávce, obsazení specializovaných směn, více volna v~kuse). Pro každou z~nich byl zvolen způsob, jak se bude počítat cílová funkce, dále byl stanoven pokud možno co nejjednodušší způsob, jak optimalizovat hodnotu cílové funkce.
 
-\section{Cílová funkce}
-Cílová funkce je stanovena obdobně jako v~podkapitole \ref{sec:objective} – jde o~součet vážených porušení zbytných podmínek.
+Cílová funkce je stanovena obdobně jako v~podkapitole \ref{sec:objective} – jde o~součet vážených porušení zbytných podmínek (sankce za porušení je lineární).
 
 \subsection{Obsazení všech směn}
 
 Smyslem této podmínky je určit, zda v~každou chvíli bude na pracovišti alespoň jeden zaměstnanec. Vyhodnocení probíhá tak, že se naleznou všechny směny, které nemá do svého rozvrhu zapsán žádný zaměstnanec. Výsledkem cílové funkce je počet neobsazených směn násobený sankcí.
 
-\subsection{Více volna v~kuse}
-Tato lokální podmínka vychází z~předpokladu, že je pro zaměstnance příjemnější mít více dní volna najednou. Je penalizováno, pokud nemá zaměstnanec alespoň 48 hodin volna v~kuse (mezi směnami nebo vzhledem k~začátku/konci týdne), pokud tedy jsou v~rámci rozvržení pracovních dnů v~daném týdnu volné víkendy (či jiné dva po sobě jdoucí dny), bude penalizace nulová u všech zaměstnanců.
-
-\subsection{Obsazení specializovaných směn}
-Penalizováno je obsazení směn, které nejsou specializované. Výsledek cílové funkce dává součin celkového počtu přiřazení na směny bez specializace a sankce.
-
 \subsection{Obsazení směn úměrně poptávce}
 Jak již bylo uvedeno v podkapitole \ref{sub:demand}, každá ze směn může mít určenou svou prioritu. Penalizována je odchylka od požadovaného obsazení $\texttt{D[i]}$ pro $\texttt{i} = \mbox{priorita dané směny}$ v~souhrnném rozvrhu (jde tak o~globální podmínku).
 
-\subsubsection{Požadované obsazení}
-Nejprve se spočítá průměrná priorita (\texttt{avg\_priority}) ze všech směn v~daném období a průměrný počet zaměstnanců na jednu směnu (\texttt{avg\_assignments}, počet přiřazení na směnu dělený počtem směn).
+
+\subsubsection{Rozložení poptávky}
+Pro účely rozložení poptávky mezi směny s~různou prioritou byl navržen následující postup: nejprve se spočítá průměrná priorita (\texttt{avg\_priority}) ze všech směn v~daném období a průměrný počet zaměstnanců na jednu směnu (\texttt{avg\_assignments}, počet přiřazení na směnu dělený počtem směn).
 
 Z těchto údajů se vypočítá požadovaný počet zaměstnanců na směně o~střední prioritě (\texttt{medium\_demand = 3}). \texttt{const} je nějaká konstanta, která ovlivňuje rozložení poptávky (viz tab.~\ref{tab:demandfactor}). Hodnota konstanty by měla být alespoň \texttt{medium\_demand}, aby poptávka byla kladné číslo. S~výsledkem rov.~\ref{eq:d3} a \ref{eq:di} se pracuje v zaokrouhlené formě (může tak docházet k~chybě).
 
@@ -851,9 +833,9 @@ Z těchto údajů se vypočítá požadovaný počet zaměstnanců na směně o~
 \end{equation}
 
 \begin{table}[h]
-	\caption{Vliv volby konstanty na rozložení poptávky}
+	\caption{Rozložení poptávky}
 	\label{tab:demandfactor}
-	\begin{tabular}{c|ccccccc}
+	\begin{tabular}{c|c|cccccc}
 		\hline
 		zam. & \texttt{const} & \texttt{D[1]} & \texttt{D[2]} & \texttt{D[3]} & \texttt{D[4]} & \texttt{D[5]} \\
 		\hline
@@ -870,14 +852,32 @@ Z těchto údajů se vypočítá požadovaný počet zaměstnanců na směně o~
 	\end{tabular}
 \end{table}
 
-\section{Popis algoritmu}
-Algoritmus začíná vytvořením nějakého platného řešení (jde o náhodné řešení při splnění nezbytných podmínek), o kterém lze říci, jak moc kvalitní je a které lze srovnávat s~ostatními řešeními, co se hodnoty cílové funkce týče. Toto řešení slouží jako referenční pro další operace (pokud se řešení v~dalších krocích podaří zlepšit, změní se referenční řešení na nové, lepší řešení).
 
-\begin{figure}
-	\includegraphics[scale=0.7]{img/algorithm-flow.pdf}
-	\caption{Vývojový diagram algoritmu}
-	\label{fig:algorithmflow}
-\end{figure}
+\subsection{Více volna v~kuse}
+Tato lokální podmínka vychází z~předpokladu, že je pro zaměstnance příjemnější mít více dní volna najednou. Je penalizováno, pokud nemá zaměstnanec alespoň 48 hodin volna v~kuse (mezi směnami nebo vzhledem k~začátku/konci týdne), pokud tedy jsou v~rámci rozvržení pracovních dnů v~daném týdnu volné víkendy (či jiné dva po sobě jdoucí dny), bude penalizace nulová u všech zaměstnanců.
+
+\subsection{Obsazení specializovaných směn}
+Penalizováno je obsazení směn, které nejsou specializované. Výsledek cílové funkce dává součin celkového počtu přiřazení na směny bez specializace a sankce.
+
+\section{Popis algoritmu}
+Algoritmus (viz~kód~\ref{lst:scheduling}) začíná vytvořením nějakého platného řešení (jde o náhodné řešení při splnění nezbytných podmínek), o kterém lze říci, jak moc kvalitní je a které lze srovnávat s~ostatními řešeními, co se hodnoty cílové funkce týče. Toto řešení slouží jako referenční pro další operace (pokud se řešení v~dalších krocích podaří zlepšit, změní se referenční řešení na nové, lepší řešení).
+
+% \begin{figure}
+% 	\includegraphics[scale=0.7]{img/algorithm-flow.pdf}
+% 	\caption{Vývojový diagram algoritmu}
+% 	\label{fig:algorithmflow}
+% \end{figure}
+
+\begin{lstlisting}[caption={Pseudokód rozvrhovacího algoritmu}, label={lst:scheduling}]
+Vytvoř první řešení
+POKUD zbývají strategie
+	Zvol další strategii
+	Pokus se vylepšit řešení
+	POKUD je nové řešení lepší
+		Ulož nové řešení
+JINAK
+	Vrať nejlepší řešení
+\end{lstlisting}
 
 Referenční řešení se se znalostí informací relevantních pro danou zbytnou podmínku algoritmus dále pokouší zlepšovat (postupně z hlediska různých podmínek).
 
@@ -909,37 +909,21 @@ Předpoklad pro algoritmus je co se týče délky pracovního týdne jednoduchý
 Pro každou specializovanou směnu existuje směna bez specializace, která probíhá ve stejný čas. Zaměstnanec může být přiřazen na libovolnou nespecializovanou směnu nebo na směnu se specializací odpovídající jeho smlouvě.
 
 \section{Obsazení všech směn}
-Tato strategie se pokouší do rozvrhu náhodně vybraných zaměstnanců vložit směnu, která zatím nebyla obsazena, a to způsobem znázorněným na obr.~\ref{fig:noemptyshifts}. Tento algoritmus proběhne pro každou směnu nejvýše $n$-krát.
+Tato strategie se pokouší do rozvrhu náhodně vybraných zaměstnanců vložit směnu, která zatím nebyla obsazena, a to způsobem popsaným v~pseudokódu~\ref{lst:noemptyshifts}. Tento algoritmus proběhne pro každou směnu nejvýše $n$-krát.
 
-\begin{figure}
-	\includegraphics[scale=0.7]{img/no-empty-shifts.pdf}
-	\caption{Strategie pro obsazení všech směn}
-	\label{fig:noemptyshifts}
-\end{figure}
+% \begin{figure}
+% 	\includegraphics[scale=0.7]{img/no-empty-shifts.pdf}
+% 	\caption{Strategie pro obsazení všech směn}
+% 	\label{fig:noemptyshifts}
+% \end{figure}
 
 
-% \begin{lstlisting}[caption={Pseudokód pro vylepšování obsazení všech směn}]
-% Vyber ze seznamu směn ty směny, které mají obsazenost 1
-% Vyber zaměstnance, kteří pracují na směnách s obsazeností 1 a odeber je ze seznamu zaměstnanců
-% Employees = seznam zaměstnanců po odebrání
-% JESTLIŽE je Employees prázdné
-% 	Employees = seznam všech zaměstnanců
-% Shifts = seznam neobsazených směn
-% DOKUD není Employees nebo Shifts prázdné
-% 	E = náhodný zaměstnanec z Employees
-% 	Length = počet směn pro zaměstnance E
-% 	C = min (Length, Shifts.length)
-% 	Schema = []
-%
-% 	DOKUD Schema je prázdné
-% 		Schema = schéma směn  o délce Length obsahující kombinaci C prvků z Shifts
-% 		JESTLIŽE Schema existuje
-% 			Přiřaď zaměstnanci E schéma Schema
-% 			Odeber E z Employees
-% 			Shifts = Shifts po odečtení Schema
-% 		JINAK JESTLIŽE jsou vyčerpány všechny kombinace o délce C
-% 				C = ceil (C / 2)
-% \end{lstlisting}
+\begin{lstlisting}[caption={Strategie pro vylepšování obsazení všech směn}, label={lst:noemptyshifts}]
+Vyber náhodného zaměstnance
+POKUD lze vložit směnu do existujícího rozvrhu
+	Vlož směnu do rozvrhu
+	Smaž protínající nebo náhodnou směnu z rozvrhu
+\end{lstlisting}
 
 
 %Základní testování proběhlo na období jednoho týdne (o 7 pracovních dnech), v němž jsou rozepsány 3 směny mezi 8:00 a 22:30 (8hodinové s 30minutovou přestávkou), a to na 5, 10 a 20 zaměstnancích. Zatímco efekt u 20 zaměstnanců byl nepatrný (i v~náhodném řešení se směny mohly rozložit tak, že k porušování nedocházelo), v~případě menšího počtu zaměstnanců (10 a 5) vždy došlo ke snížení sankce, a tedy ke zlepšení oproti náhodnému řešení.
@@ -980,13 +964,20 @@ Tato strategie se pokouší do rozvrhu náhodně vybraných zaměstnanců vloži
 %\end{table}
 
 \section{Obsazení specializovaných směn}
-Tato strategie změní přiřazenou směnu na specializovanou, která probíhá v~daném čase, je-li to možné vzhledem ke specializaci zaměstnance, viz obr.~\ref{fig:specialize} (průběh pro jednu směnu).
+Tato strategie změní přiřazenou směnu na specializovanou, která probíhá v~daném čase, je-li to možné vzhledem ke specializaci zaměstnance, viz pseudokód~\ref{lst:specialize} (průběh pro jednu směnu v~rozvrhu jednoho zaměstnance).
 
-\begin{figure}
-	\includegraphics[scale=0.7]{img/specialize.pdf}
-	\caption{Vývojový diagram pro obsazení specializovaných směn}
-	\label{fig:specialize}
-\end{figure}
+\begin{lstlisting}[caption={Strategie pro obsazení specializovaných směn}, label={lst:specialize}]
+Vyber směnu bez specializace
+POKUD probíhá ve stejný čas vhodně specializovaná směna
+	Vyměň směnu za specializovanou
+\end{lstlisting}
+
+
+% \begin{figure}
+% 	\includegraphics[scale=0.7]{img/specialize.pdf}
+% 	\caption{Vývojový diagram pro obsazení specializovaných směn}
+% 	\label{fig:specialize}
+% \end{figure}
 
 % \paragraph{Testovací data}
 % \begin{table}[h]
@@ -1016,39 +1007,58 @@ Tato strategie změní přiřazenou směnu na specializovanou, která probíhá 
 % 	\end{tabular}
 % \end{table}
 
-Úspěch této strategie je zaručen u všech směn, pro něž lze nalézt specializovanou směnu, která probíhá ve stejný čas. Tento předpoklad se potvrdil i při testování (viz přílohu \todo{Příloha}) – v~případě, že všechny směny lze specializovat, je sankce za porušení této podmínky vždy nulová. To ale znamená, že některé směny zůstanou zcela prázdné – tedy že naopak tato strategie může zhoršit obsazení všech směn  (je ale otázkou, jestli tento fakt má takovou váhu v~reálném světě a zda vůbec dává možnost \uv{na tuto směnu může přijít kdokoliv} smysl v~případě, že se směny mají rozepisovat s~ohledem na specializaci zaměstnanců).
+Úspěch této strategie je zaručen u všech směn, pro něž lze nalézt specializovanou směnu, která probíhá ve stejný čas – v~případě, že všechny směny lze specializovat, je sankce za porušení této podmínky vždy nulová. To ale znamená, že některé směny zůstanou zcela prázdné – tedy že naopak tato strategie může zhoršit obsazení všech směn  (je ale otázkou, jestli tento fakt má takovou váhu v~reálném světě a zda vůbec dává možnost \uv{na tuto směnu může přijít kdokoliv} smysl v~případě, že se směny mají rozepisovat s~ohledem na specializaci zaměstnanců).
 
-\section{Více dnů volna v~kuse}
-Jedná se o požadavek, který určuje, že mezi dvěma směnami či začátkem (koncem) týdne a první (poslední) má být alespoň 48 hodin volna. Postup pro vylepšení, který se aplikuje na rozvrh každého zaměstnance, který zatím nemá 48hodinovou přestávku mezi směnami, je na obr.~\ref{fig:freedays}.
+\section{Více volna v~kuse}
+Postup pro vylepšení, který se aplikuje na rozvrh každého zaměstnance, který zatím nemá 48hodinovou přestávku mezi směnami, je popsán v~pseudokódu~\ref{lst:freedays}. Především tento algoritmus jednu směnu odstraní (tím vytvoří delší volno), a poté se pokusí umístit další směnu mezi dvě jiné.
 
-\begin{figure}
-	\includegraphics[scale=0.7]{img/free-days.pdf}
-	\caption{Vývojový diagram pro obsazení specializovaných směn}
-	\label{fig:freedays}
-\end{figure}
+\begin{lstlisting}[caption={Strategie pro více volna v~kuse}, label={lst:freedays}]
+Nalezni 48h přestávku mezi N-1 směnami
+Odstraň směnu v tomto časovém období
+POKUD lze směnu vložit do druhé největší přestávky
+	Vlož směnu do této přestávky
+\end{lstlisting}
 
-
-Tento algoritmus tak jednu směnu odstraní (tím vytvoří delší volno), a poté se pokusí umístit další směnu na jiné místo.
+% \begin{figure}
+% 	\includegraphics[scale=0.7]{img/free-days.pdf}
+% 	\caption{Vývojový diagram pro obsazení specializovaných směn}
+% 	\label{fig:freedays}
+% \end{figure}
 
 \section{Obsazení směn úměrně poptávce}
-Nalezne se zaměstnanec, který je zapsán na směnu, kde naplnění převyšuje poptávku a $n$ náhodných směn, které poptávku nenaplňují – snahou je vyměnit přeplněnou směnu za prázdnější (obr.~).
+Nalezne se zaměstnanec, který je zapsán na směnu, kde naplnění převyšuje poptávku a $n$ náhodných směn, které poptávku nenaplňují – snahou je vyměnit přeplněnou směnu za prázdnější (pseudokód~\ref{lst:demand}).
 
-\begin{figure}
-	\includegraphics[scale=0.7]{img/demand-fulfill.pdf}
-	\caption{Vývojový diagram pro obsazení směn dle poptávky}
-	\label{fig:freedays}
-\end{figure}
-
+\begin{lstlisting}[caption={Strategie pro obsazení směn dle poptávky}, label={lst:demand}]
+Vyber náhodného zaměstnance na směnu
+POKUD lze tuto směnu vyměnit za méně obsazenou
+	Vyměň směnu za méně obsazenou
+\end{lstlisting}
 
 \section{Testování}
 
 Při testování heuristických algoritmů nelze kontrolovat, zda byl vrácen jeden konkrétní výsledek (mimo jednoduché případy) a je možné pouze určovat, zda je řešení dost dobré, dost rychlé a validní. Může proběhnout sběr testovacích dat z~místa reálného nasazení algoritmu, případně mohou být data generována náhodně. \cite{rardin2001experimental}
 
+Cílem bylo ověřit na několika sadách testovacích dat následující předpoklady:
+\begin{enumerate}
+	\item Algoritmus vrací pro validní vstupy validní řešení.
+	\item Dochází ke zlepšení řešení, pokud proběhne alespoň jedna strategie.
+	\item Pokud proběhnou všechny strategie, bude řešení nejlepší.
+	\item Pokud má podmínka vyšší váhu, bude její zlepšení výraznější.
+	\item Čím více iterací zlepšování, tím lepší řešení.
+\end{enumerate}
+
+Co se prvního předpokladu týče, řešení bude považováno za validní, pokud algoritmus proběhne bez vyvolání výjimky a bez zacyklení a pokud se řešení podaří uložit do databáze. Ve zbytku bude vyhodnocováno řešení jako celek po dokončení algoritmu~–~rozhodující bude počet porušení jednotlivých podmínek. Porovnáno bude náhodné a vylepšované řešení, konkrétně průměrný počet sankcí s~přihlédnutím ke standardní odchylce. Všechny testy proběhly desetkrát, souhrn je součástí přílohy \todo{Výsledky testování příloha}.
+
+Z~výsledků testování lze jednoznačně říci, že řešení není horší než náhodné v~případě, že proběhne některá ze strategií.
+
+Při testování algoritmu bylo zjištěno, že nevrací žádné řešení v~případě, že všechny směny bez specializace mají nulovou poptávku a někteří zaměstnanci mohou z~tohoto důvodu vzhledem ke své specializaci pracovat pouze méně směn v~daném týdnu. Je otázkou, zda toto považovat za správnou reakci na nevalidní vstupy, tedy pravděpodobně za chybu manažera, který si neuvědomil, že směny takto rozvhrnout nelze, případně zda je algoritmus vhodné opravit rozvrhnutím menšího množství směn (nesprávné řešení vzhledem k~pracovní době) nebo přiřazením směn s~nulovou prioritou či jinou specializací (nesprávné řešení vzhledem k~podmínkám algoritmu).
+
+%Jednoduchým řešením by mohlo být zkrácení pracovního týdne podle specializace směn (vhodné řešení z~hlediska podmínek algoritmu), případně rozvržení i~nespecializovaných směn s~nulovou prioritou (vhodné řešení z~hlediska pracovní doby).
+
 
 \section{Vyhodnocení algoritmu}
 
-Byl navržen triviální algoritmus na rozdělení předem určených směn mezi zaměstnance s~různě velkým úvazkem. V~případě budoucího použití by bylo třeba ho dále vylepšit a vzít v~potaz, co by od rozvrhovacího algoritmu očekával ten, kdo by jej využival – skoro jistě by se jednalo o~složitější optimalizační úlohu, která by vyžadovala odlišný model.
-
+Byl navržen triviální algoritmus na rozdělení předem určených směn mezi zaměstnance s~různě velkým úvazkem. V~případě budoucího použití by bylo třeba dále jej vylepšit a vzít v~potaz, co by od rozvrhovacího algoritmu očekával ten, kdo by jej využival~–~skoro jistě by se jednalo o~složitější optimalizační úlohu, která by vyžadovala odlišný model.
 
 
 \chapter{Implementace}
@@ -1057,7 +1067,7 @@ Byl navržen triviální algoritmus na rozdělení předem určených směn mezi
 
 Při implementaci byla použita třívrstvá architektura (klient, aplikační server, databáze), jak je naznačeno na obr.~\ref{fig:architecture}. Klientem zde je mobilní aplikace, která komunikuje se serverem přes jeho REST API. Serverová aplikace běží v Dockeru z~důvodu snazšího nasazení na různá prostředí.
 
-Kromě samotné Rails aplikace a databáze jsou v~Dockeru i kontejnery Redis a~Sidekiq, a to z~důvodu zpracování operací na pozadí, v~této aplikaci především pravidelné např.~vytvoření nového týdne pro rozvrhnutí nebo zveřejnění rozvrhu v~případě, že to vedoucí neudělá v~dostatečném předstihu.
+Kromě samotné Rails aplikace a databáze jsou v~Dockeru i kontejnery Redis a~Sidekiq, a to z~důvodu zpracování operací na pozadí, v~této aplikaci jde především o~pravidelné~vytvoření nového týdne pro rozvrhnutí nebo zveřejnění rozvrhu v~případě, že to vedoucí neudělá v~dostatečném předstihu.
 
 Mimo tuto strukturu stojí Firebase Cloud Messaging, který se používá pro posílání notifikací (např.~o~zveřejnění nového rozvrhu nebo nového týdne na naplánování) do mobilní aplikace, když si toto server vyžádá.
 
@@ -1069,11 +1079,17 @@ Mimo tuto strukturu stojí Firebase Cloud Messaging, který se používá pro po
 
 \section{Backend}
 
-Backendová aplikace využívá architektonický vzor MVC (resp.~jeho částo Model a Controller, View není přímo její součástí, protože žádné webové uživatelské rozhraní neexistuje).
+Backendová aplikace využívá architektonický vzor MVC, přičemž uživatelské rozhraní (view) je zcela zajištěno mobilní aplikací, a není tedy součástí webové aplikace.
+
+Aplikace byla implementována tak, aby byly dodrženy konvence a nebylo třeba ji příliš konfigurovat~–~controllery jsou implementovány na základě konvencí, není-li nutné to udělat jinak, tzn.~že v~případě, že přijde požadavek \texttt{GET /resources}, provolá se metoda \texttt{index} v~\texttt{ResourceController} (jedna z~konvencí v~Rails), model je implementován s~pomocí objektově relačního mapování, které se stará o~přístup k~databázi. Mimo strukturu specifickou pro webovou aplikaci stojí \texttt{Service} třídy, které se provolávají v~případě, že je vhodné některé akce odsunout mimo Controller, a také pomocné datové struktury a strategie pro rozvrhování směn.
+
+Používají se především gemy\footnote{Gem je termín pro knihovny v~Ruby.} Devise Token Auth (autentizace uživatele s~pomocí tokenů), CanCanCan (zabezpečení operací se zdroji na základě uživatelské role) nebo will paginate (stránkování zdrojů).
+
+Diagram tříd je součástí přílohy \ref{sec:diagram}.
 
 \section{Mobilní aplikace}
 
-Mobilní aplikace byla navrhnuta dle zásad nejpoužívanější a ze stranu Googlu doporučovaného architektonického vzoru MVVM. Při implementaci byly využity především knihovny Koin (pro dependency injection), Retrofit (HTTP klient) a dále některé součásti Android Jetpack (soubor knihoven pro platformu Android, které usnadňují vývoj udržitelných aplikací a poskytují kompatibilitu se staršími verzemi OS \cite{android2020jetpack}), a to především LiveData (pozorovatelná data respektující životní cyklus Android UI komponent), Navigation (navigace mezi fragmenty aplikace), DataBinding (propojení UI komponent definovaných v~XML~layoutech s~daty) nebo Room (nadstavba nad databázi SQLite pro perzistenci dat).
+Mobilní aplikace byla navrhnuta dle zásad nejpoužívanější a ze stranu Googlu doporučovaného architektonického vzoru MVVM. Při implementaci byly využity především knihovny Koin (pro dependency injection), Retrofit (HTTP klient) a dále některé součásti Android Jetpack (soubor knihoven pro platformu Android, které usnadňují vývoj udržitelných aplikací a poskytují kompatibilitu se staršími verzemi OS \cite{android2020jetpack}), a to především LiveData (pozorovatelná data respektující životní cyklus Android UI komponent), Navigation (navigace mezi fragmenty aplikace), DataBinding (propojení UI komponent definovaných v~XML~layoutech s~daty), Paging (stránkování seznamů) nebo Room (nadstavba nad databázi SQLite pro perzistenci dat).
 
 Jedná se o~aplikaci s~nižším počtem aktivit (samostatné aktivity se využívají v~případě, že by nebylo vhodné zobrazovat v~aplikaci spodní navigaci, což znamená tehdy, když se vytváří nové zdroje, např.~nový zaměstnanec), v~níž navigace probíhá s~pomocí komponenty Navigation (např. detaily směn tedy nejsou sa\-mos\-tat\-ný\-mi aktivitami, ale jedná se o~fragmenty v~aktivitě \texttt{MainActivity}). Tento přístup k~navigaci byl odpozorován např.~u aplikací Spotify, YouTube nebo Instagram.
 
@@ -1134,7 +1150,7 @@ sealed class ResponseModel<T> {
 
 \section{Design}\label{design}
 
-Design aplikace vznikl v souladu se základními pravidly Material Designu. Jako inspirace zde sloužil především minimalismus aktuálních veřejně dos\-tup\-ných aplikací, jako jsou například Instagram, Google Fit nebo Spotify. Základní návrh prvků uživatelského rozhraní byl načrtnut v~nástroji Figma (konkrétní podoba obrazovek však vznikala až při implementaci). Ikonky byly převzaty z~knihoven Font Awesome 5 (fas) a Material Design Icon (mdi), ilustrace byly vytvořeny v~programu Sketch. Pro konkrétní návrhy viz~přílohu \todo{Příloha design}
+Design aplikace vznikl v souladu se základními pravidly Material Designu. Snahou bylo vytvořit minimalistické, jednoduché uživatelské rozhraní~--~vzhled uživatelského rozhraní byl navrhnut v~nástroji Figma. Ikonky byly převzaty z~knihoven Font Awesome 5 (fas) a Material Design Icon (mdi). Pro konkrétní návrhy viz~přílohu \ref{sec:ui}.
 
 \chapter*{Závěr}
 
@@ -1160,6 +1176,12 @@ Wireframes, mapa obrazovek v mobilní aplikaci
 \end{itemize}
 
 
+Design obrazovek \todo{Příloha design}
+\begin{itemize}
+	\item \url{https://github.com/kopemar/baka-docs/blob/main/lfp.pdf}
+\end{itemize}
+
+
 \section{Zdrojové kódy}
 
 Mobilní aplikace
@@ -1173,5 +1195,12 @@ Backend aplikace
 \end{itemize}
 
 \newpage
+
+\section{Diagramy}\label{sec:diagram}
+
+Diagram tříd
+\begin{itemize}
+	\item \url{https://github.com/kopemar/baka-docs/blob/main/class_diagram.pdf}
+\end{itemize}
 
 \end{document}
