@@ -1,0 +1,98 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'uc-employee.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{272.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.60881543)%
+  \begin{sffamily}%
+  \begin{small}%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{uc-employee.pdf}}%
+    \put(0.13957513,1.21487603){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{uc-employee.pdf}}%
+    \put(0.63583366,1.53168044){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Modul zaměstnance\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{uc-employee.pdf}}%
+    \put(0.65096029,0.24517906){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC7: Zobrazit přehled\end{tabular}}}}%
+    \put(0.64740646,0.20661157){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}smluv\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{uc-employee.pdf}}%
+    \put(0.65102485,0.53168044){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC6: Zobrazit historii\end{tabular}}}}%
+    \put(0.65250718,0.49311295){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}odpracovaných směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{uc-employee.pdf}}%
+    \put(0.65371511,0.83746556){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC5: Zobrazit přehled\end{tabular}}}}%
+    \put(0.65067176,0.79889807){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}nejbližších naplánovaných\end{tabular}}}}%
+    \put(0.64794451,0.76033058){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{uc-employee.pdf}}%
+    \put(0.65218973,1.1046832){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC4: Zobrazit detail\end{tabular}}}}%
+    \put(0.64950486,1.0661157){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směny\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{uc-employee.pdf}}%
+    \put(0.65030723,1.39118457){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC3: Zobrazit osobní\end{tabular}}}}%
+    \put(0.64905491,1.35261708){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}rozvrh směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{uc-employee.pdf}}%
+    \put(0.65030723,1.39118457){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC3: Zobrazit osobní\end{tabular}}}}%
+    \put(0.64905491,1.35261708){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}rozvrh směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{uc-employee.pdf}}%
+    \put(0.65218973,1.1046832){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC4: Zobrazit detail\end{tabular}}}}%
+    \put(0.64950486,1.0661157){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směny\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{uc-employee.pdf}}%
+    \put(0.65371511,0.83746556){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC5: Zobrazit přehled\end{tabular}}}}%
+    \put(0.65067176,0.79889807){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}nejbližších naplánovaných\end{tabular}}}}%
+    \put(0.64794451,0.76033058){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{uc-employee.pdf}}%
+    \put(0.65102485,0.53168044){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC6: Zobrazit historii\end{tabular}}}}%
+    \put(0.65250718,0.49311295){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}odpracovaných směn\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{uc-employee.pdf}}%
+    \put(0.65096029,0.24517906){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}UC7: Zobrazit přehled\end{tabular}}}}%
+    \put(0.64740646,0.20661157){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}smluv\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{uc-employee.pdf}}%
+    \end{small}
+    \end{sffamily}
+  \end{picture}%
+\endgroup%

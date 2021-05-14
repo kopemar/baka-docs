@@ -1,0 +1,131 @@
+%%% Specification of all necessary stuff %%%
+% ========================================
+
+
+% Specification of the author and consultants
+\newcommand{\autor}{Martina Kopecká}   % vyplňte své jméno a příjmení (s akademickým titulem, máte-li jej)
+\newcommand{\woman}{a} % pokud jste ŽENA, ZMĚŇTE na: ...{\woman}{a} (je to do Prohlášení)
+
+\newcommand{\vedouci}{Ing. Jiří Šebek} % vyplňte jméno a příjmení vedoucího práce, včetně titulů, např.: Doc. Ing. Ivo Malý, Ph.D.
+\newcommand{\pracovisteVed}{} % ZMĚŇTE, pokud vedoucí Vaší práce není z KSI
+\newcommand{\konzultant}{title. Talkative Consultant} % POKUD MÁTE určeného konzultanta, NAPIŠTE jeho jméno a příjmení
+\newcommand{\pracovisteKonz}{Very consultive Group} % POKUD MÁTE konzultanta, NAPIŠTE jeho pracoviště
+\newcommand{\konzultantt}{title. Awesome SecondOne} % POKUD MÁTE určeného konzultanta, NAPIŠTE jeho jméno a příjmení
+\newcommand{\pracovisteKonzt}{The second Group} % POKUD MÁTE konzultanta, NAPIŠTE jeho pracoviště
+
+% Specification of thesis -- copy and paste from your task list
+\newcommand{\nazevcz}{Mobilní aplikace pro plánování lidských zdrojů}
+\newcommand{\nazeven}{Mobile App for Human Resource Planning}
+\newcommand{\rok}{2021}  % rok odevzdání práce (jen rok odevzdání, nikoli celý akademický rok!)
+\newcommand{\skola}{School name (see commands.tex for acronyms)}
+\newcommand{\fakulta}{Faculty name (see commands.tex for acronyms)}
+\newcommand{\katedra}{Department name (see commands.tex for acronyms)}
+\newcommand{\kde}{Praze} % studenti z Děčína ZMĚNÍ na: "Děčíně" (doplní se k "prohlášení")
+\newcommand{\program}{Softwarové inženýrství a technologie} % změňte, pokud máte jiný stud. program
+\newcommand{\obor}{} % změňte, pokud máte jiný obor
+
+%% LANGUAGE SETTINGS
+% Uncomment exactly one block
+
+%==================
+%% CZECH
+\usepackage[czech]{babel} % česky psaná práce, typografická pravidla. Překládejte pomocí "latex.exe" nebo "pdflatex.exe"
+
+% Uncomment exactly one
+\newcommand{\druh}{Bakalářská práce}
+%\newcommand{\druh}{Výzkumný úkol}
+%\newcommand{\druh}{Diplomová práce}
+
+% Intendation
+\newcommand{\stdindent}{\setlength{\parindent}{2em}}
+\newcommand{\stdskip}{\setlength{\parskip}{0em}}
+%==================
+
+%==================
+%% SLOVAK
+% \usepackage[slovak]{babel}
+%==================
+
+
+%==================
+%% ENGLISH
+% \usepackage[english]{babel}
+
+% Uncomment exactly one
+%\newcommand{\druh}{Bachelor thesis}
+%\newcommand{\druh}{Research project}
+%\newcommand{\druh}{Master thesis}
+
+% Intendation
+% \newcommand{\stdindent}{\setlength{\parindent}{0em}}
+% \newcommand{\stdskip}{\setlength{\parskip}{1em}}
+%==================
+
+
+
+% Insert scan of your task -- put it in "img" folder -- 2 separate PDFs recommended
+\newcommand{\skenZadaniPredni}{specimen1.pdf}
+\newcommand{\skenZadaniZadni}{specimen2.pdf}
+
+% Keywords in zde NAPIŠTE česky max. 5 klíčových slov AND translate them into english
+\newcommand{\klicova}{Android, rozvrhování směn,obilní aplikace, Ruby on Rails}
+\newcommand{\keyword}{Android, shift scheduling, mobile app, Ruby on Rails}
+\newcommand{\abstrCZ}{% zde NAPIŠTE abstrakt v češtině (cca 7 vět, min. 80 slov)
+Tato práce se věnuje návrhu mobilní aplikace pro plánování lidských zdrojů, především rozvrhování směn. V~teoretické části jsou popsány základní rozhodující faktory~a~legislativní podmínky, které ovlivňují rozvrhování pracovních sil~a~způsob, jakým lze jejich rozvrhování automatizovat. Je stanoven předpoklad o~cílové skupině organizací, pro které by byla aplikace na rozvrhování směn vhodná, a o~jejich požadavcích. Na tomto základě jsou popsána vybraná softwarová řešení, je proveden rozbor možného nového řešení ve formě mobilní aplikace. V~praktické části je představen vlastní triviální algoritmus na rozvrhování směn mezi zaměstnance, je popsán návrh~aplikace včetně použitých technologií. Závěr je věnován uživatelskému testování aplikace~a~poznatkům z~něj plynoucím.
+}
+\newcommand{\abstrEN}{% zde NAPIŠTE abstrakt v angličtině
+The objective of this bachelor thesis is to design a mobile application for human resource planning, mainly shift scheduling. In the theoretical part, main decision making factors and legislative standards that influence workforce scheduling and methods for scheduling automatization are described. The author forms a hypothesis about target group of organizations that might use the application for shift scheduling and their requirements. According to this assumption, there are described selected sofware solutions and an analysis of new solution is carried out. In the practical part, a trivial algorithm for shift scheduling is introduced and design of application is described, including description of used technologies. The final chapter of this thesis deals with user testing and its conclusions.
+}
+\newcommand{\prohlaseni}{% text prohlášení můžete mírně upravit
+Prohlašuji, že jsem svou bakalářskou práci vypracoval\woman{} samostatně a použil\woman{} jsem pouze podklady (literaturu, projekty, SW atd.) uvedené v přiloženém seznamu.
+}
+\newcommand{\podekovani}{%Podekovani se doporucuje neprehanet
+\todo{Napsat poděkování}
+% NEBO:
+% Děkuji vedoucímu práce doc. Pafnutijovi Snědldítětikaši, Ph.D. za neocenitelné rady a pomoc při tvorbě bakalářské práce.
+}
+
+% Page style -- uncomment exactly one
+%
+% Style 1 -- fancy -- nice looking, but unfortunatelly, not debugged yet :(
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+
+% Style 2 -- plain
+% \pagestyle{plain}      % stránky číslované dole uprostřed
+
+
+% Page numbering
+\pagenumbering{arabic} % číslování stránek arabskými číslicemi
+
+% Depth of table of contents (ToC) (2 is RECOMMENDED, other are believed to be confusing and poorly arranged!
+% 0 = only parts and chapters are included in ToC
+% 1 = parts, chapters, sections
+% 2 = parts, chapters, sections, subsections
+% 3 = parts, chapters, sections, subsections, subsubsections
+\setcounter{tocdepth}{2}
+
+
+% Margins
+% \topmargin=-10mm      % horní okraj trochu menší
+% \textwidth=150mm      % šířka textu na stránce
+% \textheight=240mm     % "výška" textu na stránce
+
+
+% Font size
+\renewcommand\cftchapfont{\small\bfseries}
+\renewcommand\cftsecfont{\footnotesize}
+\renewcommand\cftsubsecfont{\footnotesize}
+
+\renewcommand\cftchappagefont{\small\bfseries}
+\renewcommand\cftsecpagefont{\footnotesize}
+\renewcommand\cftsubsecpagefont{\footnotesize}
+
+% Spacing
+%\frenchspacing % za větou bude mezislovní mezera (v anglických textech je mezera za větou delší)
+\widowpenalty=10000 % "síla" zákazu vdov (= jeden řádek ze začátku odstavce na konci stránky)
+\clubpenalty=10000 % "síla" zákazu sirotků (= jeden řádek/slovo z konce odstavce samostatně na začátku stránky)
+\brokenpenalty=10000 % "síla" zákazu zlomu stránky za řádkem, který má na konci rozdělené slovo

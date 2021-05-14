@@ -1,0 +1,77 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'actors.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{380.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.40433925)%
+  \begin{small}
+  \begin{sffamily}
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{actors.pdf}}%
+    \put(0.66797983,0.04142012){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.66381354,0.01380671){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dohoda\end{tabular}}}}%
+    \put(0.88153931,0.26035503){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\\ DPČ\end{tabular}}}}%
+    \put(0.87902519,0.04142012){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.87609117,0.01380671){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}DPP\end{tabular}}}}%
+    \put(0.46478404,0.26035503){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Vedoucí\end{tabular}}}}%
+    \put(0.45890685,0.04142012){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.66797983,0.25838264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Zaměstnanec\end{tabular}}}}%
+    \put(0.6676466,0.23076923){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}v PP\end{tabular}}}}%
+    \put(0.25970254,0.04142012){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Přihlášený\end{tabular}}}}%
+    \put(0.25922341,0.01380671){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}uživatel\end{tabular}}}}%
+    \put(0.2587125,0.25838264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Nepřihlášený\end{tabular}}}}%
+    \put(0.25725102,0.23076923){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}uživatel\end{tabular}}}}%
+    \put(0.06503242,0.14201183){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Uživatel\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{actors.pdf}}%
+    \end{sffamily}
+    \end{small}
+  \end{picture}%
+\endgroup%

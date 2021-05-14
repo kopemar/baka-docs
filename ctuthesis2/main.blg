@@ -1,0 +1,14 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'main.blg'
+[202] biber-darwin:340> INFO - === Fri May 14, 2021, 15:25:33
+[245] Biber.pm:415> INFO - Reading 'main.bcf'
+[533] Biber.pm:952> INFO - Found 52 citekeys in bib section 0
+[552] Biber.pm:4340> INFO - Processing section 0
+[568] Biber.pm:4531> INFO - Looking for bibtex format file 'ref.bib' for section 0
+[572] bibtex.pm:1689> INFO - LaTeX decoding ...
+[697] bibtex.pm:1494> INFO - Found BibTeX data source 'ref.bib'
+[1216] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1216] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1216] Biber.pm:4168> INFO - Sorting list 'debug/global//global/global' of type 'entry' with template 'debug' and locale 'cs_CZ'
+[1440] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[1570] bbl.pm:757> INFO - Output to main.bbl
